@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "StringVariable", menuName = "SODA Variables/StringVariable")]
 public class StringVariable : SODAVariable
 {
     public string value;

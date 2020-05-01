@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Vector3Variable", menuName = "SODA Variables/Vector3Variable")]
 public class Vector3Variable : SODAVariable
 {
     //Value stored by Vector3Variable
     public Vector3 value;
 
-    //Allows access to values stored in variable
+    //Stores values in Vector3Variable
     public float X { get { return value.x; } }
     public float Y { get { return value.y; } }
     public float Z { get { return value.z; } }

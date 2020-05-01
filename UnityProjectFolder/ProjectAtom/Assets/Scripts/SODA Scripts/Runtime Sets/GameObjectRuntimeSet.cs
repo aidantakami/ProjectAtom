@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Runtime Set", menuName = "Runtime Set")]
 public class GameObjectRuntimeSet : RuntimeSet<GameObject>
 {}

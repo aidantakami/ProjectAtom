@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Vector2Variable", menuName = "SODA Variables/Vector2Variable")]
 public class Vector2Variable : SODAVariable
 {
 
     public Vector2 value;
 
-    //Getter
-    public float x { get { return value.x; } }
-    public float y { get { return value.y; } }
+    //Gets values from value
+    public float X { get { return value.x; } }
+    public float Y { get { return value.y; } }
 
 
     //Return square magnitude
-    public float sqrMagnitude {
-        get { return Mathf.Pow(x, 2) + Mathf.Pow(y,2); }
+    public float SqrMagnitude {
+        get { return Mathf.Pow(X, 2) + Mathf.Pow(Y,2); }
     }
 
     //Setter which takes V2

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "BoolVariable", menuName = "SODA Variables/BoolVariable")]
 public class BoolVariable : SODAVariable
 {
 

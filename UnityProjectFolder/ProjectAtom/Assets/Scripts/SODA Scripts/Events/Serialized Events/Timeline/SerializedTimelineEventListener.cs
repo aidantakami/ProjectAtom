@@ -5,13 +5,6 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using UnityEngine.Events;
 
-/*
- * 
- * Sheehan's example
- * 
- * 
- * 
- */
 
 [System.Serializable]
 public class TimelineAssetUnityEvent : UnityEvent<TimelineAsset> { }

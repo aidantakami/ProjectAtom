@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "FloatVariable", menuName = "SODA Variables/FloatVariable")]
 public class FloatVariable : SODAVariable
 {
     public float value;
