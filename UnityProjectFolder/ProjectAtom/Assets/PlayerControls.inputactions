@@ -1,0 +1,145 @@
+{
+    "name": "DogPlayerControls",
+    "maps": [
+        {
+            "name": "Dog Player Controls",
+            "id": "f6db9c46-6e5f-413a-8ead-c9297800352c",
+            "actions": [
+                {
+                    "name": "Left Right Movement",
+                    "type": "Button",
+                    "id": "28b492cb-af6d-4f86-be2d-8f7669ada8ab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Throw Boomerang",
+                    "type": "Button",
+                    "id": "f61587c3-16cc-4fa7-b2a8-1fb4ef7984bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "b326e01f-f9c7-405a-8509-8183bc4ceded",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Right Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "6fbaa7c2-7e79-48fc-bffb-d34b9df72891",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Right Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c0863c3e-0fbe-4305-a0c9-62b5a1fd1851",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Right Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7b394ade-3935-4fe1-93ac-15b642d5b049",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw Boomerang",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Boomerang Player Controls",
+            "id": "9506f2f0-f6f3-4b0c-b9c7-292b0d05055c",
+            "actions": [
+                {
+                    "name": "Boomerang Movement",
+                    "type": "Button",
+                    "id": "8f27e49b-7bf6-49ad-af64-297b96b81e2d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "f3d98009-6eb8-4453-8163-5aecd7069f0d",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boomerang Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "8ee4feec-87f2-4838-be2e-bb4915e2663f",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boomerang Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "3d1d61c3-c634-47e4-9c70-b6a166b6bca8",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boomerang Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "50b5a7cc-1135-4088-8f8a-8fccc2dafc4f",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boomerang Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "d1ef68cc-093f-4229-ad3b-376f96e02fee",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boomerang Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
