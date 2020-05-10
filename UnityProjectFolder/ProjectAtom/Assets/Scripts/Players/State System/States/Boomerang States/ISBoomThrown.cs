@@ -1,0 +1,86 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ISBoomThrown : IState
+{
+    protected Vector3Variable _boomLocation;
+    protected Vector3Variable _dogLocation;
+    protected float _playerSpeed;
+    protected BoomerangPlayerMovement _player;
+
+    private readonly float horizontalMovementMod = 5f;
+    private readonly float verticallMovementMod = 5f;
+
+
+
+    protected MeshRenderer _playerMR;
+    protected BoxCollider _playerBC;
+
+    //Constructor
+    public ISBoomThrown(Vector3Variable boomLocation, Vector3Variable dogLocation, FloatReference playerSpeed, BoomerangPlayerMovement player)
+    {
+        _boomLocation = boomLocation;
+        _dogLocation = dogLocation;
+        _playerSpeed = playerSpeed;
+        _player = player;
+    }
+
+   
+    public void OnStateEnter()
+    {
+        //Will detect for walls or collidables to side
+        LayerMask mask = LayerMask.GetMask("Collidable");
+        RaycastHit hit;
+        if (Physics.Raycast(_player.transform.position, _player.transform.TransformDirection(Vector3.right), out hit, 2f, mask))
+        {
+            //Move Boomerang away from dog
+            _player.transform.position += new Vector3(-1, 0, 0);
+        }
+        else _player.transform.position += new Vector3(1, 0, 0);
+
+
+        //Get Mesh and Collider
+        _playerMR = _player.GetComponent<MeshRenderer>();
+        _playerBC = _player.GetComponent<BoxCollider>();
+
+
+        //Enables both
+        _playerMR.GetComponent<MeshRenderer>().enabled = true;
+        _playerBC.GetComponent<BoxCollider>().enabled = true;
+        
+    }
+
+
+    public void OnStateExit()
+    {
+        
+    }
+
+    public void OnStateTick()
+    {
+        //Moves player forward
+        _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);
+
+        //Input variables
+        float x = Input.GetAxis("P2Left Stick Horizontal");
+        float y = Input.GetAxis("P2Left Stick Vertical");
+
+        //Distance variable
+        float tempDistance = Vector3.Distance(_boomLocation.value, _dogLocation.value);
+
+        //Allows player to move L and R
+        _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod));
+        _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod);
+
+        if (tempDistance > 25f)
+        {
+            _player.transform.position = Vector3.MoveTowards(_boomLocation.value, _dogLocation.value, 0.01f);
+        }
+
+        //Set player location
+        _boomLocation.SetValue(_player.transform.position);
+
+    }
+
+}
