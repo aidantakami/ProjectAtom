@@ -46,23 +46,22 @@ public class ControllerManager : MonoBehaviour
             GamePadState p1SignIn = GamePad.GetState(controllerNumber1);
             GamePadState p2SignIn = GamePad.GetState(controllerNumber2);
 
-            if (p1SignIn.Buttons.A == ButtonState.Pressed && !player1SignedIn)
+            if (Input.GetButtonDown("P1A Button") && !player1SignedIn)
             {
                 StartCoroutine(ShortControllerVibration(controllerNumber1));
                 playerSignInEvent.Invoke(1);
                 player1SignedIn = true;
             }
 
-            if(p2SignIn.Buttons.B == ButtonState.Pressed && !player2SignedIn)
+            if(Input.GetButtonDown("P2B Button") && !player2SignedIn)
             {
                 StartCoroutine(ShortControllerVibration(controllerNumber2));
                 playerSignInEvent.Invoke(2);
                 player2SignedIn = true;
             }
-
-            yield return new WaitForSeconds(0.07f);
-
+            yield return new WaitForSeconds(0.001f);
         }
+
     }
 
     //Short Controller Vibration 
