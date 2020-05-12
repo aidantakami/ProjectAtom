@@ -61,7 +61,6 @@ public class SmoothFollowScript : MonoBehaviour
 
     public void CameraFollowRestart()
     {
-        Debug.Log("Restart received");
         transform.position = startingPos;
     }
 }

@@ -8,12 +8,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] public BoolVariable isPaused;
     [SerializeField] public BoolVariable isBoomThrown;
 
+    [System.Serializable]
+    public class PlayerSignInEventType : UnityEvent<int>
+    {
+    }
+
+    [SerializeField] PlayerSignInEventType playerSignInEvent = new PlayerSignInEventType();
     [SerializeField] public UnityEvent GameBegin = new UnityEvent();
     [SerializeField] public UnityEvent PauseGameEvent = new UnityEvent();
     [SerializeField] public UnityEvent UnpauseGameEvent = new UnityEvent();
     [SerializeField] public UnityEvent RestartGameEvent = new UnityEvent();
+    [SerializeField] public UnityEvent EndGameEvent = new UnityEvent();
 
     private bool playerCanPause = false;
+    private bool gameIsEnded = true;
+    private bool p1SignedIn = false;
+    private bool p2SignedIn = false;
     private int totalPlayersIn = 0;
 
     // Update reads for player's pause
@@ -36,7 +46,6 @@ public class GameManager : MonoBehaviour
             //Else if already paused
             else if (isPaused.value)
             {
-                Debug.Log("Unpaused");
                 //Unpause
                 if (Input.GetButtonDown("P1Start") || Input.GetButtonDown("P2Start"))
                 {
@@ -44,7 +53,22 @@ public class GameManager : MonoBehaviour
                     return;
                 }
             }
-        }      
+        }
+
+        if (gameIsEnded)
+        {
+            if(Input.GetButtonDown("P1A Button") && !p1SignedIn)
+            {
+                PlayerSignedIn(1);
+                p1SignedIn = true;
+            }
+            
+            if(Input.GetButtonDown("P2B Button") && !p2SignedIn)
+            {
+                PlayerSignedIn(2);
+                p2SignedIn = true;
+            }
+        }
     }
     //Event Responses
 #region
@@ -89,6 +113,9 @@ public class GameManager : MonoBehaviour
     //Keeps track as players sign in
     public void PlayerSignedIn(int playerNumber)
     {
+        playerSignInEvent.Invoke(playerNumber);
+        Debug.Log("SignIn Invoked");
+
         //Tracks number of players signed in
         totalPlayersIn++;
 
@@ -98,8 +125,18 @@ public class GameManager : MonoBehaviour
             //Begin game
             GameBegin.Invoke();
             playerCanPause = true;
+            totalPlayersIn = 0;
         }
     }
 
-#endregion
+    //End of game event invoked
+    public void EndGame()
+    {
+        EndGameEvent.Invoke();
+        gameIsEnded = true;
+        p1SignedIn = false;
+        p2SignedIn = false;
+    }
+
+    #endregion
 }

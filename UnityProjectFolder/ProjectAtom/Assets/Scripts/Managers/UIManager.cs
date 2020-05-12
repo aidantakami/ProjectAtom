@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] public TextMeshProUGUI player1SignInText;
     [SerializeField] public TextMeshProUGUI player2SignInText;
+    [SerializeField] public TextMeshProUGUI gameEndedText;
     [SerializeField] public GameObject PauseMenu;
     [SerializeField] public UnityEvent UnpauseGame;
     [SerializeField] public UnityEvent RestartGame;
@@ -18,6 +19,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<Button> PauseMenuButtons = new List<Button>();
     private bool joystick1ReturnToZero = true;
     private bool joystick2ReturnToZero = true;
+
+
     private int selectedButton = 0;
 
     // Start is called before the first frame update
@@ -26,6 +29,9 @@ public class UIManager : MonoBehaviour
         //Set Text for player sign in
         player1SignInText.text = "Player 1 Press A";
         player2SignInText.text = "Player 2 Press B";
+        gameEndedText.text = "Game Over";
+
+        gameEndedText.gameObject.SetActive(false);
 
         player1SignInText.gameObject.SetActive(true);
         player2SignInText.gameObject.SetActive(true);
@@ -153,6 +159,11 @@ public class UIManager : MonoBehaviour
 
     public void UIManagerGameStart()
     {
+        gameEndedText.gameObject.SetActive(false);
+
+        player1SignInText.color = Color.white;
+        player2SignInText.color = Color.white;
+
         player1SignInText.gameObject.SetActive(false);
         player2SignInText.gameObject.SetActive(false);
     }
@@ -183,6 +194,13 @@ public class UIManager : MonoBehaviour
     {
         UnpauseFromUI();
         RestartGame.Invoke();    
+    }
+
+    public void UIEndGame()
+    {
+        gameEndedText.gameObject.SetActive(true);
+        player1SignInText.gameObject.SetActive(true);
+        player2SignInText.gameObject.SetActive(true);
     }
 
     public void QuitGame()

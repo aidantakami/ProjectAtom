@@ -32,7 +32,6 @@ public class ISDogRunning : IState
     public void OnStateTick()
     {
 
-        Debug.Log("Speed: " + _playerSpeed);
 
         //Moves player forwards
         _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);

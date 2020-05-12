@@ -60,6 +60,7 @@ public class DogPlayerMovement : MonoBehaviour
     //Called when the dog begins to run, after both players signed in
     public void DogGameStart()
     {
+        DogGameRestart();
         _StateMachine.EnterState(DogRunningState);
     }
 
@@ -67,6 +68,11 @@ public class DogPlayerMovement : MonoBehaviour
     {
         transform.position = startingPosition;
         _StateMachine.EnterState(DogRunningState);
+    }
+
+    public void DogGameEnd()
+    {
+        _StateMachine.EnterState(DogStandbyState);
     }
 #endregion
 

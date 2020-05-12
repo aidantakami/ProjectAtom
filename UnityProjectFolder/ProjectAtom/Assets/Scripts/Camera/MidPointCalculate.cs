@@ -10,9 +10,10 @@ public class MidPointCalculate : MonoBehaviour
     [SerializeField] public BoolVariable isPaused;
 
     private float distanceTemp;
-    private Vector3 temp;
     private float cameraDistanceModifier = 0.5f;
     private Vector3 startingPos;
+    private Vector3 temp;
+    private bool gameEnded = false;
 
     private void Start()
     {
@@ -21,26 +22,35 @@ public class MidPointCalculate : MonoBehaviour
 
     void Update()
     {
-        if (isPaused.value)
+        if (!isPaused.value && !gameEnded)
         {
-            midPoint.SetValue(new Vector3(midPoint.X, midPoint.Y, midPoint.Z));
-            return;
-        }
+            //Gets mid point of the dog and boomerang
+            temp = ((dogPlayer.value + boomPlayer.value) / 2) + (Vector3.up * 2);
 
-        //Gets mid point of the dog and boomerang
-        temp = ((dogPlayer.value + boomPlayer.value) / 2) + (Vector3.up * 2);
-        
-        //Finds another midpoint between that point and dog player
-        midPoint.value = (temp + dogPlayer.value)/2;
+            //Finds another midpoint between that point and dog player
+            midPoint.value = (temp + dogPlayer.value) / 2;
 
-        //Gets distance between 2 players
-        distanceTemp = Vector3.Distance(dogPlayer.value, boomPlayer.value);
+            //Gets distance between 2 players
+            distanceTemp = Vector3.Distance(dogPlayer.value, boomPlayer.value);
 
-        midPoint.SetValue(new Vector3(midPoint.X, midPoint.Y, midPoint.Z - (distanceTemp * cameraDistanceModifier)));
+            midPoint.SetValue(new Vector3(midPoint.X, midPoint.Y, midPoint.Z - (distanceTemp * cameraDistanceModifier)));
+        }       
     }
 
     public void MidpointRestart()
     {
         midPoint.value = startingPos;
+        gameEnded = false;
+    }
+
+    public void MidpointGameStart()
+    {
+        MidpointRestart();
+    }
+
+    //stops moving the MP & camera
+    public void MidpointEndGame()
+    {
+        gameEnded = true;
     }
 }

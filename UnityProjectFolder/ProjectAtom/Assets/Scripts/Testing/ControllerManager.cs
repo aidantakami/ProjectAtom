@@ -12,61 +12,21 @@ public class ControllerManager : MonoBehaviour
     GamePadState p1State;
     GamePadState p2State;
 
-    private bool player1SignedIn = false;
-    private bool player2SignedIn = false;
 
-    [System.Serializable]
-    public class PlayerSignedIn : UnityEvent<int>
-    {
-    }
-
-    [SerializeField]
-    PlayerSignedIn playerSignInEvent = new PlayerSignedIn();
-
+    
     // Start is called before the first frame update
     void Awake()
     {
         controllerNumber1 = PlayerIndex.One;
         controllerNumber2 = PlayerIndex.Two;
     }
-
-
-    public void Start()
-    {
-        StartCoroutine(SignInControllers());
-    }
-
-
-    //IEnumerator which will allow players to see what player number they are
-    public IEnumerator SignInControllers()
-    {
-
-        while(!player1SignedIn || !player2SignedIn)
-        {
-            GamePadState p1SignIn = GamePad.GetState(controllerNumber1);
-            GamePadState p2SignIn = GamePad.GetState(controllerNumber2);
-
-            if (Input.GetButtonDown("P1A Button") && !player1SignedIn)
-            {
-                StartCoroutine(ShortControllerVibration(controllerNumber1));
-                playerSignInEvent.Invoke(1);
-                player1SignedIn = true;
-            }
-
-            if(Input.GetButtonDown("P2B Button") && !player2SignedIn)
-            {
-                StartCoroutine(ShortControllerVibration(controllerNumber2));
-                playerSignInEvent.Invoke(2);
-                player2SignedIn = true;
-            }
-            yield return new WaitForSeconds(0.001f);
-        }
-
-    }
+   
 
     //Short Controller Vibration 
     public void StartShortVibration(int controllerNumber)
     {
+        Debug.Log("Vibration beginning");
+
         if(controllerNumber == 1)
         {
             StartCoroutine(ShortControllerVibration(controllerNumber1));
@@ -169,5 +129,11 @@ public class ControllerManager : MonoBehaviour
     {
         StartTimedVibration(1, 0.1f);
         StartTimedVibration(2, 0.1f);
+    }
+
+    public void GameOverVibration()
+    {
+        StartTimedVibration(1, 0.5f);
+        StartTimedVibration(2, 0.5f);
     }
 }

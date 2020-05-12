@@ -66,6 +66,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
         _StateMachine.EnterState(BoomAwayState);
     }
 
+    public void BoomGameEnd()
+    {
+        _StateMachine.EnterState(BoomStandbyState);
+    }
+
 #endregion
 
     // Update is called once per frame

@@ -29,7 +29,6 @@ public class ChunkManager : MonoBehaviour
     //Adds Chunk to list
     public void Add(GameObject go)
     {
-        Debug.Log(go.ToString());
         Chunks.Add(go);
     }
 
