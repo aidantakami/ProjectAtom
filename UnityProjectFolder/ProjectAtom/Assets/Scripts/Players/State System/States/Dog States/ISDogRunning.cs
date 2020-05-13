@@ -40,7 +40,7 @@ public class ISDogRunning : IState
         _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
         
         //Throw boomerang when A pressed
-        if(Input.GetButtonDown("P1A Button"))
+        if(Input.GetButtonDown("P1A Button") || Input.GetKeyDown(KeyCode.E))
         {
             //Tells player to throw
             _player.BoomerangThrown();

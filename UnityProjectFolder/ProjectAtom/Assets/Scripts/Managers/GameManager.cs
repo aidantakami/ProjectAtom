@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             if (!isPaused.value)
             {
                 //read for players pauses
-                if (Input.GetButtonDown("P1Start") || Input.GetButtonDown("P2Start"))
+                if (Input.GetButtonDown("P1Start") || Input.GetButtonDown("P2Start") || Input.GetKeyDown(KeyCode.Escape))
                 {
                     PauseGame();
                     return;
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
             else if (isPaused.value)
             {
                 //Unpause
-                if (Input.GetButtonDown("P1Start") || Input.GetButtonDown("P2Start"))
+                if (Input.GetButtonDown("P1Start") || Input.GetButtonDown("P2Start") || Input.GetKeyDown(KeyCode.Escape))
                 {
                     UnpauseGame();
                     return;
@@ -57,13 +57,13 @@ public class GameManager : MonoBehaviour
 
         if (gameIsEnded)
         {
-            if(Input.GetButtonDown("P1A Button") && !p1SignedIn)
+            if((Input.GetButtonDown("P1A Button") || Input.GetKeyDown(KeyCode.E)) && !p1SignedIn)
             {
                 PlayerSignedIn(1);
                 p1SignedIn = true;
             }
             
-            if(Input.GetButtonDown("P2B Button") && !p2SignedIn)
+            if((Input.GetButtonDown("P2B Button") || Input.GetKeyDown(KeyCode.RightShift))&& !p2SignedIn)
             {
                 PlayerSignedIn(2);
                 p2SignedIn = true;

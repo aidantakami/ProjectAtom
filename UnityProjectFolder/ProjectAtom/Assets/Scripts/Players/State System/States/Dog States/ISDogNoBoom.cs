@@ -40,7 +40,7 @@ public class ISDogNoBoom : IState
         //Updates player's location
         _dogLocation.value = _player.transform.position;
 
-        if (Input.GetButtonDown("P1A Button"))
+        if (Input.GetButtonDown("P1A Button") || Input.GetKeyDown(KeyCode.E))
         {
             if(Vector3.Distance(_dogLocation.value, _boomLocation.value) < 3f)
             {

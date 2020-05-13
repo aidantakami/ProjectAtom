@@ -117,7 +117,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
     public bool TryToGetCaught()
     {
-        if (Input.GetButton("P2A Button"))
+        if (Input.GetButton("P2A Button") || Input.GetKey(KeyCode.RightShift))
         {
             //Boomerang was caught
             boomerangCaught.Invoke();

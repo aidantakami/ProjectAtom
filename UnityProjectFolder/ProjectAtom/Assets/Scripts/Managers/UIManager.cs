@@ -139,6 +139,12 @@ public class UIManager : MonoBehaviour
             {
                 PauseMenuButtons[selectedButton].onClick.Invoke();
             }
+
+            //Keyboard
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                RestartFromUI();
+            }
         }
     }
 
