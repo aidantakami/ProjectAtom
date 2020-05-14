@@ -34,8 +34,11 @@ public class ISDogNoBoom : IState
         //Moves player forwards
         _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);
 
-        //Allows player to move side to side
-        _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
+        if(Physics.Raycast(_player.transform.position, _player.transform.TransformDirection(Vector3.down), 1f))
+        {
+            //Allows player to move side to side
+            _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
+        }
 
         //Updates player's location
         _dogLocation.value = _player.transform.position;
@@ -46,7 +49,6 @@ public class ISDogNoBoom : IState
             {
                 _player.TryToCatchBoomerang();
             }
-
         }
     }
 }
