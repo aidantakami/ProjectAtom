@@ -10,6 +10,9 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public BoomerangPlayerMovement boomPlayer;
+    [SerializeField] public Transform leftLimit;
+    [SerializeField] public Transform rightLimit;
+
 
     //private fields
     private Vector3 startingPosition;
@@ -90,10 +93,10 @@ public class DogPlayerMovement : MonoBehaviour
 #region
 
     //When boomerang is thrown
-    public void BoomerangThrown()
+    public void BoomerangThrown(Vector3 aimLocation)
     {
         //Tell boomerang
-        boomPlayer.BoomerangThrownAction();
+        boomPlayer.BoomerangThrownAction(aimLocation);
 
         //Change states
         _StateMachine.EnterState(DogNoBoomState);
@@ -105,6 +108,18 @@ public class DogPlayerMovement : MonoBehaviour
         {
             _StateMachine.EnterState(DogRunningState);
         }
+    }
+
+
+    //Used to access the limits of the aim set in editor
+    public Vector3 GetLeftAimLimit()
+    {
+        return leftLimit.position;
+    }
+
+    public Vector3 GetRightAimLimit()
+    {
+        return rightLimit.position;
     }
 
     #endregion
