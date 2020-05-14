@@ -107,7 +107,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
         while (elapsedTime < speedThrownForward)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed * speedThrownForward);
+            transform.Translate(gameObject.transform.forward * Time.deltaTime * playerSpeed * speedThrownForward, Space.Self);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
