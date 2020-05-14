@@ -43,6 +43,13 @@ public class ISDogRunning : IState
         //Gets player's aim
         //Axis is between -1 and 1, adding 1 and then dividing by 2 to get complete input
         aimLocation = Vector3.Lerp(_player.GetLeftAimLimit(), _player.GetRightAimLimit(), ((Input.GetAxis("P2Right Stick Horizontal")) + 1) / 2);
+
+
+        //Will get and rotate arrow assigned to plauer
+        GameObject arrowGO = _player.GetAimArrow();
+        arrowGO.transform.LookAt(aimLocation);
+        
+        
         Debug.DrawRay(_player.transform.position, aimLocation, Color.white);
 
         //Throw boomerang when A pressed

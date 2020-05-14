@@ -9,9 +9,11 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public FloatReference playerSpeed;
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public Vector3Variable boomLocation;
+    [SerializeField] public GameObject aimArrow;
     [SerializeField] public BoomerangPlayerMovement boomPlayer;
     [SerializeField] public Transform leftLimit;
     [SerializeField] public Transform rightLimit;
+
 
 
     //private fields
@@ -87,6 +89,7 @@ public class DogPlayerMovement : MonoBehaviour
     {
         _StateMachine.EnterState(DogStandbyState);
         rb = gameObject.GetComponent<Rigidbody>();
+        aimArrow.SetActive(true);
     }
 
     //Functions
@@ -97,6 +100,7 @@ public class DogPlayerMovement : MonoBehaviour
     {
         //Tell boomerang
         boomPlayer.BoomerangThrownAction(aimLocation);
+        aimArrow.SetActive(false);
 
         //Change states
         _StateMachine.EnterState(DogNoBoomState);
@@ -106,6 +110,7 @@ public class DogPlayerMovement : MonoBehaviour
     {
         if (boomPlayer.TryToGetCaught())
         {
+            aimArrow.SetActive(true);
             _StateMachine.EnterState(DogRunningState);
         }
     }
@@ -120,6 +125,11 @@ public class DogPlayerMovement : MonoBehaviour
     public Vector3 GetRightAimLimit()
     {
         return rightLimit.position;
+    }
+
+    public GameObject GetAimArrow()
+    {
+        return aimArrow;
     }
 
     #endregion
