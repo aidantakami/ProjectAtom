@@ -9,6 +9,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] public FloatReference playerSpeed;
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public Vector3Variable dogLocation;
+    [SerializeField] public float maximumDistanceFromDog;
     [SerializeField] public UnityEvent boomerangThrown = new UnityEvent();
     [SerializeField] public UnityEvent boomerangCaught = new UnityEvent();
 
@@ -17,7 +18,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     private MeshRenderer boomMesh;
 
     //Auxilary Fields
-    public float speedThrownForward = 1f;
+    public float speedThrownForward = 2f;
 
 
     //State machine and states
@@ -91,28 +92,33 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
        
     //When boomerang is thrown
-    public void BoomerangThrownAction()
+    public void BoomerangThrownAction(Vector3 aimLocation)
     {
         _StateMachine.EnterState(BoomThrownState);
 
-        StartCoroutine(ThrownForwardAction());
+        StartCoroutine(ThrownForwardAction(aimLocation));
 
         boomerangThrown.Invoke();
     }
 
-    public IEnumerator ThrownForwardAction()
+    public IEnumerator ThrownForwardAction(Vector3 aimLocation)
     {
+
+        Vector3 tempOriginalPos = transform.position;
+
         //Thrown Forward Process
         float elapsedTime = 0f;
 
-        while (elapsedTime < speedThrownForward)
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed * speedThrownForward, Space.World);
+        //Will move player while in range towards aim location
+        while (elapsedTime < speedThrownForward && BoomIsInRange(-2))
+        { 
+            transform.position = Vector3.Lerp(transform.position, new Vector3(aimLocation.x, transform.position.y, transform.position.z + 1), elapsedTime / speedThrownForward);
             elapsedTime += Time.deltaTime;
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
-        yield return null;
+        //Set box collider to enabled
+        gameObject.GetComponent<BoxCollider>().enabled = true;
     }
 
     public bool TryToGetCaught()
@@ -125,6 +131,18 @@ public class BoomerangPlayerMovement : MonoBehaviour
             return true;
 
         }
+        else return false;
+    }
+
+    public bool BoomIsInRange()
+    {
+        if (Vector3.Distance(dogLocation.value, boomLocation.value) < maximumDistanceFromDog) return true;
+        else return false;
+    }
+
+    public bool BoomIsInRange(float modifier)
+    {
+        if (Vector3.Distance(dogLocation.value, boomLocation.value) < maximumDistanceFromDog + modifier) return true;
         else return false;
     }
 

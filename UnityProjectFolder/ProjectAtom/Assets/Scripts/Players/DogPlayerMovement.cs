@@ -10,6 +10,11 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public BoomerangPlayerMovement boomPlayer;
+    [SerializeField] public Transform leftLimit;
+    [SerializeField] public Transform rightLimit;
+    [SerializeField] public GameObject aimArrow;
+
+
 
     //private fields
     private Vector3 startingPosition;
@@ -67,6 +72,7 @@ public class DogPlayerMovement : MonoBehaviour
     public void DogGameRestart()
     {
         transform.position = startingPosition;
+        aimArrow.SetActive(true);
         _StateMachine.EnterState(DogRunningState);
     }
 
@@ -84,19 +90,21 @@ public class DogPlayerMovement : MonoBehaviour
     {
         _StateMachine.EnterState(DogStandbyState);
         rb = gameObject.GetComponent<Rigidbody>();
+        aimArrow.SetActive(true);
     }
 
     //Functions
 #region
 
     //When boomerang is thrown
-    public void BoomerangThrown()
+    public void BoomerangThrown(Vector3 aimLocation)
     {
         //Tell boomerang
-        boomPlayer.BoomerangThrownAction();
+        boomPlayer.BoomerangThrownAction(aimLocation);
 
         //Change states
         _StateMachine.EnterState(DogNoBoomState);
+        aimArrow.SetActive(false);
     }
 
     public void TryToCatchBoomerang()
@@ -104,7 +112,26 @@ public class DogPlayerMovement : MonoBehaviour
         if (boomPlayer.TryToGetCaught())
         {
             _StateMachine.EnterState(DogRunningState);
+            aimArrow.SetActive(true);
+
         }
+    }
+
+
+    //Used to access the limits of the aim set in editor
+    public Vector3 GetLeftAimLimit()
+    {
+        return leftLimit.position;
+    }
+
+    public Vector3 GetRightAimLimit()
+    {
+        return rightLimit.position;
+    }
+
+    public GameObject GetAimIndicator()
+    {
+        return aimArrow;
     }
 
     #endregion

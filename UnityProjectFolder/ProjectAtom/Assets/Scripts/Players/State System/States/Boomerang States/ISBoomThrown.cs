@@ -45,9 +45,9 @@ public class ISBoomThrown : IState
         _playerBC = _player.GetComponent<BoxCollider>();
 
 
-        //Enables both
+        //Enables Mesh Renderer
         _playerMR.GetComponent<MeshRenderer>().enabled = true;
-        _playerBC.GetComponent<BoxCollider>().enabled = true;
+        //Box collider enabled in IEnumerator in BoomerangPlayerMovement
         
     }
 
@@ -66,16 +66,17 @@ public class ISBoomThrown : IState
         float x = Input.GetAxis("P2Left Stick Horizontal");
         float y = Input.GetAxis("P2Left Stick Vertical");
 
-        //Distance variable
-        float tempDistance = Vector3.Distance(_boomLocation.value, _dogLocation.value);
-
-        //Allows player to move L and R
-        _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
-        _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod, Space.World);
-
-        if (tempDistance > 25f)
+     
+        if (_player.BoomIsInRange())
         {
-            _player.transform.position = Vector3.MoveTowards(_boomLocation.value, _dogLocation.value, 0.01f);
+            Debug.Log("Boom in range");
+            //Allows player to move L and R
+            _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
+            _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod, Space.World);
+        }
+        else
+        {
+            Debug.Log("Not in range");
         }
 
 
