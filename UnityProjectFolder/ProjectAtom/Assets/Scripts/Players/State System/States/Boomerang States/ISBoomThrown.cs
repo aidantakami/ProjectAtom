@@ -12,7 +12,7 @@ public class ISBoomThrown : IState
     private readonly float horizontalMovementMod = 5f;
     private readonly float verticallMovementMod = 5f;
 
-
+    private Ray groundCheck;
 
     protected MeshRenderer _playerMR;
     protected BoxCollider _playerBC;
@@ -60,7 +60,7 @@ public class ISBoomThrown : IState
     public void OnStateTick()
     {
         //Moves player forward
-        _player.transform.Translate(_player.transform.forward * Time.deltaTime * _playerSpeed, Space.World);
+        _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed, Space.World);
 
         //Input variables
         float x = Input.GetAxis("P2Left Stick Horizontal");
@@ -70,13 +70,15 @@ public class ISBoomThrown : IState
         float tempDistance = Vector3.Distance(_boomLocation.value, _dogLocation.value);
 
         //Allows player to move L and R
-        _player.transform.Translate((_player.gameObject.transform.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
-        _player.transform.Translate(-_player.gameObject.transform.right * Time.deltaTime * y * verticallMovementMod, Space.World);
+        _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
+        _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod, Space.World);
 
         if (tempDistance > 25f)
         {
             _player.transform.position = Vector3.MoveTowards(_boomLocation.value, _dogLocation.value, 0.01f);
         }
+
+
 
         //Set player location
         _boomLocation.SetValue(_player.transform.position);

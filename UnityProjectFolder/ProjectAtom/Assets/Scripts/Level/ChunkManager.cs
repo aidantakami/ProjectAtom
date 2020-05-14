@@ -34,8 +34,6 @@ public class ChunkManager : MonoBehaviour
 
     public void ActivateNextPath()
     {
-        Debug.Log("Path activated " + Time.deltaTime);
-
         //Increments what chunk player is on
         playerOnChunk++;
 

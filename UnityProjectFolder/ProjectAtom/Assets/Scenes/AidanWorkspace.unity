@@ -220,6 +220,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 812706838}
     m_Modifications:
+    - target: {fileID: 5160931791115929794, guid: c62864776d3daef48a1e258e2544fcda,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5160931791115929820, guid: c62864776d3daef48a1e258e2544fcda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -284,6 +289,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChunkPrefab (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732735661399603545, guid: c62864776d3daef48a1e258e2544fcda,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c62864776d3daef48a1e258e2544fcda, type: 3}
@@ -935,12 +945,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283583929}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd3681473c376494a8bccec387af16b8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3599508, y: 0.051240444, z: 0.6047424}
-  m_Center: {x: 0.00058090687, y: 0.004101038, z: 0.00022482872}
+  m_Size: {x: 1.3599508, y: 1.0269206, z: 0.6047424}
+  m_Center: {x: 0.00058090687, y: -0.48373902, z: 0.00022482872}
 --- !u!23 &1283583931
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -996,7 +1006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283583929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.27, y: 4.24, z: 4.52}
+  m_LocalPosition: {x: -3.27, y: 3.86, z: 4.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1161,8 +1171,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!114 &1283583940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,8 +1284,8 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: a211ff6d3580b694b89c984afddda051, type: 2}
   minDistance: 5
   maxDistance: 10
-  height: 2
-  heightDamping: 3
+  height: 3
+  heightDamping: 4
 --- !u!81 &1292954752
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1943,7 +1953,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1910948729
 MonoBehaviour:
   m_ObjectHideFlags: 0

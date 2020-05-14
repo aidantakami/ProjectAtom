@@ -114,7 +114,6 @@ public class GameManager : MonoBehaviour
     public void PlayerSignedIn(int playerNumber)
     {
         playerSignInEvent.Invoke(playerNumber);
-        Debug.Log("SignIn Invoked");
 
         //Tracks number of players signed in
         totalPlayersIn++;

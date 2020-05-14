@@ -25,7 +25,6 @@ public class ControllerManager : MonoBehaviour
     //Short Controller Vibration 
     public void StartShortVibration(int controllerNumber)
     {
-        Debug.Log("Vibration beginning");
 
         if(controllerNumber == 1)
         {
