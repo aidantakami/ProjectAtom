@@ -16,9 +16,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] public UnityEvent RestartGame;
     [SerializeField] public BoolVariable isPaused;
 
+
+    //Cooldowns
+    [SerializeField] public TextMeshProUGUI boomerangLifeCooldownText;
+    [SerializeField] public FloatVariable boomerangCooldown;
+    [SerializeField] public TextMeshProUGUI springboardCooldownText;
+    [SerializeField] public FloatVariable springboardCooldown;
+
+
     [SerializeField] List<Button> PauseMenuButtons = new List<Button>();
     private bool joystick1ReturnToZero = true;
     private bool joystick2ReturnToZero = true;
+
+    private bool boomerangThrown = false;
+    private bool springboardDown = false;
 
 
     private int selectedButton = 0;
@@ -146,6 +157,17 @@ public class UIManager : MonoBehaviour
                 RestartFromUI();
             }
         }
+
+
+        if (boomerangThrown)
+        {
+            boomerangLifeCooldownText.text = boomerangCooldown.value.ToString();
+        }
+
+        if (springboardDown)
+        {
+            springboardCooldownText.text = springboardCooldown.value.ToString();
+        }
     }
 
     public void PlayerSignedIn(int playerNumber)
@@ -172,6 +194,9 @@ public class UIManager : MonoBehaviour
 
         player1SignInText.gameObject.SetActive(false);
         player2SignInText.gameObject.SetActive(false);
+
+        boomerangLifeCooldownText.gameObject.SetActive(false);
+        springboardCooldownText.gameObject.SetActive(false);
     }
 
     //Pause Menu
@@ -213,5 +238,36 @@ public class UIManager : MonoBehaviour
     {
         // Tell GM to Quit Game
     }
+    #endregion
+
+
+    //Cooldown Menu
+    #region
+
+    public void BoomerangThrownUIStart()
+    {
+        boomerangLifeCooldownText.gameObject.SetActive(true);
+        boomerangThrown = true;
+    }
+
+    public void BoomerangThrownUIEnd()
+    {
+        boomerangLifeCooldownText.gameObject.SetActive(false);
+        boomerangThrown = false;
+    }
+
+    public void SpringboardUIStart()
+    {
+        springboardCooldownText.gameObject.SetActive(true);
+        springboardDown = true;
+    }
+
+    public void SpringboardUIEnd()
+    {
+        springboardCooldownText.gameObject.SetActive(false);
+        springboardDown = false;
+    }
+
+
     #endregion
 }

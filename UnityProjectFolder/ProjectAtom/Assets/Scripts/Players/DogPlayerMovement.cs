@@ -29,6 +29,7 @@ public class DogPlayerMovement : MonoBehaviour
     private ISDogRunning DogRunningState;
     private ISDogNoBoom DogNoBoomState;
     private ISStandby DogStandbyState;
+    private ISDogBoomDead DogBoomDeadState;
 
     public void Awake()
     {
@@ -44,6 +45,7 @@ public class DogPlayerMovement : MonoBehaviour
         DogRunningState = new ISDogRunning(dogLocation, playerSpeed, this);
         DogNoBoomState = new ISDogNoBoom(dogLocation, boomLocation, playerSpeed, this);
         DogStandbyState = new ISStandby(dogLocation, gameObject.transform);
+        DogBoomDeadState = new ISDogBoomDead(dogLocation, playerSpeed, this);
     }
 #endregion
 
@@ -132,6 +134,13 @@ public class DogPlayerMovement : MonoBehaviour
     public GameObject GetAimIndicator()
     {
         return aimArrow;
+    }
+
+
+    //Boomerang Dies Response
+    public void BoomerangDeadDogState()
+    {
+        _StateMachine.EnterState(DogBoomDeadState);
     }
 
     #endregion
