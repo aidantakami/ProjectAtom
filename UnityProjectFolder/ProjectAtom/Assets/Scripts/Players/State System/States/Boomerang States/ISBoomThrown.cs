@@ -73,6 +73,13 @@ public class ISBoomThrown : IState
             //Allows player to move L and R
             _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
             _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod, Space.World);
+
+            //Keyboard input accessib;e
+            if(Input.GetButtonDown("P2B Button") || Input.GetKeyDown(KeyCode.Return))
+            {
+                _player.PlaceSpringboard();
+            }
+
         }
         else
         {

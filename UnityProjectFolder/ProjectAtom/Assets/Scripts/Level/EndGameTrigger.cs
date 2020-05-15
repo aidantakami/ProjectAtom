@@ -10,9 +10,13 @@ public class EndGameTrigger : MonoBehaviour
     //Used to end the game via the GameManager
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("DogPlayer"))
         {
             gameManager.EndGame();
+        }
+        else if (other.gameObject.CompareTag("BoomerangPlayer"))
+        {
+            gameManager.BoomerangDead();
         }
     }
 }

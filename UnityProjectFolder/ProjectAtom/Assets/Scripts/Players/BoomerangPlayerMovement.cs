@@ -13,12 +13,22 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] public UnityEvent boomerangThrown = new UnityEvent();
     [SerializeField] public UnityEvent boomerangCaught = new UnityEvent();
 
+
+    //Events
+    [SerializeField] public UnityEvent springboardPlacedEvent = new UnityEvent();
+
+    //Prefabs
+    [SerializeField] public GameObject springboardPrefab;
+
     //Referencing Components
     private Rigidbody rb;
     private MeshRenderer boomMesh;
 
     //Auxilary Fields
+    //Will determine how quickly boomerang will finish lerp forwards
+    //Please be careful tweaking
     public float speedThrownForward = 2f;
+    private bool springboardIsOut = false;
 
 
     //State machine and states
@@ -27,6 +37,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     protected ISBoomAway BoomAwayState;
     protected ISBoomThrown BoomThrownState;
     protected ISStandby BoomStandbyState;
+    protected ISBoomDead BoomDeadState;
 
     public void Awake()
     {
@@ -39,6 +50,8 @@ public class BoomerangPlayerMovement : MonoBehaviour
         BoomAwayState = new ISBoomAway(boomLocation, dogLocation, this);
         BoomThrownState = new ISBoomThrown(boomLocation, dogLocation, playerSpeed, this);
         BoomStandbyState = new ISStandby(boomLocation, gameObject.transform);
+        BoomDeadState = new ISBoomDead(boomLocation, dogLocation, this);
+
     }
 #endregion
 
@@ -60,6 +73,8 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void BoomGameStart()
     {
         _StateMachine.EnterState(BoomAwayState);
+        springboardPrefab.transform.position = new Vector3(-10, -10, -10);
+
     }
 
     public void BoomGameRestart()
@@ -85,6 +100,9 @@ public class BoomerangPlayerMovement : MonoBehaviour
         _StateMachine.EnterState(BoomStandbyState);
         rb = gameObject.GetComponent<Rigidbody>();
         boomMesh = gameObject.GetComponent<MeshRenderer>();
+
+        springboardPrefab = Instantiate(springboardPrefab);
+        springboardPrefab.transform.position = new Vector3(-10, -10, -10);
     }
 
     //Functions
@@ -140,11 +158,36 @@ public class BoomerangPlayerMovement : MonoBehaviour
         else return false;
     }
 
+    //Will allow modifier to allowed distance before returns false
+    //Good for warning before actually out of range
     public bool BoomIsInRange(float modifier)
     {
         if (Vector3.Distance(dogLocation.value, boomLocation.value) < maximumDistanceFromDog + modifier) return true;
         else return false;
     }
 
-#endregion
+    //Called when boomerang timer runs out
+    public void BoomerangThrowTimeOut()
+    {
+        _StateMachine.EnterState(BoomDeadState);
+    }
+
+    public void PlaceSpringboard()
+    {
+
+        if (!springboardIsOut)
+        {
+            springboardPlacedEvent.Invoke();
+            springboardPrefab.gameObject.SetActive(true);
+            springboardPrefab.transform.position = transform.position -= new Vector3(0, 0.5f, 1);
+            springboardIsOut = true;
+        }
+    }
+
+    public void SpringboardExpired()
+    {
+        springboardIsOut = false;
+    }
+
+    #endregion
 }

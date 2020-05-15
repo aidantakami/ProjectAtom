@@ -20,6 +20,9 @@ public class Spring : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, force, 0));
+        if(collision.gameObject.CompareTag("DogPlayer"))
+        {
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, force, 0));
+        }
     }
 }

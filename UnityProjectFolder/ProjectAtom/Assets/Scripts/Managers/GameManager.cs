@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public UnityEvent UnpauseGameEvent = new UnityEvent();
     [SerializeField] public UnityEvent RestartGameEvent = new UnityEvent();
     [SerializeField] public UnityEvent EndGameEvent = new UnityEvent();
+    [SerializeField] public UnityEvent BoomerangDeadEvent = new UnityEvent();
 
     private bool playerCanPause = false;
     private bool gameIsEnded = true;
@@ -135,6 +136,11 @@ public class GameManager : MonoBehaviour
         gameIsEnded = true;
         p1SignedIn = false;
         p2SignedIn = false;
+    }
+
+    public void BoomerangDead()
+    {
+        BoomerangDeadEvent.Invoke();
     }
 
     #endregion
