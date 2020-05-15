@@ -29,6 +29,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     //Please be careful tweaking
     public float speedThrownForward = 2f;
     private bool springboardIsOut = false;
+    private bool isBeingThrown = false;
 
 
     //State machine and states
@@ -74,6 +75,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     {
         _StateMachine.EnterState(BoomAwayState);
         springboardPrefab.transform.position = new Vector3(-10, -10, -10);
+        isBeingThrown = false;
 
     }
 
@@ -122,7 +124,10 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public IEnumerator ThrownForwardAction(Vector3 aimLocation)
     {
 
-        Vector3 tempOriginalPos = transform.position;
+        isBeingThrown = true;
+
+        //Set box collider to enabled
+        gameObject.GetComponent<BoxCollider>().enabled = true;
 
         //Thrown Forward Process
         float elapsedTime = 0f;
@@ -133,10 +138,15 @@ public class BoomerangPlayerMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, new Vector3(aimLocation.x, transform.position.y, transform.position.z + 1), elapsedTime / speedThrownForward);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
+
+            if((Vector3.Distance(transform.position, dogLocation.value) > 1.5) && gameObject.GetComponent<BoxCollider>().enabled == false)
+            {
+
+            }
         }
 
-        //Set box collider to enabled
-        gameObject.GetComponent<BoxCollider>().enabled = true;
+        isBeingThrown = false;
+
     }
 
     public bool TryToGetCaught()
@@ -187,6 +197,28 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void SpringboardExpired()
     {
         springboardIsOut = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isBeingThrown)
+        {
+            if (collision.gameObject.CompareTag("DogPlayer"))
+            {
+                Debug.Log("Doghit");
+                gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("DogPlayer"))
+        {
+            Debug.Log("Dogleft");
+
+            gameObject.GetComponent<BoxCollider>().isTrigger = false;
+        }
     }
 
     #endregion

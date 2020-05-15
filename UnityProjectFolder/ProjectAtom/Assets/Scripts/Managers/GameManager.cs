@@ -138,6 +138,13 @@ public class GameManager : MonoBehaviour
         p2SignedIn = false;
     }
 
+    public void EndGameExternalEvent()
+    {
+        gameIsEnded = true;
+        p1SignedIn = false;
+        p2SignedIn = false;
+    }
+
     public void BoomerangDead()
     {
         BoomerangDeadEvent.Invoke();
