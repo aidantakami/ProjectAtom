@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
 
     private bool boomerangThrown = false;
     private bool springboardDown = false;
+    private bool boomDead = false;
 
 
     private int selectedButton = 0;
@@ -197,6 +198,8 @@ public class UIManager : MonoBehaviour
 
         boomerangLifeCooldownText.gameObject.SetActive(false);
         springboardCooldownText.gameObject.SetActive(false);
+
+        boomDead = false;
     }
 
     //Pause Menu
@@ -223,8 +226,9 @@ public class UIManager : MonoBehaviour
 
     public void RestartFromUI()
     {
-        UnpauseFromUI();
-        RestartGame.Invoke();    
+        UIUnpause();
+        RestartGame.Invoke();
+        boomDead = false;
     }
 
     public void UIEndGame()
@@ -244,22 +248,39 @@ public class UIManager : MonoBehaviour
     //Cooldown Menu
     #region
 
+    //Starts UI countdown for boomerang thrown
     public void BoomerangThrownUIStart()
     {
-        boomerangLifeCooldownText.gameObject.SetActive(true);
-        boomerangThrown = true;
+        if (!boomDead)
+        {
+            boomerangLifeCooldownText.gameObject.SetActive(true);
+            boomerangThrown = true;
+        }   
     }
 
+    //Ends UI for boomerang countdown
     public void BoomerangThrownUIEnd()
     {
         boomerangLifeCooldownText.gameObject.SetActive(false);
         boomerangThrown = false;
     }
 
+    //ends all Boomerang UI when dead
+    public void BoomerangDeadUI()
+    {
+        boomDead = true;
+        BoomerangThrownUIEnd();
+        SpringboardUIEnd();
+    }
+
     public void SpringboardUIStart()
     {
-        springboardCooldownText.gameObject.SetActive(true);
-        springboardDown = true;
+        if (!boomDead)
+        {
+            springboardCooldownText.gameObject.SetActive(true);
+            springboardDown = true;
+        }
+       
     }
 
     public void SpringboardUIEnd()

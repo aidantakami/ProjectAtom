@@ -2529,7 +2529,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2090267658}
-        m_MethodName: BoomerangThrownUIEnd
+        m_MethodName: BoomerangDeadUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
