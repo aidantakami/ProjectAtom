@@ -6,7 +6,7 @@ public class Spring : MonoBehaviour
 {
 
     [SerializeField]
-    float force;
+    public float force;
     void Start()
     {
         
