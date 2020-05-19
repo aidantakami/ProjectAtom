@@ -15,13 +15,13 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
     x: 0
-    y: -1037
+    y: 43
     width: 1920
     height: 997
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -1007
+    y: 73
     width: 253
     height: 587
   m_ViewDataDictionary: {fileID: 0}
@@ -396,7 +396,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 
+      m_ExpandedIDs: 6cf6ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 254
-    y: -1007
+    y: 73
     width: 1315
     height: 587
   m_ViewDataDictionary: {fileID: 0}
@@ -456,9 +456,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.0247383, y: -49.98855, z: 1010.12415}
+    m_Target: {x: 5.3446255, y: -0.72591615, z: 493.92667}
     speed: 2
-    m_Value: {x: -6.0247383, y: -49.98855, z: 1010.12415}
+    m_Value: {x: 5.3446255, y: -0.7259161, z: 493.92667}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -504,13 +504,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.2690876, y: -0.11856226, z: 0.03344011, w: -0.9555314}
+    m_Target: {x: -0.01573367, y: -0.9844997, z: 0.118718915, w: -0.13054803}
     speed: 2
-    m_Value: {x: -0.27043623, y: -0.11847495, z: 0.033607654, w: -0.9548289}
+    m_Value: {x: -0.015906768, y: -0.9839957, z: 0.118658155, w: -0.13198344}
   m_Size:
     m_Target: 246.56088
     speed: 2
-    m_Value: 246.13934
+    m_Value: 246.56088
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: -399
+    y: 681
     width: 1570
     height: 318
   m_ViewDataDictionary: {fileID: 0}
@@ -667,20 +667,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Prefabs/Variant
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs/Variant
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\karba\OneDrive\Desktop\Documents\GitHub\ProjectAtom\UnityProjectFolder\ProjectAtom
+  m_LastProjectPath: C:\Users\aidan\Documents\GitHub\ProjectAtom\UnityProjectFolder\ProjectAtom
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a2370000
-    m_LastClickedID: 14242
-    m_ExpandedIDs: 00000000a0370000a2370000a4370000a6370000a8370000aa370000ac370000ae370000b0370000b2370000c23700009e39000000ca9a3b
+    m_SelectedIDs: 5e390000
+    m_LastClickedID: 14686
+    m_ExpandedIDs: 000000003439000036390000383900003a3900003c3900003e3900004039000042390000443900004639000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -708,7 +708,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a0370000a2370000a4370000a6370000a8370000aa370000ac370000ae370000b0370000b2370000
+    m_ExpandedIDs: 000000003439000036390000383900003a3900003c3900003e39000040390000423900004439000046390000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1381,7 +1381,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1571
-    y: -1007
+    y: 73
     width: 348
     height: 926
   m_ViewDataDictionary: {fileID: 0}
