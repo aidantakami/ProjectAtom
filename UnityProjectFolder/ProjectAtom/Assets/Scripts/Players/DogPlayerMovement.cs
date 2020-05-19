@@ -9,6 +9,7 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public FloatVariable playerSpeed;
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public Vector3Variable boomLocation;
+    [SerializeField] public BoolVariable playerCanMove;
     [SerializeField] public BoomerangPlayerMovement boomPlayer;
     [SerializeField] public Transform leftLimit;
     [SerializeField] public Transform rightLimit;
@@ -43,10 +44,10 @@ public class DogPlayerMovement : MonoBehaviour
 
     private void StateConstructor()
     {
-        DogRunningState = new ISDogRunning(dogLocation, playerSpeed, this);
-        DogNoBoomState = new ISDogNoBoom(dogLocation, boomLocation, playerSpeed, this);
+        DogRunningState = new ISDogRunning(dogLocation, playerSpeed, playerCanMove, this);
+        DogNoBoomState = new ISDogNoBoom(dogLocation, boomLocation, playerCanMove, playerSpeed, this);
         DogStandbyState = new ISStandby(dogLocation, gameObject.transform);
-        DogBoomDeadState = new ISDogBoomDead(dogLocation, playerSpeed, this);
+        DogBoomDeadState = new ISDogBoomDead(dogLocation, playerSpeed, playerCanMove, this);
     }
 #endregion
 

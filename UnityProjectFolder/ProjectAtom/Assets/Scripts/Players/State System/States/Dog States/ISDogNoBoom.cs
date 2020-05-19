@@ -7,14 +7,16 @@ public class ISDogNoBoom : IState
     protected Vector3Variable _dogLocation;
     protected Vector3Variable _boomLocation;
     protected FloatVariable _playerSpeed;
+    protected BoolVariable _playerCanMove;
     protected DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 3;
 
-    public ISDogNoBoom(Vector3Variable dogLocation, Vector3Variable boomLocation, FloatVariable playerSpeed, DogPlayerMovement player)
+    public ISDogNoBoom(Vector3Variable dogLocation, Vector3Variable boomLocation, BoolVariable playerCanMove, FloatVariable playerSpeed, DogPlayerMovement player)
     {
         _dogLocation = dogLocation;
         _boomLocation = boomLocation;
+        _playerCanMove = playerCanMove;
         _playerSpeed = playerSpeed;
         _player = player;
     }
@@ -31,25 +33,28 @@ public class ISDogNoBoom : IState
 
     public void OnStateTick()
     {
-        //Moves player forwards
-        _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);
-
-        if(Physics.Raycast(_player.transform.position, _player.transform.TransformDirection(Vector3.down), 1f))
+        if (_playerCanMove.value)
         {
-            //Allows player to move side to side
-            _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
-        }
+            //Moves player forwards
+            _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);
 
-        //Updates player's location
-        _dogLocation.value = _player.transform.position;
-
-        if (Input.GetButtonDown("P1A Button") || Input.GetKeyDown(KeyCode.E))
-        {
-            if(Vector3.Distance(_dogLocation.value, _boomLocation.value) < 3f)
+            if (Physics.Raycast(_player.transform.position, _player.transform.TransformDirection(Vector3.down), 1f))
             {
-                _player.TryToCatchBoomerang();
+                //Allows player to move side to side
+                _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
             }
 
+            //Updates player's location
+            _dogLocation.value = _player.transform.position;
+
+            if (Input.GetButtonDown("P1A Button") || Input.GetKeyDown(KeyCode.E))
+            {
+                if (Vector3.Distance(_dogLocation.value, _boomLocation.value) < 3f)
+                {
+                    _player.TryToCatchBoomerang();
+                }
+
+            }
         }
-    }
+    }        
 }
