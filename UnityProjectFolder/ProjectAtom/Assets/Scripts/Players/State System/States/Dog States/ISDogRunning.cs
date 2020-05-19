@@ -5,7 +5,7 @@ using UnityEngine;
 public class ISDogRunning : IState
 {
     protected Vector3Variable _dogLocation;
-    protected float _playerSpeed;
+    protected FloatVariable _playerSpeed;
     protected DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 3;
@@ -13,10 +13,10 @@ public class ISDogRunning : IState
     private GameObject arrowGO;
 
 
-    public ISDogRunning(Vector3Variable dogLocation, FloatReference playerSpeed, DogPlayerMovement player)
+    public ISDogRunning(Vector3Variable dogLocation, FloatVariable playerSpeed, DogPlayerMovement player)
     {
         _dogLocation = dogLocation;
-        _playerSpeed = playerSpeed.Value;
+        _playerSpeed = playerSpeed;
         _player = player;
     }
 

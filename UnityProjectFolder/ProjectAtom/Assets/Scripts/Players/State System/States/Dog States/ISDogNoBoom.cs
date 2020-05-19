@@ -6,16 +6,16 @@ public class ISDogNoBoom : IState
 {
     protected Vector3Variable _dogLocation;
     protected Vector3Variable _boomLocation;
-    protected float _playerSpeed;
+    protected FloatVariable _playerSpeed;
     protected DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 3;
 
-    public ISDogNoBoom(Vector3Variable dogLocation, Vector3Variable boomLocation, FloatReference playerSpeed, DogPlayerMovement player)
+    public ISDogNoBoom(Vector3Variable dogLocation, Vector3Variable boomLocation, FloatVariable playerSpeed, DogPlayerMovement player)
     {
         _dogLocation = dogLocation;
         _boomLocation = boomLocation;
-        _playerSpeed = playerSpeed.Value;
+        _playerSpeed = playerSpeed;
         _player = player;
     }
 

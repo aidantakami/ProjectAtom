@@ -6,16 +6,16 @@ public class ISDogBoomDead : IState
 {
 
     private Vector3Variable _dogLocation;
-    private float _playerSpeed;
+    private FloatVariable _playerSpeed;
     private DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 3;
 
 
-    public ISDogBoomDead(Vector3Variable dogLocation, FloatReference playerSpeed, DogPlayerMovement player)
+    public ISDogBoomDead(Vector3Variable dogLocation, FloatVariable playerSpeed, DogPlayerMovement player)
     {
         _dogLocation = dogLocation;
-        _playerSpeed = playerSpeed.Value;
+        _playerSpeed = playerSpeed;
         _player = player;
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BoomerangPlayerMovement : MonoBehaviour
 {
     //Serialized fields
-    [SerializeField] public FloatReference playerSpeed;
+    [SerializeField] public FloatVariable playerSpeed;
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public float maximumDistanceFromDog;

@@ -6,7 +6,7 @@ public class ISBoomThrown : IState
 {
     protected Vector3Variable _boomLocation;
     protected Vector3Variable _dogLocation;
-    protected float _playerSpeed;
+    protected FloatVariable _playerSpeed;
     protected BoomerangPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 5f;
@@ -18,7 +18,7 @@ public class ISBoomThrown : IState
     protected BoxCollider _playerBC;
 
     //Constructor
-    public ISBoomThrown(Vector3Variable boomLocation, Vector3Variable dogLocation, FloatReference playerSpeed, BoomerangPlayerMovement player)
+    public ISBoomThrown(Vector3Variable boomLocation, Vector3Variable dogLocation, FloatVariable playerSpeed, BoomerangPlayerMovement player)
     {
         _boomLocation = boomLocation;
         _dogLocation = dogLocation;

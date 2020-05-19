@@ -6,7 +6,7 @@ public class DogPlayerMovement : MonoBehaviour
 {
 
     //Serialized fields
-    [SerializeField] public FloatReference playerSpeed;
+    [SerializeField] public FloatVariable playerSpeed;
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public BoomerangPlayerMovement boomPlayer;
