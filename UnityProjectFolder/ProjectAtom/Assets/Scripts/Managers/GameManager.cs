@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public BoolVariable isPaused;
     [SerializeField] public BoolVariable isBoomThrown;
+    [SerializeField] public IntVariable dogAbilityTokens;
+    [SerializeField] public IntVariable boomAbilityTokens;
 
     [System.Serializable]
     public class PlayerSignInEventType : UnityEvent<int>
@@ -81,6 +83,21 @@ public class GameManager : MonoBehaviour
     public void BoomerangReturned()
     {
         isBoomThrown.SetValue(false);
+    }
+
+    //Increments total ability tokens by player.
+    //If true, gives token to dog, else
+    public void DogPickedUpToken(bool dogGotToken)
+    {
+        if (dogGotToken)
+        {
+            dogAbilityTokens.value++;
+        }
+
+        else
+        {
+            boomAbilityTokens.value++;
+        }
     }
 #endregion
 

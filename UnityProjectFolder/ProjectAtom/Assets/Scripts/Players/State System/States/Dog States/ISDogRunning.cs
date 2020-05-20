@@ -9,7 +9,7 @@ public class ISDogRunning : IState
     protected BoolVariable _playerCanMove;
     protected DogPlayerMovement _player;
 
-    private readonly float horizontalMovementMod = 3;
+    private readonly float horizontalMovementMod = 5;
     private Vector3 aimLocation = new Vector3();
     private GameObject arrowGO;
 

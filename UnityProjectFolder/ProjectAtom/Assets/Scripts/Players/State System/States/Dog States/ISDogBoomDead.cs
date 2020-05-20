@@ -10,7 +10,7 @@ public class ISDogBoomDead : IState
     private BoolVariable _playerCanMove;
     private DogPlayerMovement _player;
 
-    private readonly float horizontalMovementMod = 3;
+    private readonly float horizontalMovementMod = 5;
 
 
     public ISDogBoomDead(Vector3Variable dogLocation, FloatVariable playerSpeed, BoolVariable playerCanMove, DogPlayerMovement player)

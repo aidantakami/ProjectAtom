@@ -23,6 +23,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI springboardCooldownText;
     [SerializeField] public FloatVariable springboardCooldown;
 
+    //Abilities
+    [SerializeField] public TextMeshProUGUI dogAbilityText;
+    [SerializeField] public TextMeshProUGUI boomerangAbilityText;
+    [SerializeField] public IntVariable dogAbilityTokens;
+    [SerializeField] public IntVariable boomAbilityTokens;
+
 
     [SerializeField] List<Button> PauseMenuButtons = new List<Button>();
     private bool joystick1ReturnToZero = true;
@@ -49,6 +55,9 @@ public class UIManager : MonoBehaviour
         player2SignInText.gameObject.SetActive(true);
 
         PauseMenu.SetActive(false);
+
+        dogAbilityText.gameObject.SetActive(false);
+        boomerangAbilityText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -169,6 +178,9 @@ public class UIManager : MonoBehaviour
         {
             springboardCooldownText.text = springboardCooldown.value.ToString();
         }
+
+        dogAbilityText.text = dogAbilityTokens.value.ToString();
+        boomerangAbilityText.text = boomAbilityTokens.value.ToString();
     }
 
     public void PlayerSignedIn(int playerNumber)
@@ -198,6 +210,9 @@ public class UIManager : MonoBehaviour
 
         boomerangLifeCooldownText.gameObject.SetActive(false);
         springboardCooldownText.gameObject.SetActive(false);
+
+        dogAbilityText.gameObject.SetActive(true);
+        boomerangAbilityText.gameObject.SetActive(true);
 
         boomDead = false;
     }
