@@ -1104,6 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: {fileID: 11400000, guid: fe0c9be848b85394f8abcab2777b166e, type: 2}
   boomThrown: {fileID: 11400000, guid: e5fb0d4c56205974195ad78ee33991e2, type: 2}
+  canPlayerMove: {fileID: 11400000, guid: e13831db8f5b84047894f432feac36b7, type: 2}
   boomerangLifeRemaining: {fileID: 11400000, guid: a535733001c18854c800ea387d80cff9,
     type: 2}
   springboardCooldownRemaining: {fileID: 11400000, guid: b97ad89b69159244783dd7e4af686bdc,
@@ -1451,12 +1452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942cf5c3aeb5396459d694f41e24512f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: dd2359e55edcc2046acdc984517ced1f, type: 2}
+  playerSpeed: {fileID: 11400000, guid: dd2359e55edcc2046acdc984517ced1f, type: 2}
   boomLocation: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
   dogLocation: {fileID: 11400000, guid: 79a79bad5a0966745b3e0dd2f142cac3, type: 2}
+  playerCanMove: {fileID: 11400000, guid: e13831db8f5b84047894f432feac36b7, type: 2}
   maximumDistanceFromDog: 20
   boomerangThrown:
     m_PersistentCalls:
@@ -2714,12 +2713,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05375edf86a4ed0478ad4e7b3c326f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: dd2359e55edcc2046acdc984517ced1f, type: 2}
+  playerSpeed: {fileID: 11400000, guid: dd2359e55edcc2046acdc984517ced1f, type: 2}
   dogLocation: {fileID: 11400000, guid: 79a79bad5a0966745b3e0dd2f142cac3, type: 2}
   boomLocation: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
+  playerCanMove: {fileID: 11400000, guid: e13831db8f5b84047894f432feac36b7, type: 2}
   boomPlayer: {fileID: 1283583935}
   leftLimit: {fileID: 603110757}
   rightLimit: {fileID: 788293623}

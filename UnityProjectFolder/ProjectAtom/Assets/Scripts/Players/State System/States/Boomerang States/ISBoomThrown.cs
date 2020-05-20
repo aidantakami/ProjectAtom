@@ -6,7 +6,8 @@ public class ISBoomThrown : IState
 {
     protected Vector3Variable _boomLocation;
     protected Vector3Variable _dogLocation;
-    protected float _playerSpeed;
+    protected FloatVariable _playerSpeed;
+    protected BoolVariable _playerCanMove;
     protected BoomerangPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 5f;
@@ -18,11 +19,12 @@ public class ISBoomThrown : IState
     protected BoxCollider _playerBC;
 
     //Constructor
-    public ISBoomThrown(Vector3Variable boomLocation, Vector3Variable dogLocation, FloatReference playerSpeed, BoomerangPlayerMovement player)
+    public ISBoomThrown(Vector3Variable boomLocation, Vector3Variable dogLocation, BoolVariable playerCanMove, FloatVariable playerSpeed, BoomerangPlayerMovement player)
     {
         _boomLocation = boomLocation;
         _dogLocation = dogLocation;
         _playerSpeed = playerSpeed;
+        _playerCanMove = playerCanMove;
         _player = player;
     }
 
@@ -59,35 +61,36 @@ public class ISBoomThrown : IState
 
     public void OnStateTick()
     {
-        //Moves player forward
-        _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed, Space.World);
-
-        //Input variables
-        float x = Input.GetAxis("P2Left Stick Horizontal");
-        float y = Input.GetAxis("P2Left Stick Vertical");
-
-     
-        if (_player.BoomIsInRange())
+        if (_playerCanMove.value)
         {
-            Debug.Log("Boom in range");
-            //Allows player to move L and R
-            _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
-            _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod, Space.World);
+            //Moves player forward
+            _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed, Space.World);
 
-            //Keyboard input accessib;e
-            if(Input.GetButtonDown("P2B Button") || Input.GetKeyDown(KeyCode.Return))
+            //Input variables
+            float x = Input.GetAxis("P2Left Stick Horizontal");
+            float y = Input.GetAxis("P2Left Stick Vertical");
+
+
+            if (_player.BoomIsInRange())
             {
-                _player.PlaceSpringboard();
+                Debug.Log("Boom in range");
+                //Allows player to move L and R
+                _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
+                _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod, Space.World);
+
+                //Keyboard input accessib;e
+                if (Input.GetButtonDown("P2B Button") || Input.GetKeyDown(KeyCode.Return))
+                {
+                    _player.PlaceSpringboard();
+                }
+
             }
-
+            else
+            {
+                Debug.Log("Not in range");
+            }
         }
-        else
-        {
-            Debug.Log("Not in range");
-        }
-
-
-
+        
         //Set player location
         _boomLocation.SetValue(_player.transform.position);
 

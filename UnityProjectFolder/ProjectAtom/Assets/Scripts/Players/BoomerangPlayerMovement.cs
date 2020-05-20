@@ -6,9 +6,10 @@ using UnityEngine;
 public class BoomerangPlayerMovement : MonoBehaviour
 {
     //Serialized fields
-    [SerializeField] public FloatReference playerSpeed;
+    [SerializeField] public FloatVariable playerSpeed;
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public Vector3Variable dogLocation;
+    [SerializeField] public BoolVariable playerCanMove;
     [SerializeField] public float maximumDistanceFromDog;
     [SerializeField] public UnityEvent boomerangThrown = new UnityEvent();
     [SerializeField] public UnityEvent boomerangCaught = new UnityEvent();
@@ -49,7 +50,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     private void StateConstructor()
     {
         BoomAwayState = new ISBoomAway(boomLocation, dogLocation, this);
-        BoomThrownState = new ISBoomThrown(boomLocation, dogLocation, playerSpeed, this);
+        BoomThrownState = new ISBoomThrown(boomLocation, dogLocation, playerCanMove, playerSpeed, this);
         BoomStandbyState = new ISStandby(boomLocation, gameObject.transform);
         BoomDeadState = new ISBoomDead(boomLocation, dogLocation, this);
 

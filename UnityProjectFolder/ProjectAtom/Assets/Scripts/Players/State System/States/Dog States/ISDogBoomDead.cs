@@ -6,16 +6,18 @@ public class ISDogBoomDead : IState
 {
 
     private Vector3Variable _dogLocation;
-    private float _playerSpeed;
+    private FloatVariable _playerSpeed;
+    private BoolVariable _playerCanMove;
     private DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 3;
 
 
-    public ISDogBoomDead(Vector3Variable dogLocation, FloatReference playerSpeed, DogPlayerMovement player)
+    public ISDogBoomDead(Vector3Variable dogLocation, FloatVariable playerSpeed, BoolVariable playerCanMove, DogPlayerMovement player)
     {
         _dogLocation = dogLocation;
-        _playerSpeed = playerSpeed.Value;
+        _playerSpeed = playerSpeed;
+        _playerCanMove = playerCanMove;
         _player = player;
     }
 
@@ -31,11 +33,16 @@ public class ISDogBoomDead : IState
 
     public void OnStateTick()
     {
-        //Moves player forwards
-        _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);
+        if (_playerCanMove.value)
+        {
+            //Moves player forwards
+            _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);
 
-        //Allows player to move LR
-        _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
+            //Allows player to move LR
+            _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
+
+            
+        }
 
         //Updates player's location
         _dogLocation.value = _player.transform.position;
