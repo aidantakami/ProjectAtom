@@ -46,6 +46,7 @@ public class ChunkManager : MonoBehaviour
         {
             chunkIterator = 0;
             Chunks[chunkIterator].SetActive(true);
+            Chunks[chunkIterator].GetComponent<ChunkScript>().SetAllActive();
             Chunks[chunkIterator].transform.position = startingPos + (gapBetweenChunks * playerOnChunk);
         }
         //else
@@ -53,6 +54,7 @@ public class ChunkManager : MonoBehaviour
         {
             chunkIterator++;
             Chunks[chunkIterator].SetActive(true);
+            Chunks[chunkIterator].GetComponent<ChunkScript>().SetAllActive();
             Chunks[chunkIterator].transform.position = startingPos + (gapBetweenChunks * playerOnChunk);
         }
 
@@ -69,9 +71,15 @@ public class ChunkManager : MonoBehaviour
             {
                 //Set active
                 Chunks[rep].SetActive(true);
+                Chunks[chunkIterator].GetComponent<ChunkScript>().SetAllActive();
+
+                if(rep == 0)
+                {
+                    Chunks[rep].transform.position = startingPos;
+                }
 
                 //Move second back behind 1
-                if(rep == 1)
+                else if (rep == 1)
                 {
                     Chunks[rep].transform.position = startingPos + gapBetweenChunks;
                 }

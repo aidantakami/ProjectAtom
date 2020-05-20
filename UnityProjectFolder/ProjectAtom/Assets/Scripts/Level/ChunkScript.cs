@@ -7,6 +7,7 @@ public class ChunkScript : MonoBehaviour
 {
 
     [SerializeField] public ChunkManager chunkManager;
+    [SerializeField] public List<GameObject> itemsOnChunk = new List<GameObject>();
     [SerializeField] public UnityEvent chunkCompleted = new UnityEvent();
 
     // Start is called before the first frame update
@@ -17,7 +18,7 @@ public class ChunkScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("DogPlayer"))
         {
             chunkCompleted.Invoke();
         }
@@ -27,5 +28,14 @@ public class ChunkScript : MonoBehaviour
     {
         //Adds self to RTS
         chunkManager.Add(gameObject);
+    }
+
+    public void SetAllActive()
+    {
+
+        foreach(GameObject element in itemsOnChunk)
+        {
+            element.SetActive(true);
+        }
     }
 }

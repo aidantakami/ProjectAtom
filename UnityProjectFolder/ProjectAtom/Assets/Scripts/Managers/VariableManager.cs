@@ -9,6 +9,8 @@ public class VariableManager : MonoBehaviour
     [SerializeField] public BoolVariable canPlayerMove;
     [SerializeField] public FloatVariable boomerangLifeRemaining;
     [SerializeField] public FloatVariable springboardCooldownRemaining;
+    [SerializeField] public IntVariable dogAbilityTokens;
+    [SerializeField] public IntVariable boomAbilityTokens;
 
     public void Awake()
     {
@@ -18,6 +20,8 @@ public class VariableManager : MonoBehaviour
 
         boomerangLifeRemaining.SetValue(0);
         springboardCooldownRemaining.SetValue(0);
+        dogAbilityTokens.SetValue(0);
+        boomAbilityTokens.SetValue(0);
     }
 
     public void VariableManagerRestart()
@@ -28,5 +32,7 @@ public class VariableManager : MonoBehaviour
 
         boomerangLifeRemaining.SetValue(0);
         springboardCooldownRemaining.SetValue(0);
+        dogAbilityTokens.SetValue(0);
+        boomAbilityTokens.SetValue(0);
     }
 }
