@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Stop : MonoBehaviour
 {
-    [SerializeField] float timeToWait;
-    [SerializeField] FloatVariable speed;
-    [SerializeField] BoolVariable canMove;
+    [SerializeField] public float timeToWait;
+    [SerializeField] public FloatVariable speed;
+    [SerializeField] public BoolVariable canMove;
     // Start is called before the first frame update
     void Start()
     {

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Glass : MonoBehaviour
 {
-    [SerializeField] float time, hitSpeed;
+    [SerializeField] public float time, hitSpeed;
     float startTime, t, originalSpeed;
-    [SerializeField] FloatVariable speed;
+    [SerializeField] public FloatVariable speed;
     bool hit;
     // Start is called before the first frame update
     void Start()

@@ -206,8 +206,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("DogPlayer"))
             {
-                Debug.Log("Doghit");
-                gameObject.GetComponent<BoxCollider>().isTrigger = true;
+               gameObject.GetComponent<BoxCollider>().isTrigger = true;
             }
         }
     }
@@ -216,8 +215,6 @@ public class BoomerangPlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("DogPlayer"))
         {
-            Debug.Log("Dogleft");
-
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
         }
     }

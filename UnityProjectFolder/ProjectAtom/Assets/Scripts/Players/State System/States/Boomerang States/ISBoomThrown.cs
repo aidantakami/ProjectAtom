@@ -73,7 +73,6 @@ public class ISBoomThrown : IState
 
             if (_player.BoomIsInRange())
             {
-                Debug.Log("Boom in range");
                 //Allows player to move L and R
                 _player.transform.Translate((Vector3.right * Time.deltaTime * x * horizontalMovementMod), Space.World);
                 _player.transform.Translate(Vector3.back * Time.deltaTime * y * verticallMovementMod, Space.World);
