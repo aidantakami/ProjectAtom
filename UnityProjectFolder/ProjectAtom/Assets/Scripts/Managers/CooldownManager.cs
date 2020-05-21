@@ -81,4 +81,13 @@ public class CooldownManager : MonoBehaviour
     {
         gameIsPaused = false;
     }
+
+    public void CooldownManagerRestart()
+    {
+        {
+            gameIsPaused = false;
+            boomerangOut = false;
+            springboardOut = false;
+        }
+    }
 }

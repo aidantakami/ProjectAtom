@@ -10,8 +10,8 @@ public class ISBoomThrown : IState
     protected BoolVariable _playerCanMove;
     protected BoomerangPlayerMovement _player;
 
-    private readonly float horizontalMovementMod = 7f;
-    private readonly float verticallMovementMod = 6f;
+    private readonly float horizontalMovementMod = 18f;
+    private readonly float verticallMovementMod = 14f;
 
     private Ray groundCheck;
 
