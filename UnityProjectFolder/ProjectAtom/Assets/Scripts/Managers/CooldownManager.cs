@@ -17,6 +17,7 @@ public class CooldownManager : MonoBehaviour
 
     private bool boomerangOut = false;
     private bool springboardOut = false;
+    private bool gameIsPaused = false;
 
     // Update is called once per frame
     void Update()
@@ -24,26 +25,32 @@ public class CooldownManager : MonoBehaviour
         //Will tick down time remaining
         if (boomerangOut)
         {
-            boomerangLifeRemaining.value -= Time.deltaTime;
-
-            if(boomerangLifeRemaining.value < 0)
+            if (!gameIsPaused)
             {
-                //Boomerang Die Event
-                boomDeadEvent.Invoke();
-                boomerangOut = false;
-            }
+                boomerangLifeRemaining.value -= Time.deltaTime;
+
+                if (boomerangLifeRemaining.value < 0)
+                {
+                    //Boomerang Die Event
+                    boomDeadEvent.Invoke();
+                    boomerangOut = false;
+                }
+            }     
         }
 
         //If springboard has been placed
         if (springboardOut)
         {
-            springboardCooldownRemaining.value -= Time.deltaTime;
-
-            if(springboardCooldownRemaining.value < 0)
+            if (!gameIsPaused)
             {
-                springboardExpiredEvent.Invoke();
-                springboardOut = false;
-            }
+                springboardCooldownRemaining.value -= Time.deltaTime;
+
+                if (springboardCooldownRemaining.value < 0)
+                {
+                    springboardExpiredEvent.Invoke();
+                    springboardOut = false;
+                }
+            }            
         }
     }
 
@@ -63,5 +70,15 @@ public class CooldownManager : MonoBehaviour
     {
         springboardOut = true;
         springboardCooldownRemaining.SetValue(springboardTotalCooldown);
+    }
+
+    public void CooldownManagerPause()
+    {
+        gameIsPaused = true;
+    }
+
+    public void CooldownManagerUnpause()
+    {
+        gameIsPaused = false;
     }
 }

@@ -6,6 +6,14 @@ using UnityEngine;
 public class AbilityTokenScript : MonoBehaviour
 {
 
+    private float amplitude = 0.4f;
+    private float frequency;
+
+    Vector3 posOffset = new Vector3();
+    Vector3 tempPos = new Vector3();
+    Vector3 tempVector = new Vector3();
+
+
     [System.Serializable]
     public class AbilityTokenEvent : UnityEvent<bool>
     {
@@ -13,10 +21,25 @@ public class AbilityTokenScript : MonoBehaviour
 
     [SerializeField] public AbilityTokenEvent dogPickedUpToken = new AbilityTokenEvent();
 
+
+    public void Start()
+    {
+        // Store the starting position & rotation of the object
+        posOffset = transform.position;
+
+        frequency = Random.Range(0.3f, 0.9f);
+
+    }
+
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 50 * Time.deltaTime, 0);
+        tempPos = posOffset;
+        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
+
+        tempVector.Set(transform.position.x, tempPos.y, transform.position.z);
+
+        transform.position = tempVector;
     }
 
         public void OnTriggerEnter(Collider other)
