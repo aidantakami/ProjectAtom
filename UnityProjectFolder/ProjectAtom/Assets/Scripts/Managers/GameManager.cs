@@ -78,6 +78,16 @@ public class GameManager : MonoBehaviour
     public void BoomerangThrown()
     {
         isBoomThrown.SetValue(true);
+        StartCoroutine(BoomerangSlowMo());
+    }
+
+    public IEnumerator BoomerangSlowMo()
+    {
+        yield return new WaitForSeconds(0.15f);
+        Time.timeScale = 0.2f;
+
+        yield return new WaitForSeconds(0.2f);
+        Time.timeScale = 1.0f;
     }
 
     public void BoomerangReturned()

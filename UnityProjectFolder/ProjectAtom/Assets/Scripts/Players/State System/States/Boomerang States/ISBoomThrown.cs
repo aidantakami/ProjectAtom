@@ -37,9 +37,9 @@ public class ISBoomThrown : IState
         if (Physics.Raycast(_player.transform.position, _player.transform.TransformDirection(Vector3.right), out hit, 2f, mask))
         {
             //Move Boomerang away from dog
-            _player.transform.position += new Vector3(-1, 0, 0);
+            _player.transform.position += new Vector3(-1, 0.5f, 0);
         }
-        else _player.transform.position += new Vector3(1, 0, 0);
+        else _player.transform.position += new Vector3(1, 0.5f, 0);
 
 
         //Get Mesh and Collider
