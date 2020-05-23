@@ -789,7 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: 6586e3ad94c1c774cb7ea66eb6834e34, type: 2}
   m_StaticLightingSkyUniqueID: 1
-  m_SkySettings: {fileID: 1727410137}
+  m_SkySettings: {fileID: 1651844374}
   m_SkySettingsFromProfile: {fileID: 7488742677745068149, guid: 6586e3ad94c1c774cb7ea66eb6834e34,
     type: 2}
 --- !u!4 &519353334
@@ -806,6 +806,100 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &551939804
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4961035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.0931349
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.8995318
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264326293830219037, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893056312182120781, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_Name
+      value: DefaultSceneRoot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949957087466332343, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_Version
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949957087466332343, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_RenderingPathCustomFrameSettings.bitDatas.data1
+      value: 734440390720
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131575625094108011, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_Version
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131575625094108011, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_MinFilterSize
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131575625094108011, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Level
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5439c9da0d54df9458092dbfef5d59dd, type: 3}
 --- !u!1 &565287372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,7 +2481,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624606701}
   m_CullTransparentMesh: 0
---- !u!114 &1727410137
+--- !u!114 &1651844374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
