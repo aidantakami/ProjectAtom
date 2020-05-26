@@ -30,5 +30,10 @@ public class ISBoomAway : IState
     {
         _player.transform.position = _dogLocation.value;        
         _boomLocation.value = _player.transform.position;
+
+        if (Input.GetButtonDown("P2X Button") || Input.GetKeyDown(KeyCode.P))
+        {
+            _player.SwitchBoomAbility();
+        }
     }
 }

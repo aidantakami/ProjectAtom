@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6bd73f4a7af5f5468fb77db96ee8e9b, type: 3}
-  m_Name: SpringboardCooldown
+  m_Script: {fileID: 11500000, guid: 8e827a480ec52064795904a5fcec6c7e, type: 3}
+  m_Name: SelectedBoomAbility
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  value: 0
+  value: 

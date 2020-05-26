@@ -373,7 +373,6 @@ GameObject:
   - component: {fileID: 343702369}
   - component: {fileID: 343702370}
   - component: {fileID: 343702371}
-  - component: {fileID: 343702372}
   - component: {fileID: 343702373}
   - component: {fileID: 343702375}
   - component: {fileID: 343702374}
@@ -415,27 +414,10 @@ MonoBehaviour:
   boomerangLifeRemaining: {fileID: 11400000, guid: a535733001c18854c800ea387d80cff9,
     type: 2}
   boomerangTotalLife: 15
-  springboardCooldownRemaining: {fileID: 11400000, guid: b97ad89b69159244783dd7e4af686bdc,
-    type: 2}
-  springboardTotalCooldown: 10
   boomDeadEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 407c8297413b1dc4fa0852ec3aa6174e, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  springboardExpiredEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9914a3d2854cf134485fc3d73ebc6c6f, type: 2}
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
@@ -476,34 +458,6 @@ MonoBehaviour:
   priority: 0
   timeToWait: 1
   scaledTime: 1
---- !u!114 &343702372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343702368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: c0a19d52a37cd9243bb262c88bc97589, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343702370}
-        m_MethodName: SpringboardPlaced
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  priority: 0
 --- !u!114 &343702373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,8 +1506,6 @@ MonoBehaviour:
   canPlayerMove: {fileID: 11400000, guid: e13831db8f5b84047894f432feac36b7, type: 2}
   boomerangLifeRemaining: {fileID: 11400000, guid: a535733001c18854c800ea387d80cff9,
     type: 2}
-  springboardCooldownRemaining: {fileID: 11400000, guid: b97ad89b69159244783dd7e4af686bdc,
-    type: 2}
   dogAbilityTokens: {fileID: 11400000, guid: 4c455f8d619d73548b30394e67c477d2, type: 2}
   boomAbilityTokens: {fileID: 11400000, guid: b11a0d54b18e2e944b28457794c46675, type: 2}
 --- !u!114 &1008500111
@@ -1761,7 +1713,6 @@ GameObject:
   - component: {fileID: 1283583940}
   - component: {fileID: 1283583941}
   - component: {fileID: 1283583943}
-  - component: {fileID: 1283583944}
   m_Layer: 9
   m_Name: BoomerangPlayer
   m_TagString: BoomerangPlayer
@@ -1871,6 +1822,9 @@ MonoBehaviour:
   boomLocation: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
   dogLocation: {fileID: 11400000, guid: 79a79bad5a0966745b3e0dd2f142cac3, type: 2}
   playerCanMove: {fileID: 11400000, guid: e13831db8f5b84047894f432feac36b7, type: 2}
+  boomAbilityTokens: {fileID: 11400000, guid: b11a0d54b18e2e944b28457794c46675, type: 2}
+  selectedBoomAbility: {fileID: 11400000, guid: 55905ce550738a646b02b3d6272c72a2,
+    type: 2}
   maximumDistanceFromDog: 20
   boomerangThrown:
     m_PersistentCalls:
@@ -1890,20 +1844,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 5a5ce99d4f046224e84d504d6b91fe32, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  springboardPlacedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: c0a19d52a37cd9243bb262c88bc97589, type: 2}
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
@@ -2122,34 +2062,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   priority: 0
---- !u!114 &1283583944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283583929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9914a3d2854cf134485fc3d73ebc6c6f, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1283583935}
-        m_MethodName: SpringboardExpired
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  priority: 0
 --- !u!1 &1288993143 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8829658718460179095, guid: 8ba946e0abf8aa246883a73a9ba7d186,
@@ -2176,6 +2088,7 @@ GameObject:
   - component: {fileID: 1292954751}
   - component: {fileID: 1292954755}
   - component: {fileID: 1292954756}
+  - component: {fileID: 1292954757}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -2244,8 +2157,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -2323,6 +2236,110 @@ MonoBehaviour:
   priority: 0
   timeToWait: 2
   scaledTime: 1
+--- !u!114 &1292954757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292954750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 7
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
+  clearColorMode: 0
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
+  volumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  volumeAnchorOverride: {fileID: 0}
+  antialiasing: 0
+  SMAAQuality: 2
+  dithering: 0
+  stopNaNs: 0
+  taaSharpenStrength: 0.6
+  physicalParameters:
+    m_Iso: 200
+    m_ShutterSpeed: 0.005
+    m_Aperture: 16
+    m_BladeCount: 5
+    m_Curvature: {x: 2, y: 11}
+    m_BarrelClipping: 0.25
+    m_Anamorphism: 0
+  flipYMode: 0
+  fullscreenPassthrough: 0
+  allowDynamicResolution: 0
+  customRenderingSettings: 0
+  invertFaceCulling: 0
+  probeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hasPersistentHistory: 0
+  m_RenderingPathCustomFrameSettings:
+    bitDatas:
+      data1: 70280697347917
+      data2: 4539628424926265344
+    lodBias: 1
+    lodBiasMode: 0
+    lodBiasQualityLevel: 0
+    maximumLODLevel: 0
+    maximumLODLevelMode: 0
+    maximumLODLevelQualityLevel: 0
+    materialQuality: 0
+  renderingPathCustomFrameSettingsOverrideMask:
+    mask:
+      data1: 0
+      data2: 0
+  defaultFrameSettings: 0
 --- !u!1 &1389290420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1104317683606447248, guid: 8ba946e0abf8aa246883a73a9ba7d186,
@@ -2843,7 +2860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728939022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.035}
+  m_LocalPosition: {x: 0, y: 1.031, z: 0.4}
   m_LocalScale: {x: 0.082773, y: 0.011894, z: 1}
   m_Children: []
   m_Father: {fileID: 1910948726}
@@ -2917,8 +2934,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.45680237, y: 0.6867447, z: 1.4167786}
+  m_Center: {x: 0.013832092, y: 0.28551483, z: 0.20185852}
 --- !u!23 &1910948724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2937,7 +2954,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f41e57b6df9ad2c4a9b1c2f53d261c26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2965,7 +2982,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910948722}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 171203474796673388, guid: 9635d67991c69b74290ec913ee43e55e, type: 3}
 --- !u!4 &1910948726
 Transform:
   m_ObjectHideFlags: 0
@@ -2999,6 +3016,8 @@ MonoBehaviour:
   dogLocation: {fileID: 11400000, guid: 79a79bad5a0966745b3e0dd2f142cac3, type: 2}
   boomLocation: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
   playerCanMove: {fileID: 11400000, guid: e13831db8f5b84047894f432feac36b7, type: 2}
+  selectedDogAbility: {fileID: 11400000, guid: d682d3d8db654494da7bf454ae46a4af, type: 2}
+  dogAbilityTokens: {fileID: 11400000, guid: 4c455f8d619d73548b30394e67c477d2, type: 2}
   boomPlayer: {fileID: 1283583935}
   leftLimit: {fileID: 603110757}
   rightLimit: {fileID: 788293623}

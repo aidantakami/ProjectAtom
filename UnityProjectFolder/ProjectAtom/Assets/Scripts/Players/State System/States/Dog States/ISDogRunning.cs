@@ -49,6 +49,19 @@ public class ISDogRunning : IState
                 //Tells player to throw
                 _player.BoomerangThrown(aimLocation);
             }
+
+
+            //Reads for player using ability
+            if(Input.GetButtonDown("P1B Button") || Input.GetKeyDown(KeyCode.R))
+            {
+                _player.UseSelectedDogAbility();
+            }
+
+            //Allows player to switch through abilities
+            if(Input.GetButtonDown("P1X Button") || Input.GetKeyDown(KeyCode.F))
+            {
+                _player.SwitchDogAbility();
+            }
         }
         
 
