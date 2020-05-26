@@ -10,7 +10,7 @@ public class ISDogNoBoom : IState
     protected BoolVariable _playerCanMove;
     protected DogPlayerMovement _player;
 
-    private readonly float horizontalMovementMod = 5;
+    private readonly float horizontalMovementMod = 18;
 
     public ISDogNoBoom(Vector3Variable dogLocation, Vector3Variable boomLocation, BoolVariable playerCanMove, FloatVariable playerSpeed, DogPlayerMovement player)
     {
@@ -54,6 +54,18 @@ public class ISDogNoBoom : IState
                     _player.TryToCatchBoomerang();
                 }
 
+            }
+
+            //Reads for player using ability
+            if (Input.GetButtonDown("P1B Button") || Input.GetKeyDown(KeyCode.R))
+            {
+                _player.UseSelectedDogAbility();
+            }
+
+            //Allows player to switch through abilities
+            if (Input.GetButtonDown("P1X Button") || Input.GetKeyDown(KeyCode.F))
+            {
+                _player.SwitchDogAbility();
             }
         }
     }        

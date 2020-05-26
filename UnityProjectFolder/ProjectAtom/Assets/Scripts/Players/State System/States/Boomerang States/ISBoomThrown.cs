@@ -10,8 +10,8 @@ public class ISBoomThrown : IState
     protected BoolVariable _playerCanMove;
     protected BoomerangPlayerMovement _player;
 
-    private readonly float horizontalMovementMod = 7f;
-    private readonly float verticallMovementMod = 6f;
+    private readonly float horizontalMovementMod = 18f;
+    private readonly float verticallMovementMod = 14f;
 
     private Ray groundCheck;
 
@@ -37,9 +37,9 @@ public class ISBoomThrown : IState
         if (Physics.Raycast(_player.transform.position, _player.transform.TransformDirection(Vector3.right), out hit, 2f, mask))
         {
             //Move Boomerang away from dog
-            _player.transform.position += new Vector3(-1, 0, 0);
+            _player.transform.position += new Vector3(-1, 0.5f, 0);
         }
-        else _player.transform.position += new Vector3(1, 0, 0);
+        else _player.transform.position += new Vector3(1, 0.5f, 0);
 
 
         //Get Mesh and Collider
@@ -80,7 +80,12 @@ public class ISBoomThrown : IState
                 //Keyboard input accessib;e
                 if (Input.GetButtonDown("P2B Button") || Input.GetKeyDown(KeyCode.Return))
                 {
-                    _player.PlaceSpringboard();
+                    _player.UseSelectedBoomAbility();
+                }
+
+                if(Input.GetButtonDown("P2X Button") || Input.GetKeyDown(KeyCode.P))
+                {
+                    _player.SwitchBoomAbility();
                 }
 
             }

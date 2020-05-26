@@ -8,15 +8,10 @@ public class CooldownManager : MonoBehaviour
     [SerializeField] public FloatVariable boomerangLifeRemaining;
     [SerializeField] public float boomerangTotalLife;
 
-    [SerializeField] public FloatVariable springboardCooldownRemaining;
-    [SerializeField] public float springboardTotalCooldown;
-
     [SerializeField] public UnityEvent boomDeadEvent = new UnityEvent();
-    [SerializeField] public UnityEvent springboardExpiredEvent = new UnityEvent();
 
 
     private bool boomerangOut = false;
-    private bool springboardOut = false;
     private bool gameIsPaused = false;
 
     // Update is called once per frame
@@ -37,21 +32,6 @@ public class CooldownManager : MonoBehaviour
                 }
             }     
         }
-
-        //If springboard has been placed
-        if (springboardOut)
-        {
-            if (!gameIsPaused)
-            {
-                springboardCooldownRemaining.value -= Time.deltaTime;
-
-                if (springboardCooldownRemaining.value < 0)
-                {
-                    springboardExpiredEvent.Invoke();
-                    springboardOut = false;
-                }
-            }            
-        }
     }
 
 
@@ -66,11 +46,6 @@ public class CooldownManager : MonoBehaviour
         boomerangOut = false;
     }
 
-    public void SpringboardPlaced()
-    {
-        springboardOut = true;
-        springboardCooldownRemaining.SetValue(springboardTotalCooldown);
-    }
 
     public void CooldownManagerPause()
     {
@@ -80,5 +55,13 @@ public class CooldownManager : MonoBehaviour
     public void CooldownManagerUnpause()
     {
         gameIsPaused = false;
+    }
+
+    public void CooldownManagerRestart()
+    {
+        {
+            gameIsPaused = false;
+            boomerangOut = false;
+        }
     }
 }

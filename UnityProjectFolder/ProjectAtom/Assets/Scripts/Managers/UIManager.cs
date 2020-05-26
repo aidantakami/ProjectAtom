@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,12 +21,12 @@ public class UIManager : MonoBehaviour
     //Cooldowns
     [SerializeField] public TextMeshProUGUI boomerangLifeCooldownText;
     [SerializeField] public FloatVariable boomerangCooldown;
-    [SerializeField] public TextMeshProUGUI springboardCooldownText;
-    [SerializeField] public FloatVariable springboardCooldown;
 
     //Abilities
     [SerializeField] public TextMeshProUGUI dogAbilityText;
     [SerializeField] public TextMeshProUGUI boomerangAbilityText;
+    [SerializeField] public StringVariable dogSelectedAbility;
+    [SerializeField] public StringVariable boomSelectedAbility;
     [SerializeField] public IntVariable dogAbilityTokens;
     [SerializeField] public IntVariable boomAbilityTokens;
 
@@ -35,7 +36,6 @@ public class UIManager : MonoBehaviour
     private bool joystick2ReturnToZero = true;
 
     private bool boomerangThrown = false;
-    private bool springboardDown = false;
     private bool boomDead = false;
 
 
@@ -174,13 +174,9 @@ public class UIManager : MonoBehaviour
             boomerangLifeCooldownText.text = boomerangCooldown.value.ToString();
         }
 
-        if (springboardDown)
-        {
-            springboardCooldownText.text = springboardCooldown.value.ToString();
-        }
 
-        dogAbilityText.text = dogAbilityTokens.value.ToString();
-        boomerangAbilityText.text = boomAbilityTokens.value.ToString();
+        dogAbilityText.text = (dogAbilityTokens.value.ToString() + Environment.NewLine + dogSelectedAbility.value);
+        boomerangAbilityText.text = (boomAbilityTokens.value.ToString() + Environment.NewLine + boomSelectedAbility.value);
     }
 
     public void PlayerSignedIn(int playerNumber)
@@ -209,7 +205,6 @@ public class UIManager : MonoBehaviour
         player2SignInText.gameObject.SetActive(false);
 
         boomerangLifeCooldownText.gameObject.SetActive(false);
-        springboardCooldownText.gameObject.SetActive(false);
 
         dogAbilityText.gameObject.SetActive(true);
         boomerangAbilityText.gameObject.SetActive(true);
@@ -266,6 +261,7 @@ public class UIManager : MonoBehaviour
     //Starts UI countdown for boomerang thrown
     public void BoomerangThrownUIStart()
     {
+
         if (!boomDead)
         {
             boomerangLifeCooldownText.gameObject.SetActive(true);
@@ -285,25 +281,7 @@ public class UIManager : MonoBehaviour
     {
         boomDead = true;
         BoomerangThrownUIEnd();
-        SpringboardUIEnd();
     }
-
-    public void SpringboardUIStart()
-    {
-        if (!boomDead)
-        {
-            springboardCooldownText.gameObject.SetActive(true);
-            springboardDown = true;
-        }
-       
-    }
-
-    public void SpringboardUIEnd()
-    {
-        springboardCooldownText.gameObject.SetActive(false);
-        springboardDown = false;
-    }
-
 
     #endregion
 }

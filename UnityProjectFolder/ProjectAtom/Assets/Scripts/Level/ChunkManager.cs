@@ -38,7 +38,11 @@ public class ChunkManager : MonoBehaviour
         playerOnChunk++;
 
         //Sets old chunk inactive
-        Chunks[chunkIterator - 1].SetActive(false);
+        if (chunkIterator != 1)
+        {
+            Chunks[chunkIterator - 1].SetActive(false);
+        }
+        
 
 
         //If end of chunk list
@@ -48,6 +52,7 @@ public class ChunkManager : MonoBehaviour
             Chunks[chunkIterator].SetActive(true);
             Chunks[chunkIterator].GetComponent<ChunkScript>().SetAllActive();
             Chunks[chunkIterator].transform.position = startingPos + (gapBetweenChunks * playerOnChunk);
+            chunkIterator++;
         }
         //else
         else
@@ -71,7 +76,7 @@ public class ChunkManager : MonoBehaviour
             {
                 //Set active
                 Chunks[rep].SetActive(true);
-                Chunks[chunkIterator].GetComponent<ChunkScript>().SetAllActive();
+                Chunks[rep].GetComponent<ChunkScript>().SetAllActive();
 
                 if(rep == 0)
                 {

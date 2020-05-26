@@ -9,7 +9,7 @@ public class ISDogRunning : IState
     protected BoolVariable _playerCanMove;
     protected DogPlayerMovement _player;
 
-    private readonly float horizontalMovementMod = 5;
+    private readonly float horizontalMovementMod = 18;
     private Vector3 aimLocation = new Vector3();
     private GameObject arrowGO;
 
@@ -49,13 +49,26 @@ public class ISDogRunning : IState
                 //Tells player to throw
                 _player.BoomerangThrown(aimLocation);
             }
+
+
+            //Reads for player using ability
+            if(Input.GetButtonDown("P1B Button") || Input.GetKeyDown(KeyCode.R))
+            {
+                _player.UseSelectedDogAbility();
+            }
+
+            //Allows player to switch through abilities
+            if(Input.GetButtonDown("P1X Button") || Input.GetKeyDown(KeyCode.F))
+            {
+                _player.SwitchDogAbility();
+            }
         }
         
 
 
         //Gets player's aim
         //Axis is between -1 and 1, adding 1 and then dividing by 2 to get complete input
-        aimLocation = Vector3.Lerp(_player.GetLeftAimLimit(), _player.GetRightAimLimit(), ((Input.GetAxis("P2Right Stick Horizontal")) + 1) / 2);
+        aimLocation = Vector3.Lerp(_player.GetLeftAimLimit(), _player.GetRightAimLimit(), ((Input.GetAxis("P2Left Stick Horizontal")) + 1) / 2);
        
         
         //Will rotate arrow assigned to plauer
