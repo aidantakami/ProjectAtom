@@ -10,13 +10,13 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public BoolVariable playerCanMove;
+    [SerializeField] public IntVariable boomAbilityTokens;
+    [SerializeField] public StringVariable selectedBoomAbility;
     [SerializeField] public float maximumDistanceFromDog;
     [SerializeField] public UnityEvent boomerangThrown = new UnityEvent();
     [SerializeField] public UnityEvent boomerangCaught = new UnityEvent();
 
 
-    //Events
-    [SerializeField] public UnityEvent springboardPlacedEvent = new UnityEvent();
 
     //Prefabs
     [SerializeField] public GameObject springboardPrefab;
@@ -29,8 +29,8 @@ public class BoomerangPlayerMovement : MonoBehaviour
     //Will determine how quickly boomerang will finish lerp forwards
     //Please be careful tweaking
     public float speedThrownForward = 2f;
-    private bool springboardIsOut = false;
     private bool isBeingThrown = false;
+    private int abilityIterator;
 
 
     //State machine and states
@@ -106,6 +106,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
         springboardPrefab = Instantiate(springboardPrefab);
         springboardPrefab.transform.position = new Vector3(-10, -10, -10);
+
+
+        //Initial set of the selected ability
+        abilityIterator = 0;
+        selectedBoomAbility.SetValue("Springboard");
     }
 
     //Functions
@@ -183,22 +188,62 @@ public class BoomerangPlayerMovement : MonoBehaviour
         _StateMachine.EnterState(BoomDeadState);
     }
 
-    public void PlaceSpringboard()
+    //TAYGH
+    //This is where you will put in the calls to your abilites.
+    public void UseSelectedBoomAbility()
     {
-
-        if (!springboardIsOut)
+        Debug.Log("Boom ability Used");
+        if(abilityIterator == 0 && boomAbilityTokens.value >= 2)
         {
-            springboardPlacedEvent.Invoke();
-            springboardPrefab.gameObject.SetActive(true);
-            springboardPrefab.transform.position = transform.position -= new Vector3(0, 0.5f, 1);
-            springboardIsOut = true;
+            UseSpringboard();
+            boomAbilityTokens.value -= 2;
+        }
+        else if(abilityIterator == 1 && boomAbilityTokens.value >= 2)
+        {
+            //Do Something
+            //Subtract needed tokens from boomAbilityTokens.value
+        }
+        else if(abilityIterator == 2 && boomAbilityTokens.value >= 4)
+        {
+            //Do something
+            //So Domething
+            //lol
+        }
+
+    }
+    
+    public void SwitchBoomAbility()
+    {
+        //If ability iterator is alreay at 2
+        if (abilityIterator == 2)
+        {
+            //Set to 0
+            abilityIterator = 0;
+            selectedBoomAbility.SetValue("Springboard");
+        }
+
+        //Iterate 
+        else abilityIterator++;
+
+        //If after iteration is 1
+        if (abilityIterator == 1)
+        {
+            selectedBoomAbility.SetValue("Ability 2");
+        }
+        //If after iteration is 2
+        else if (abilityIterator == 2)
+        {
+            selectedBoomAbility.SetValue("Ability 3");
         }
     }
 
-    public void SpringboardExpired()
+    //Plaes the springboard behind the player
+    public void UseSpringboard()
     {
-        springboardIsOut = false;
+        springboardPrefab.gameObject.SetActive(true);
+        springboardPrefab.transform.position = transform.position -= new Vector3(0, 0.5f, 1);
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {

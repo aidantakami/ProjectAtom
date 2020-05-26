@@ -80,7 +80,12 @@ public class ISBoomThrown : IState
                 //Keyboard input accessib;e
                 if (Input.GetButtonDown("P2B Button") || Input.GetKeyDown(KeyCode.Return))
                 {
-                    _player.PlaceSpringboard();
+                    _player.UseSelectedBoomAbility();
+                }
+
+                if(Input.GetButtonDown("P2X Button") || Input.GetKeyDown(KeyCode.P))
+                {
+                    _player.SwitchBoomAbility();
                 }
 
             }

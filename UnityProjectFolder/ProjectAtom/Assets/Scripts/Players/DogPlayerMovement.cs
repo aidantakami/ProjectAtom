@@ -10,6 +10,8 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public BoolVariable playerCanMove;
+    [SerializeField] public StringVariable selectedDogAbility;
+    [SerializeField] public IntVariable dogAbilityTokens;
     [SerializeField] public BoomerangPlayerMovement boomPlayer;
     [SerializeField] public Transform leftLimit;
     [SerializeField] public Transform rightLimit;
@@ -20,6 +22,7 @@ public class DogPlayerMovement : MonoBehaviour
     //private fields
     private Vector3 startingPosition;
     private bool dogIsRestarting;
+    private int abilityIterator;
 
     //Referencing Components
     private Rigidbody rb;
@@ -99,6 +102,10 @@ public class DogPlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         aimArrow.SetActive(true);
         dogIsRestarting = false;
+       
+        //Abilities
+        abilityIterator = 0;
+        selectedDogAbility.SetValue("Boom Magnet");
     }
 
     //Functions
@@ -141,6 +148,72 @@ public class DogPlayerMovement : MonoBehaviour
     {
         return aimArrow;
     }
+
+    //Uses the currently selected ability for the dog
+    public void UseSelectedDogAbility()
+    {
+        if(abilityIterator == 0 && dogAbilityTokens.value >= 5)
+        {
+            dogAbilityTokens.value -= 5;
+            UseBoomMagnet();
+
+        }
+        else if(abilityIterator == 1 && dogAbilityTokens.value >= 4)
+        {
+            dogAbilityTokens.value -= 4;
+            UseSpinAttack();
+        }
+        else if(abilityIterator == 2 && dogAbilityTokens.value >= 8)
+        {
+            dogAbilityTokens.value -= 8;
+            ReviveBoom();
+        }
+    }
+
+    public void SwitchDogAbility()
+    {
+        //If ability iterator is alreay at 2
+        if (abilityIterator == 2)
+        {
+            //Set to 0
+            abilityIterator = 0;
+            selectedDogAbility.SetValue("Boom Magnet");
+        }
+
+        //Iterate 
+        else abilityIterator++;
+
+        //If after iteration is 1
+        if(abilityIterator == 1)
+        {
+            selectedDogAbility.SetValue("Spin Attack");
+        }
+        //If after iteration is 2
+        else if(abilityIterator == 2)
+        {
+            selectedDogAbility.SetValue("Boom Revive");
+        }
+    }
+
+    //Abilities
+    #region
+
+    private void UseBoomMagnet()
+    {
+        Debug.Log("Boom Magnet");
+    }
+
+    private void UseSpinAttack()
+    {
+        Debug.Log("Spin Attack");
+    }
+
+    private void ReviveBoom()
+    {
+        Debug.Log("BoomRevived");
+    }
+
+    #endregion
 
 
     //Boomerang Dies Response
