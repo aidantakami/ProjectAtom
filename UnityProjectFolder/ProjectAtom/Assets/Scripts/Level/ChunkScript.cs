@@ -35,7 +35,10 @@ public class ChunkScript : MonoBehaviour
 
         foreach(GameObject element in itemsOnChunk)
         {
-            element.SetActive(true);
+            if(element != null)
+            {
+                element.SetActive(true);
+            }
         }
     }
 }

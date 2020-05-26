@@ -266,8 +266,13 @@ public class UIManager : MonoBehaviour
     //Starts UI countdown for boomerang thrown
     public void BoomerangThrownUIStart()
     {
+        Debug.Log("is boom ded?" + boomDead.ToString());
+
+
         if (!boomDead)
         {
+            Debug.Log("set active");
+
             boomerangLifeCooldownText.gameObject.SetActive(true);
             boomerangThrown = true;
         }   

@@ -128,7 +128,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         isBeingThrown = true;
 
         //Set box collider to enabled
-        gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
 
         //Thrown Forward Process
         float elapsedTime = 0f;
@@ -142,7 +142,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
             if((Vector3.Distance(transform.position, dogLocation.value) > 1.5) && gameObject.GetComponent<BoxCollider>().enabled == false)
             {
-
+                gameObject.GetComponent<BoxCollider>().enabled = true;
             }
         }
 
