@@ -11,25 +11,25 @@ public class VariableManager : MonoBehaviour
     [SerializeField] public IntVariable dogAbilityTokens;
     [SerializeField] public IntVariable boomAbilityTokens;
 
-    public void Awake()
+    public void Awake ()
     {
-        isPaused.SetValue(false);
-        boomThrown.SetValue(false);
-        canPlayerMove.SetValue(true);
+        isPaused.SetValue (false);
+        boomThrown.SetValue (false);
+        canPlayerMove.SetValue (true);
 
-        boomerangLifeRemaining.SetValue(0);
-        dogAbilityTokens.SetValue(0);
-        boomAbilityTokens.SetValue(0);
+        boomerangLifeRemaining.SetValue (0);
+        dogAbilityTokens.SetValue (0);
+        boomAbilityTokens.SetValue (0);
     }
 
-    public void VariableManagerRestart()
+    public void VariableManagerRestart ()
     {
-        isPaused.SetValue(false);
-        boomThrown.SetValue(false);
-        canPlayerMove.SetValue(true);
+        isPaused.SetValue (false);
+        boomThrown.SetValue (false);
+        canPlayerMove.SetValue (true);
 
-        boomerangLifeRemaining.SetValue(0);
-        dogAbilityTokens.SetValue(0);
-        boomAbilityTokens.SetValue(0);
+        boomerangLifeRemaining.SetValue (0);
+        dogAbilityTokens.SetValue (0);
+        boomAbilityTokens.SetValue (0);
     }
 }

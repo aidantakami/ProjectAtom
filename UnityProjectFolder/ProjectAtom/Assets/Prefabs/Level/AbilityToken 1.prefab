@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5160931791115929823
+--- !u!1 &7854704103382788158
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5160931791115929820}
-  - component: {fileID: 5160931791115929792}
-  - component: {fileID: 5160931791115929795}
-  - component: {fileID: 5160931791115929794}
-  - component: {fileID: 6732735661399603545}
-  - component: {fileID: 5160931791115929821}
+  - component: {fileID: 7854704103382788161}
+  - component: {fileID: 7854704103382788165}
+  - component: {fileID: 7854704103382788162}
+  - component: {fileID: 7876796416175334260}
+  - component: {fileID: 7854704103382788160}
   m_Layer: 0
-  m_Name: ChunkPrefab
+  m_Name: AbilityToken 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5160931791115929820
+--- !u!4 &7854704103382788161
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5160931791115929823}
+  m_GameObject: {fileID: 7854704103382788158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -238.76888, y: 68.6389, z: 348.69403}
-  m_LocalScale: {x: 10, y: 1, z: 50}
+  m_LocalPosition: {x: -9.700432, y: 0.6, z: 15.280467}
+  m_LocalScale: {x: 1, y: 1, z: 0.15135}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5160931791115929792
+--- !u!33 &7854704103382788165
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5160931791115929823}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5160931791115929795
+  m_GameObject: {fileID: 7854704103382788158}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7854704103382788162
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5160931791115929823}
+  m_GameObject: {fileID: 7854704103382788158}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4607e44ce6b2b24cb6be83737e46939, type: 2}
+  - {fileID: 2100000, guid: 1273d6ef87a0bf74c84850e1d40f91bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,52 +81,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5160931791115929794
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5160931791115929823}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6732735661399603545
+--- !u!65 &7876796416175334260
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5160931791115929823}
+  m_GameObject: {fileID: 7854704103382788158}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.064035, y: 16.490044, z: 0.70477843}
-  m_Center: {x: -0.03201294, y: 8.469105, z: 6.087519}
---- !u!114 &5160931791115929821
+  m_Size: {x: 1.1326952, y: 2.1178498, z: 0.9999999}
+  m_Center: {x: -0.0013890266, y: -0.5589249, z: 0}
+--- !u!114 &7854704103382788160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5160931791115929823}
+  m_GameObject: {fileID: 7854704103382788158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0beafa583026f704c8d5027a5c8cfff3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e9f6aa4f989b7a4381aac98f9b189b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 0}
-  chunkCompleted:
+  dogPickedUpToken:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 7b90843262211dc499caf8095753a506, type: 2}
+      - m_Target: {fileID: 11400000, guid: e56edf4e24f587841932e9ae749d17f4, type: 2}
         m_MethodName: Raise
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
