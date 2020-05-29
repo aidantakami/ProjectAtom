@@ -120,3 +120,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  tokenParticleSystem: {fileID: 7859483632755608217, guid: 244a2a2335c5f314983f89c1787698e4,
+    type: 3}

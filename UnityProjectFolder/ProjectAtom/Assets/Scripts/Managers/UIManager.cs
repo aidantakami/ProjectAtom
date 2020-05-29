@@ -245,6 +245,7 @@ public class UIManager : MonoBehaviour
     public void QuitGame ()
     {
         // Tell GM to Quit Game
+        Application.Quit ();
     }
     #endregion
 

@@ -123,6 +123,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   enemyManager: {fileID: 0}
+  enemyParticles: {fileID: 3480373920951980308, guid: 874996140d628b941818269ed7c79ebc,
+    type: 3}
 --- !u!54 &8289288947943281062
 Rigidbody:
   m_ObjectHideFlags: 0

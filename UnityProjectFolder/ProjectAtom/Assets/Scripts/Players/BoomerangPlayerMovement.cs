@@ -71,19 +71,13 @@ public class BoomerangPlayerMovement : MonoBehaviour
         _StateMachine.ReturnToPreviousState ();
     }
 
-    public void BoomGameStart ()
+    public void BoomGameRestart ()
     {
         _StateMachine.EnterState (BoomAwayState);
         boomerangIcon.gameObject.SetActive (false);
         boomerangRangeTemp = 0;
         springboardPrefab.transform.position = new Vector3 (-10, -10, -10);
         isBeingThrown = false;
-
-    }
-
-    public void BoomGameRestart ()
-    {
-        _StateMachine.EnterState (BoomAwayState);
     }
 
     public void BoomGameEnd ()

@@ -7,37 +7,38 @@ public class ChunkScript : MonoBehaviour
 {
 
     [SerializeField] public ChunkManager chunkManager;
-    [SerializeField] public List<GameObject> itemsOnChunk = new List<GameObject>();
-    [SerializeField] public UnityEvent chunkCompleted = new UnityEvent();
+    [SerializeField] public List<GameObject> itemsOnChunk = new List<GameObject> ();
+    [SerializeField] public UnityEvent chunkCompleted = new UnityEvent ();
 
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
-        AddSelfToList();
+        AddSelfToList ();
+
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter (Collider other)
     {
-        if (other.CompareTag("DogPlayer"))
+        if (other.CompareTag ("DogPlayer"))
         {
-            chunkCompleted.Invoke();
+            chunkCompleted.Invoke ();
         }
     }
 
-    public void AddSelfToList()
+    public void AddSelfToList ()
     {
         //Adds self to RTS
-        chunkManager.Add(gameObject);
+        chunkManager.Add (gameObject);
     }
 
-    public void SetAllActive()
+    public void SetAllActive ()
     {
 
-        foreach(GameObject element in itemsOnChunk)
+        foreach (GameObject element in itemsOnChunk)
         {
-            if(element != null)
+            if (element != null && !element.activeInHierarchy)
             {
-                element.SetActive(true);
+                element.SetActive (true);
             }
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class AbilityTokenScript : MonoBehaviour
 {
 
-    private float amplitude = 0.4f;
+    private float amplitude = 0.2f;
     private float frequency;
 
     Vector3 posOffset = new Vector3 ();
@@ -17,6 +17,9 @@ public class AbilityTokenScript : MonoBehaviour
     public class AbilityTokenEvent : UnityEvent<bool> { }
 
     [SerializeField] public AbilityTokenEvent dogPickedUpToken = new AbilityTokenEvent ();
+
+    [SerializeField] public ParticleSystem tokenParticleSystem;
+    private ParticleSystem myParticles;
 
     public void Start ()
     {
@@ -46,6 +49,15 @@ public class AbilityTokenScript : MonoBehaviour
 
             //Give ability token to dog player
             dogPickedUpToken.Invoke (true);
+
+            if (myParticles == null)
+            {
+                myParticles = Instantiate (tokenParticleSystem);
+            }
+
+            myParticles.transform.position = transform.position;
+            myParticles.Play ();
+
         }
         else if (other.gameObject.CompareTag ("BoomerangPlayer"))
         {
@@ -53,6 +65,15 @@ public class AbilityTokenScript : MonoBehaviour
 
             //Give ability token to boomerang player
             dogPickedUpToken.Invoke (false);
+
+            if (myParticles == null)
+            {
+                myParticles = Instantiate (tokenParticleSystem);
+            }
+
+            myParticles.transform.position = transform.position;
+            myParticles.Play ();
+
         }
     }
 }
