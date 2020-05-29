@@ -1361,6 +1361,7 @@ GameObject:
   - component: {fileID: 343702376}
   - component: {fileID: 343702377}
   - component: {fileID: 343702372}
+  - component: {fileID: 343702378}
   m_Layer: 0
   m_Name: Cooldown Manager
   m_TagString: Untagged
@@ -1599,6 +1600,34 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 343702370}
         m_MethodName: CooldownManagerRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &343702378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343702368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a401927d67b285849b962137b9abb8d5, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 343702370}
+        m_MethodName: DogPlayerKilled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4572,7 +4601,7 @@ MonoBehaviour:
   boomAbilityTokens: {fileID: 11400000, guid: b11a0d54b18e2e944b28457794c46675, type: 2}
   selectedBoomAbility: {fileID: 11400000, guid: 55905ce550738a646b02b3d6272c72a2,
     type: 2}
-  maximumDistanceFromDog: 20
+  maximumDistanceFromDog: 15
   boomerangThrown:
     m_PersistentCalls:
       m_Calls:

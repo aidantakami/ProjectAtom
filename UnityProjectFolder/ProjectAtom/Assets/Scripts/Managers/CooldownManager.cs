@@ -42,6 +42,7 @@ public class CooldownManager : MonoBehaviour
     public void BoomerangCaught ()
     {
         boomerangOut = false;
+        boomerangLifeRemaining.SetValue (boomerangTotalLife);
     }
 
     public void CooldownManagerPause ()
@@ -67,5 +68,12 @@ public class CooldownManager : MonoBehaviour
     {
         boomerangOut = false;
         boomerangLifeRemaining.SetValue (boomerangTotalLife);
+    }
+
+    public void DogPlayerKilled ()
+    {
+        boomerangOut = false;
+        boomerangLifeRemaining.SetValue (boomerangTotalLife);
+
     }
 }
