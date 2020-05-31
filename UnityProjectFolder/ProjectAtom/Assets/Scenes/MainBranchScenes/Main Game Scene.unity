@@ -1942,7 +1942,7 @@ PrefabInstance:
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 130.68
+      value: -102
       objectReference: {fileID: 0}
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
@@ -2031,7 +2031,7 @@ PrefabInstance:
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 123.29
+      value: -109.38999
       objectReference: {fileID: 0}
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
@@ -4294,7 +4294,7 @@ PrefabInstance:
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 128.79
+      value: -103.89
       objectReference: {fileID: 0}
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
@@ -4373,7 +4373,7 @@ PrefabInstance:
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 123.12
+      value: -109.55999
       objectReference: {fileID: 0}
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
@@ -4527,47 +4527,52 @@ PrefabInstance:
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.87
+      value: -20.12
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.5700006
+      value: 17.579998
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.21999979
+      value: 105.37
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.042195372
+      value: 0.7129272
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.25857192
+      value: -0.17462958
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.011306212
+      value: 0.19102818
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9650037
+      value: 0.65172654
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 5.0070004
+      value: 95.13599
       objectReference: {fileID: 0}
     - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -30.000002
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534824466647122371, guid: 5439c9da0d54df9458092dbfef5d59dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.000015258789
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5439c9da0d54df9458092dbfef5d59dd, type: 3}
@@ -5653,6 +5658,9 @@ GameObject:
   - component: {fileID: 1292954751}
   - component: {fileID: 1292954756}
   - component: {fileID: 1292954757}
+  - component: {fileID: 1292954758}
+  - component: {fileID: 1292954755}
+  - component: {fileID: 1292954759}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -5675,8 +5683,9 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: a211ff6d3580b694b89c984afddda051, type: 2}
   minDistance: 5
   maxDistance: 10
-  height: 3.5
+  height: 1.5
   heightDamping: 4
+  heightForBoom: 2
 --- !u!81 &1292954752
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5742,6 +5751,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1292954755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292954750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 5a5ce99d4f046224e84d504d6b91fe32, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1292954751}
+        m_MethodName: BoomerangThrownEndCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!114 &1292954756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5876,6 +5913,62 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
+--- !u!114 &1292954758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292954750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e11ce638c64cfa248ac3fbe0b1c806c7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1292954751}
+        m_MethodName: BoomerangThrownStartCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &1292954759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292954750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 407c8297413b1dc4fa0852ec3aa6174e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1292954751}
+        m_MethodName: BoomerangThrownEndCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1001 &1319127975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6467,7 +6560,7 @@ PrefabInstance:
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 119.74
+      value: -112.939995
       objectReference: {fileID: 0}
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
@@ -7691,7 +7784,7 @@ PrefabInstance:
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 121.58
+      value: -111.09999
       objectReference: {fileID: 0}
     - target: {fileID: 2854353988378546388, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1,
         type: 3}

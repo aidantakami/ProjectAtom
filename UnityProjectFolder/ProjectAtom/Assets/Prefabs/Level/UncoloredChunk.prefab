@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2003484852903427206}
   - component: {fileID: 2003484852903427207}
   m_Layer: 0
-  m_Name: NewLevelChunk
+  m_Name: UncoloredChunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.729704, y: 45.65506, z: 0.1423367}
-  m_Center: {x: -0.012158315, y: 22.327528, z: 1.3330176}
+  m_Size: {x: 4.3446836, y: 45.65506, z: 0.1423367}
+  m_Center: {x: 0.14905795, y: 22.327528, z: 1.3330176}
 --- !u!64 &2003484852903427206
 MeshCollider:
   m_ObjectHideFlags: 0

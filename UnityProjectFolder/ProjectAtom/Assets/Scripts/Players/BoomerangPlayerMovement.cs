@@ -152,7 +152,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
     public bool TryToGetCaught ()
     {
-        if (Input.GetButton ("P2A Button") || Input.GetKey (KeyCode.RightShift))
+        if (Input.GetButton ("P2A Button") || Input.GetKey (KeyCode.RightShift) && _StateMachine.currentState != BoomDeadState)
         {
             //Boomerang was caught
             boomerangCaught.Invoke ();
@@ -267,7 +267,8 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void UseSpringboard ()
     {
         springboardPrefab.gameObject.SetActive (true);
-        springboardPrefab.transform.position = transform.position -= new Vector3 (0, 0.5f, 1);
+        Vector3 temp = transform.position;
+        springboardPrefab.transform.position = temp -= new Vector3 (0, 0.5f, 1f);
     }
 
     private void OnCollisionEnter (Collision collision)
