@@ -16,6 +16,7 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public Transform leftLimit;
     [SerializeField] public Transform rightLimit;
     [SerializeField] public GameObject aimArrow;
+    [SerializeField] public GameObject aimPoint;
 
     //private fields
     private Vector3 startingPosition;
@@ -74,6 +75,7 @@ public class DogPlayerMovement : MonoBehaviour
         dogIsRestarting = true;
         transform.position = startingPosition;
         aimArrow.SetActive (true);
+        aimPoint.SetActive (true);
         boomIsDead = false;
         _StateMachine.EnterState (DogRunningState);
     }
@@ -93,6 +95,7 @@ public class DogPlayerMovement : MonoBehaviour
         _StateMachine.EnterState (DogStandbyState);
         rb = gameObject.GetComponent<Rigidbody> ();
         aimArrow.SetActive (true);
+        aimPoint.SetActive (true);
         dogIsRestarting = false;
         boomIsDead = false;
 
@@ -113,6 +116,8 @@ public class DogPlayerMovement : MonoBehaviour
         //Change states
         _StateMachine.EnterState (DogNoBoomState);
         aimArrow.SetActive (false);
+        aimPoint.SetActive (false);
+
     }
 
     public void TryToCatchBoomerang ()
@@ -121,6 +126,7 @@ public class DogPlayerMovement : MonoBehaviour
         {
             _StateMachine.EnterState (DogRunningState);
             aimArrow.SetActive (true);
+            aimPoint.SetActive (true);
 
         }
     }
@@ -136,9 +142,14 @@ public class DogPlayerMovement : MonoBehaviour
         return rightLimit.position;
     }
 
-    public GameObject GetAimIndicator ()
+    public GameObject GetAimArrow ()
     {
         return aimArrow;
+    }
+
+    public GameObject GetAimPoint ()
+    {
+        return aimPoint;
     }
 
     //Uses the currently selected ability for the dog

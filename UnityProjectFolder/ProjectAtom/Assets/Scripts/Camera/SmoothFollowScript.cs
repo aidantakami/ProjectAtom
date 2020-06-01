@@ -60,6 +60,7 @@ public class SmoothFollowScript : MonoBehaviour
 
     public void CameraFollowRestart ()
     {
+        BoomerangThrownEndCamera ();
         transform.position = startingPos;
     }
 
