@@ -11,17 +11,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] public IntVariable boomAbilityTokens;
 
     [System.Serializable]
-    public class PlayerSignInEventType : UnityEvent<int>
-    {
-    }
+    public class PlayerSignInEventType : UnityEvent<int> { }
 
-    [SerializeField] PlayerSignInEventType playerSignInEvent = new PlayerSignInEventType();
-    [SerializeField] public UnityEvent GameBegin = new UnityEvent();
-    [SerializeField] public UnityEvent PauseGameEvent = new UnityEvent();
-    [SerializeField] public UnityEvent UnpauseGameEvent = new UnityEvent();
-    [SerializeField] public UnityEvent RestartGameEvent = new UnityEvent();
-    [SerializeField] public UnityEvent EndGameEvent = new UnityEvent();
-    [SerializeField] public UnityEvent BoomerangDeadEvent = new UnityEvent();
+    [SerializeField] PlayerSignInEventType playerSignInEvent = new PlayerSignInEventType ();
+    [SerializeField] public UnityEvent GameBegin = new UnityEvent ();
+    [SerializeField] public UnityEvent PauseGameEvent = new UnityEvent ();
+    [SerializeField] public UnityEvent UnpauseGameEvent = new UnityEvent ();
+    [SerializeField] public UnityEvent RestartGameEvent = new UnityEvent ();
+    [SerializeField] public UnityEvent EndGameEvent = new UnityEvent ();
+    [SerializeField] public UnityEvent BoomerangDeadEvent = new UnityEvent ();
 
     private bool playerCanPause = false;
     private bool gameIsEnded = true;
@@ -30,7 +28,7 @@ public class GameManager : MonoBehaviour
     private int totalPlayersIn = 0;
 
     // Update reads for player's pause
-    void Update()
+    void Update ()
     {
 
         //If the player can pause
@@ -40,9 +38,9 @@ public class GameManager : MonoBehaviour
             if (!isPaused.value)
             {
                 //read for players pauses
-                if (Input.GetButtonDown("P1Start") || Input.GetButtonDown("P2Start") || Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetButtonDown ("P1Start") || Input.GetButtonDown ("P2Start") || Input.GetKeyDown (KeyCode.Escape))
                 {
-                    PauseGame();
+                    PauseGame ();
                     return;
                 }
             }
@@ -50,9 +48,9 @@ public class GameManager : MonoBehaviour
             else if (isPaused.value)
             {
                 //Unpause
-                if (Input.GetButtonDown("P1Start") || Input.GetButtonDown("P2Start") || Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetButtonDown ("P1Start") || Input.GetButtonDown ("P2Start") || Input.GetKeyDown (KeyCode.Escape))
                 {
-                    UnpauseGame();
+                    UnpauseGame ();
                     return;
                 }
             }
@@ -60,44 +58,44 @@ public class GameManager : MonoBehaviour
 
         if (gameIsEnded)
         {
-            if((Input.GetButtonDown("P1A Button") || Input.GetKeyDown(KeyCode.E)) && !p1SignedIn)
+            if ((Input.GetButtonDown ("P1A Button") || Input.GetKeyDown (KeyCode.E)) && !p1SignedIn)
             {
-                PlayerSignedIn(1);
+                PlayerSignedIn (1);
                 p1SignedIn = true;
             }
-            
-            if((Input.GetButtonDown("P2B Button") || Input.GetKeyDown(KeyCode.RightShift))&& !p2SignedIn)
+
+            if ((Input.GetButtonDown ("P2B Button") || Input.GetKeyDown (KeyCode.RightShift)) && !p2SignedIn)
             {
-                PlayerSignedIn(2);
+                PlayerSignedIn (2);
                 p2SignedIn = true;
             }
         }
     }
     //Event Responses
-#region
-    public void BoomerangThrown()
+    #region
+    public void BoomerangThrown ()
     {
-        isBoomThrown.SetValue(true);
-        StartCoroutine(BoomerangSlowMo());
+        isBoomThrown.SetValue (true);
+        StartCoroutine (BoomerangSlowMo ());
     }
 
-    public IEnumerator BoomerangSlowMo()
+    public IEnumerator BoomerangSlowMo ()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds (0.15f);
         Time.timeScale = 0.2f;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds (0.2f);
         Time.timeScale = 1.0f;
     }
 
-    public void BoomerangReturned()
+    public void BoomerangReturned ()
     {
-        isBoomThrown.SetValue(false);
+        isBoomThrown.SetValue (false);
     }
 
     //Increments total ability tokens by player.
     //If true, gives token to dog, else
-    public void DogPickedUpToken(bool dogGotToken)
+    public void DogPickedUpToken (bool dogGotToken)
     {
         if (dogGotToken)
         {
@@ -109,72 +107,72 @@ public class GameManager : MonoBehaviour
             boomAbilityTokens.value++;
         }
     }
-#endregion
-
+    #endregion
 
     //Functions
-#region
+    #region
     //Pauses Game for players
-    public void PauseGame()
+    public void PauseGame ()
     {
-        isPaused.SetValue(true);
-        PauseGameEvent.Invoke();
+        isPaused.SetValue (true);
+        PauseGameEvent.Invoke ();
     }
 
-    public void UnpauseGame()
+    public void UnpauseGame ()
     {
-        isPaused.SetValue(false);
-        UnpauseGameEvent.Invoke();
+        isPaused.SetValue (false);
+        UnpauseGameEvent.Invoke ();
     }
 
-    public void ExternalUnpause()
+    public void ExternalUnpause ()
     {
-        isPaused.SetValue(false);
+        isPaused.SetValue (false);
     }
 
-    public void RestartGame()
+    public void RestartGame ()
     {
-        RestartGameEvent.Invoke();
+        gameIsEnded = false;
+        RestartGameEvent.Invoke ();
     }
 
-    
     //Keeps track as players sign in
-    public void PlayerSignedIn(int playerNumber)
+    public void PlayerSignedIn (int playerNumber)
     {
-        playerSignInEvent.Invoke(playerNumber);
+        playerSignInEvent.Invoke (playerNumber);
 
         //Tracks number of players signed in
         totalPlayersIn++;
 
         //If all players are in
-        if(totalPlayersIn == 2)
+        if (totalPlayersIn == 2)
         {
             //Begin game
-            GameBegin.Invoke();
+            // GameBegin.Invoke ();
+            RestartGameEvent.Invoke ();
             playerCanPause = true;
             totalPlayersIn = 0;
         }
     }
 
     //End of game event invoked
-    public void EndGame()
+    public void EndGame ()
     {
-        EndGameEvent.Invoke();
+        EndGameEvent.Invoke ();
         gameIsEnded = true;
         p1SignedIn = false;
         p2SignedIn = false;
     }
 
-    public void EndGameExternalEvent()
+    public void EndGameExternalEvent ()
     {
         gameIsEnded = true;
         p1SignedIn = false;
         p2SignedIn = false;
     }
 
-    public void BoomerangDead()
+    public void BoomerangDead ()
     {
-        BoomerangDeadEvent.Invoke();
+        BoomerangDeadEvent.Invoke ();
     }
 
     #endregion

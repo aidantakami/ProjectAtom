@@ -16,19 +16,19 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public Transform leftLimit;
     [SerializeField] public Transform rightLimit;
     [SerializeField] public GameObject aimArrow;
-
-
+    [SerializeField] public GameObject aimPoint;
 
     //private fields
     private Vector3 startingPosition;
     private bool dogIsRestarting;
+    private bool boomIsDead;
     private int abilityIterator;
 
     //Referencing Components
     private Rigidbody rb;
 
     //State Machine & Awake
-#region
+    #region
     //State machine and states
     private StateMachine _StateMachine;
     private ISDogRunning DogRunningState;
@@ -36,195 +36,200 @@ public class DogPlayerMovement : MonoBehaviour
     private ISStandby DogStandbyState;
     private ISDogBoomDead DogBoomDeadState;
 
-    public void Awake()
+    public void Awake ()
     {
-        _StateMachine = new StateMachine();
-        StateConstructor();
+        _StateMachine = new StateMachine ();
+        StateConstructor ();
 
         //Used to restart player
         startingPosition = transform.position;
     }
 
-    private void StateConstructor()
+    private void StateConstructor ()
     {
-        DogRunningState = new ISDogRunning(dogLocation, playerSpeed, playerCanMove, this);
-        DogNoBoomState = new ISDogNoBoom(dogLocation, boomLocation, playerCanMove, playerSpeed, this);
-        DogStandbyState = new ISStandby(dogLocation, gameObject.transform);
-        DogBoomDeadState = new ISDogBoomDead(dogLocation, playerSpeed, playerCanMove, this);
+        DogRunningState = new ISDogRunning (dogLocation, playerSpeed, playerCanMove, this);
+        DogNoBoomState = new ISDogNoBoom (dogLocation, boomLocation, playerCanMove, playerSpeed, this);
+        DogStandbyState = new ISStandby (dogLocation, gameObject.transform);
+        DogBoomDeadState = new ISDogBoomDead (dogLocation, playerSpeed, playerCanMove, this);
     }
-#endregion
-
+    #endregion
 
     //Game Manager Responses
-#region
+    #region
     //Called when game is paused
-    public void DogGamePause()
+    public void DogGamePause ()
     {
-        _StateMachine.EnterState(DogStandbyState);
+        _StateMachine.EnterState (DogStandbyState);
     }
 
     //Called when game is unpaused
-    public void DogGameUnpause()
+    public void DogGameUnpause ()
     {
-        _StateMachine.ReturnToPreviousState();
+        _StateMachine.ReturnToPreviousState ();
     }
 
     //Called when the dog begins to run, after both players signed in
-    public void DogGameStart()
-    {
-        dogIsRestarting = false;
-        aimArrow.SetActive(true);
-        transform.position = startingPosition;
-        _StateMachine.EnterState(DogRunningState);
-    }
 
-    public void DogGameRestart()
+    public void DogGameRestart ()
     {
         dogIsRestarting = true;
         transform.position = startingPosition;
-        aimArrow.SetActive(true);
-        _StateMachine.EnterState(DogRunningState);
+        aimArrow.SetActive (true);
+        aimPoint.SetActive (true);
+        boomIsDead = false;
+        _StateMachine.EnterState (DogRunningState);
     }
 
-    public void DogGameEnd()
+    public void DogGameEnd ()
     {
-        _StateMachine.EnterState(DogStandbyState);
+        _StateMachine.EnterState (DogStandbyState);
     }
-#endregion
+    #endregion
 
     // Update is called once per frame
-    private void Update() => _StateMachine.Tick();
+    private void Update () => _StateMachine.Tick ();
 
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
-        _StateMachine.EnterState(DogStandbyState);
-        rb = gameObject.GetComponent<Rigidbody>();
-        aimArrow.SetActive(true);
+        _StateMachine.EnterState (DogStandbyState);
+        rb = gameObject.GetComponent<Rigidbody> ();
+        aimArrow.SetActive (true);
+        aimPoint.SetActive (true);
         dogIsRestarting = false;
-       
+        boomIsDead = false;
+
         //Abilities
         abilityIterator = 0;
-        selectedDogAbility.SetValue("Boom Magnet");
+        selectedDogAbility.SetValue ("Boom Magnet");
     }
 
     //Functions
-#region
+    #region
 
     //When boomerang is thrown
-    public void BoomerangThrown(Vector3 aimLocation)
+    public void BoomerangThrown (Vector3 aimLocation)
     {
         //Tell boomerang
-        boomPlayer.BoomerangThrownAction(aimLocation);
+        boomPlayer.BoomerangThrownAction (aimLocation);
 
         //Change states
-        _StateMachine.EnterState(DogNoBoomState);
-        aimArrow.SetActive(false);
+        _StateMachine.EnterState (DogNoBoomState);
+        aimArrow.SetActive (false);
+        aimPoint.SetActive (false);
+
     }
 
-    public void TryToCatchBoomerang()
+    public void TryToCatchBoomerang ()
     {
-        if (boomPlayer.TryToGetCaught())
+        if (boomPlayer.TryToGetCaught ())
         {
-            _StateMachine.EnterState(DogRunningState);
-            aimArrow.SetActive(true);
+            _StateMachine.EnterState (DogRunningState);
+            aimArrow.SetActive (true);
+            aimPoint.SetActive (true);
 
         }
     }
 
-
     //Used to access the limits of the aim set in editor
-    public Vector3 GetLeftAimLimit()
+    public Vector3 GetLeftAimLimit ()
     {
         return leftLimit.position;
     }
 
-    public Vector3 GetRightAimLimit()
+    public Vector3 GetRightAimLimit ()
     {
         return rightLimit.position;
     }
 
-    public GameObject GetAimIndicator()
+    public GameObject GetAimArrow ()
     {
         return aimArrow;
     }
 
-    //Uses the currently selected ability for the dog
-    public void UseSelectedDogAbility()
+    public GameObject GetAimPoint ()
     {
-        if(abilityIterator == 0 && dogAbilityTokens.value >= 5)
+        return aimPoint;
+    }
+
+    //Uses the currently selected ability for the dog
+    public void UseSelectedDogAbility ()
+    {
+        if (abilityIterator == 0 && dogAbilityTokens.value >= 5)
         {
             dogAbilityTokens.value -= 5;
-            UseBoomMagnet();
+            UseBoomMagnet ();
 
         }
-        else if(abilityIterator == 1 && dogAbilityTokens.value >= 4)
+        else if (abilityIterator == 1 && dogAbilityTokens.value >= 4)
         {
             dogAbilityTokens.value -= 4;
-            UseSpinAttack();
+            UseSpinAttack ();
         }
-        else if(abilityIterator == 2 && dogAbilityTokens.value >= 8)
+        else if (abilityIterator == 2 && dogAbilityTokens.value >= 8)
         {
             dogAbilityTokens.value -= 8;
-            ReviveBoom();
+            ReviveBoom ();
         }
     }
 
-    public void SwitchDogAbility()
+    public void SwitchDogAbility ()
     {
         //If ability iterator is alreay at 2
         if (abilityIterator == 2)
         {
             //Set to 0
             abilityIterator = 0;
-            selectedDogAbility.SetValue("Boom Magnet");
+            selectedDogAbility.SetValue ("Boom Magnet");
         }
 
         //Iterate 
         else abilityIterator++;
 
         //If after iteration is 1
-        if(abilityIterator == 1)
+        if (abilityIterator == 1)
         {
-            selectedDogAbility.SetValue("Spin Attack");
+            selectedDogAbility.SetValue ("Spin Attack");
         }
         //If after iteration is 2
-        else if(abilityIterator == 2)
+        else if (abilityIterator == 2)
         {
-            selectedDogAbility.SetValue("Boom Revive");
+            selectedDogAbility.SetValue ("Boom Revive");
         }
     }
 
     //Abilities
     #region
 
-    private void UseBoomMagnet()
+    private void UseBoomMagnet ()
     {
-        Debug.Log("Boom Magnet");
+        Debug.Log ("Boom Magnet");
     }
 
-    private void UseSpinAttack()
+    private void UseSpinAttack ()
     {
-        Debug.Log("Spin Attack");
+        Debug.Log ("Spin Attack");
     }
 
-    private void ReviveBoom()
+    private void ReviveBoom ()
     {
-        Debug.Log("BoomRevived");
+        Debug.Log ("BoomRevived");
+        boomIsDead = false;
     }
 
     #endregion
 
-
     //Boomerang Dies Response
-    public void BoomerangDeadDogState()
+    public void BoomerangDeadDogState ()
     {
-        if (!dogIsRestarting)
+        if (!dogIsRestarting && !boomIsDead && _StateMachine.currentState != DogStandbyState)
         {
-            _StateMachine.EnterState(DogBoomDeadState);
+
+            _StateMachine.EnterState (DogBoomDeadState);
+            boomIsDead = true;
+
         }
     }
-
 
     #endregion
 

@@ -6,19 +6,19 @@ using UnityEngine.Events;
 public class EndGameTrigger : MonoBehaviour
 {
 
-    [SerializeField] UnityEvent dogCollided = new UnityEvent();
-    [SerializeField] UnityEvent boomCollided = new UnityEvent();
+    [SerializeField] UnityEvent dogCollided = new UnityEvent ();
+    [SerializeField] UnityEvent boomCollided = new UnityEvent ();
 
     //Used to end the game via the GameManager
-    public void OnCollisionEnter(Collision other)
+    public void OnCollisionEnter (Collision other)
     {
-        if (other.gameObject.CompareTag("DogPlayer"))
+        if (other.gameObject.CompareTag ("DogPlayer"))
         {
-            dogCollided.Invoke();
+            dogCollided.Invoke ();
         }
-        else if (other.gameObject.CompareTag("BoomerangPlayer"))
+        else if (other.gameObject.CompareTag ("BoomerangPlayer"))
         {
-            boomCollided.Invoke();
+            boomCollided.Invoke ();
         }
     }
 }

@@ -10,11 +10,11 @@ public class ISDogRunning : IState
     protected DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 18;
-    private Vector3 aimLocation = new Vector3();
+    private Vector3 aimLocation = new Vector3 ();
     private GameObject arrowGO;
+    private GameObject aimPointGO;
 
-
-    public ISDogRunning(Vector3Variable dogLocation, FloatVariable playerSpeed, BoolVariable playerCanMove, DogPlayerMovement player)
+    public ISDogRunning (Vector3Variable dogLocation, FloatVariable playerSpeed, BoolVariable playerCanMove, DogPlayerMovement player)
     {
         _dogLocation = dogLocation;
         _playerSpeed = playerSpeed;
@@ -22,57 +22,56 @@ public class ISDogRunning : IState
         _player = player;
     }
 
-
-    public void OnStateEnter()
+    public void OnStateEnter ()
     {
-        arrowGO = _player.GetAimIndicator();
+        arrowGO = _player.GetAimArrow ();
+        aimPointGO = _player.GetAimPoint ();
     }
 
-    public void OnStateExit()
+    public void OnStateExit ()
     {
 
     }
 
-    public void OnStateTick()
+    public void OnStateTick ()
     {
         if (_playerCanMove.value)
         {
             //Moves player forwards
-            _player.transform.Translate(Vector3.forward * Time.deltaTime * _playerSpeed);
+            _player.transform.Translate (Vector3.forward * Time.deltaTime * _playerSpeed);
 
             //Allows player to move LR
-            _player.transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("P1Left Stick Horizontal") * horizontalMovementMod);
+            _player.transform.Translate (Vector3.right * Time.deltaTime * Input.GetAxis ("P1Left Stick Horizontal") * horizontalMovementMod);
 
             //Throw boomerang when A pressed
-            if (Input.GetButtonDown("P1A Button") || Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButtonDown ("P1A Button") || Input.GetKeyDown (KeyCode.E))
             {
                 //Tells player to throw
-                _player.BoomerangThrown(aimLocation);
+                _player.BoomerangThrown (aimLocation);
             }
 
-
             //Reads for player using ability
-            if(Input.GetButtonDown("P1B Button") || Input.GetKeyDown(KeyCode.R))
+            if (Input.GetButtonDown ("P1B Button") || Input.GetKeyDown (KeyCode.R))
             {
-                _player.UseSelectedDogAbility();
+                _player.UseSelectedDogAbility ();
             }
 
             //Allows player to switch through abilities
-            if(Input.GetButtonDown("P1X Button") || Input.GetKeyDown(KeyCode.F))
+            if (Input.GetButtonDown ("P1X Button") || Input.GetKeyDown (KeyCode.F))
             {
-                _player.SwitchDogAbility();
+                _player.SwitchDogAbility ();
             }
         }
-        
-
 
         //Gets player's aim
         //Axis is between -1 and 1, adding 1 and then dividing by 2 to get complete input
-        aimLocation = Vector3.Lerp(_player.GetLeftAimLimit(), _player.GetRightAimLimit(), ((Input.GetAxis("P2Left Stick Horizontal")) + 1) / 2);
-       
-        
+        aimLocation = Vector3.Lerp (_player.GetLeftAimLimit (), _player.GetRightAimLimit (), ((Input.GetAxis ("P2Left Stick Horizontal")) + 1) / 2);
+
         //Will rotate arrow assigned to plauer
-        arrowGO.transform.LookAt(aimLocation);
+        arrowGO.transform.LookAt (aimLocation);
+
+        //Puts aim point at aim locations
+        aimPointGO.transform.position = aimLocation;
 
         //Updates player's location
         _dogLocation.value = _player.transform.position;

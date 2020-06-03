@@ -11,10 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/FeaturesScenes/AidanSecondWorkspace.unity
+  - enabled: 0
+    path: Assets/Scenes/FeaturesScenes/Old Workspace.unity
     guid: 732108a7633340747bc1fecec33169dd
-  - enabled: 1
-    path: Assets/Scenes/FeaturesScenes/FeaturesUI.unity
+  - enabled: 0
+    path: Assets/Scenes/FeaturesScenes/Old FUI.unity
     guid: ebf88fef99bce1648b1146e29c247ba6
+  - enabled: 1
+    path: Assets/Scenes/MainBranchScenes/Main Game Scene.unity
+    guid: 11704910a40348a4aa600a5be69769a1
+  - enabled: 1
+    path: Assets/Scenes/MainBranchScenes/Main UI Scene.unity
+    guid: 2f0f84462882e0848b40052cf4a8d21f
   m_configObjects: {}
