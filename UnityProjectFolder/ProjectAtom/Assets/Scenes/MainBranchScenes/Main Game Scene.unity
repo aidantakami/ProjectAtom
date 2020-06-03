@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7d96d3b0f94644680c7a25b8b075d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildMode: 1
+  buildMode: 0
 --- !u!1001 &38383339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5257,7 +5257,7 @@ MonoBehaviour:
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
