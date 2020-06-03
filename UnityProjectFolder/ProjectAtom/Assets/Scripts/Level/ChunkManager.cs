@@ -10,104 +10,86 @@ public class ChunkManager : MonoBehaviour
     private int playerOnChunk = 0;
     private int chunkIterator = 0;
     private Vector3 gapBetweenChunks;
+
+    public GameObject firstChunk;
     private Vector3 startingPos;
 
     // Start is called before the first frame update
-    void Awake()
+    void Awake ()
     {
-        gapBetweenChunks = new Vector3(0, 0, 500);
+        gapBetweenChunks = new Vector3 (0, 0, 48f);
 
-        Chunks = new List<GameObject>();
+        Chunks = new List<GameObject> ();
     }
 
-    private void Start()
+    private void Start ()
     {
-        startingPos = Chunks[0].transform.position;
-        InitialChunkLoad();
+        startingPos = firstChunk.transform.position;
+        InitialChunkLoad ();
     }
 
     //Adds Chunk to list
-    public void Add(GameObject go)
+    public void Add (GameObject go)
     {
-        Chunks.Add(go);
+        Chunks.Add (go);
     }
 
-    public void ActivateNextPath()
+    public void ActivateNextPath ()
     {
-        //Increments what chunk player is on
+
         playerOnChunk++;
 
-        //Sets old chunk inactive
-        if (chunkIterator != 1)
-        {
-            Chunks[chunkIterator - 1].SetActive(false);
-        }
-        
-
-
-        //If end of chunk list
         if (chunkIterator == Chunks.Count - 1)
         {
+            Chunks[chunkIterator].transform.position = startingPos + (gapBetweenChunks * (playerOnChunk + Chunks.Count - 1));
             chunkIterator = 0;
-            Chunks[chunkIterator].SetActive(true);
-            Chunks[chunkIterator].GetComponent<ChunkScript>().SetAllActive();
-            Chunks[chunkIterator].transform.position = startingPos + (gapBetweenChunks * playerOnChunk);
-            chunkIterator++;
+
         }
-        //else
         else
         {
+            Chunks[chunkIterator].transform.position = startingPos + (gapBetweenChunks * (playerOnChunk + Chunks.Count - 1));
             chunkIterator++;
-            Chunks[chunkIterator].SetActive(true);
-            Chunks[chunkIterator].GetComponent<ChunkScript>().SetAllActive();
-            Chunks[chunkIterator].transform.position = startingPos + (gapBetweenChunks * playerOnChunk);
+
         }
+
+        Chunks[chunkIterator].GetComponent<ChunkScript> ().SetAllActive ();
 
     }
 
-    public void InitialChunkLoad()
+    public void InitialChunkLoad ()
     {
 
-        //Loads the first 2 chunks
-        for(int rep = 0; rep < Chunks.Count; rep++)
+        int rep = 0;
+
+        foreach (GameObject chunkGO in Chunks)
         {
-            //For first 2
-            if(rep < 2)
+            //Set active
+            chunkGO.SetActive (true);
+            chunkGO.GetComponent<ChunkScript> ().SetAllActive ();
+
+            if (rep > 0)
             {
-                //Set active
-                Chunks[rep].SetActive(true);
-                Chunks[rep].GetComponent<ChunkScript>().SetAllActive();
-
-                if(rep == 0)
-                {
-                    Chunks[rep].transform.position = startingPos;
-                }
-
-                //Move second back behind 1
-                else if (rep == 1)
-                {
-                    Chunks[rep].transform.position = startingPos + gapBetweenChunks;
-                }
-
+                chunkGO.transform.position = startingPos + (gapBetweenChunks * rep);
             }
-            //Otherwise, inactive, set to starting position
             else
             {
-                Chunks[rep].transform.position = startingPos;
-                Chunks[rep].SetActive(false);
+                chunkGO.transform.position = startingPos;
             }
 
-            //used to count place in List
-            chunkIterator = 1;
-            playerOnChunk = 1;
-
+            rep++;
         }
+
+        //used to count place in List
+        chunkIterator = 0;
+        playerOnChunk = 0;
+
     }
 
-    public void ChunkManagerRestart()
+    public void ChunkManagerRestart ()
     {
         playerOnChunk = 0;
         chunkIterator = 0;
-        InitialChunkLoad();
+        InitialChunkLoad ();
     }
+
 }

@@ -8,14 +8,13 @@ public class CooldownManager : MonoBehaviour
     [SerializeField] public FloatVariable boomerangLifeRemaining;
     [SerializeField] public float boomerangTotalLife;
 
-    [SerializeField] public UnityEvent boomDeadEvent = new UnityEvent();
-
+    [SerializeField] public UnityEvent boomDeadEvent = new UnityEvent ();
 
     private bool boomerangOut = false;
     private bool gameIsPaused = false;
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         //Will tick down time remaining
         if (boomerangOut)
@@ -27,41 +26,54 @@ public class CooldownManager : MonoBehaviour
                 if (boomerangLifeRemaining.value < 0)
                 {
                     //Boomerang Die Event
-                    boomDeadEvent.Invoke();
+                    boomDeadEvent.Invoke ();
                     boomerangOut = false;
                 }
-            }     
+            }
         }
     }
 
-
-    public void BoomerangThrown()
+    public void BoomerangThrown ()
     {
         boomerangOut = true;
-        boomerangLifeRemaining.SetValue(boomerangTotalLife);
+        boomerangLifeRemaining.SetValue (boomerangTotalLife);
     }
 
-    public void BoomerangCaught()
+    public void BoomerangCaught ()
     {
         boomerangOut = false;
+        boomerangLifeRemaining.SetValue (boomerangTotalLife);
     }
 
-
-    public void CooldownManagerPause()
+    public void CooldownManagerPause ()
     {
         gameIsPaused = true;
     }
 
-    public void CooldownManagerUnpause()
+    public void CooldownManagerUnpause ()
     {
         gameIsPaused = false;
     }
 
-    public void CooldownManagerRestart()
+    public void CooldownManagerRestart ()
     {
-        {
-            gameIsPaused = false;
-            boomerangOut = false;
-        }
+
+        gameIsPaused = false;
+        boomerangOut = false;
+        boomerangLifeRemaining.SetValue (boomerangTotalLife);
+
+    }
+
+    public void BoomerangDeadByOtherCauses ()
+    {
+        boomerangOut = false;
+        boomerangLifeRemaining.SetValue (boomerangTotalLife);
+    }
+
+    public void DogPlayerKilled ()
+    {
+        boomerangOut = false;
+        boomerangLifeRemaining.SetValue (boomerangTotalLife);
+
     }
 }

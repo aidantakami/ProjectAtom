@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,9 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] public UnityEvent RestartGame;
     [SerializeField] public BoolVariable isPaused;
 
-
     //Cooldowns
-    [SerializeField] public TextMeshProUGUI boomerangLifeCooldownText;
+    [SerializeField] public Image boomerangLifeCooldownImage;
     [SerializeField] public FloatVariable boomerangCooldown;
 
     //Abilities
@@ -30,46 +29,44 @@ public class UIManager : MonoBehaviour
     [SerializeField] public IntVariable dogAbilityTokens;
     [SerializeField] public IntVariable boomAbilityTokens;
 
-
-    [SerializeField] List<Button> PauseMenuButtons = new List<Button>();
+    [SerializeField] List<Button> PauseMenuButtons = new List<Button> ();
     private bool joystick1ReturnToZero = true;
     private bool joystick2ReturnToZero = true;
 
     private bool boomerangThrown = false;
     private bool boomDead = false;
 
-
     private int selectedButton = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
         //Set Text for player sign in
         player1SignInText.text = "Player 1 Press A";
         player2SignInText.text = "Player 2 Press B";
         gameEndedText.text = "Game Over";
 
-        gameEndedText.gameObject.SetActive(false);
+        gameEndedText.gameObject.SetActive (false);
 
-        player1SignInText.gameObject.SetActive(true);
-        player2SignInText.gameObject.SetActive(true);
+        player1SignInText.gameObject.SetActive (true);
+        player2SignInText.gameObject.SetActive (true);
 
-        PauseMenu.SetActive(false);
+        PauseMenu.SetActive (false);
 
-        dogAbilityText.gameObject.SetActive(false);
-        boomerangAbilityText.gameObject.SetActive(false);
+        dogAbilityText.gameObject.SetActive (false);
+        boomerangAbilityText.gameObject.SetActive (false);
     }
 
-    private void Update()
+    private void Update ()
     {
         //If paused
         if (isPaused.value)
         {
             //If player one pushed stick down
-            if((Input.GetAxis("P1Left Stick Vertical") < -0.8f && joystick1ReturnToZero))
+            if ((Input.GetAxis ("P1Left Stick Vertical") < -0.8f && joystick1ReturnToZero))
             {
                 //Change selection
-                if(selectedButton == 0)
+                if (selectedButton == 0)
                 {
                     PauseMenuButtons[selectedButton].image.color = Color.white;
                     selectedButton = PauseMenuButtons.Count - 1;
@@ -83,7 +80,7 @@ public class UIManager : MonoBehaviour
                 //Force player to reset joystick
                 joystick1ReturnToZero = false;
             }
-            else if(Input.GetAxis("P2Left Stick Vertical") < -0.8f && joystick2ReturnToZero)
+            else if (Input.GetAxis ("P2Left Stick Vertical") < -0.8f && joystick2ReturnToZero)
             {
                 //Change selection
                 if (selectedButton == 0)
@@ -102,9 +99,9 @@ public class UIManager : MonoBehaviour
             }
 
             //If player pushes stick up
-            else if((Input.GetAxis("P1Left Stick Vertical") > 0.8f) && joystick1ReturnToZero)
+            else if ((Input.GetAxis ("P1Left Stick Vertical") > 0.8f) && joystick1ReturnToZero)
             {
-                if (selectedButton == PauseMenuButtons.Count-1)
+                if (selectedButton == PauseMenuButtons.Count - 1)
                 {
                     PauseMenuButtons[selectedButton].image.color = Color.white;
                     selectedButton = 0;
@@ -118,7 +115,7 @@ public class UIManager : MonoBehaviour
                 //bool to make player bring stick back to 0
                 joystick1ReturnToZero = false;
             }
-            else if(Input.GetAxis("P2Left Stick Vertical") > 0.8f && joystick2ReturnToZero)
+            else if (Input.GetAxis ("P2Left Stick Vertical") > 0.8f && joystick2ReturnToZero)
             {
                 if (selectedButton == PauseMenuButtons.Count - 1)
                 {
@@ -135,11 +132,10 @@ public class UIManager : MonoBehaviour
                 joystick2ReturnToZero = false;
             }
 
-
             //Return Stick to 0
             if (!joystick1ReturnToZero)
             {
-                if((Input.GetAxis("P1Left Stick Vertical") < 0.2f) && Input.GetAxis("P1Left Stick Vertical") > -0.2f)
+                if ((Input.GetAxis ("P1Left Stick Vertical") < 0.2f) && Input.GetAxis ("P1Left Stick Vertical") > -0.2f)
                 {
                     joystick1ReturnToZero = true;
                 }
@@ -147,7 +143,7 @@ public class UIManager : MonoBehaviour
 
             if (!joystick2ReturnToZero)
             {
-                if ((Input.GetAxis("P2Left Stick Vertical") < 0.2f) && Input.GetAxis("P2Left Stick Vertical") > -0.2f)
+                if ((Input.GetAxis ("P2Left Stick Vertical") < 0.2f) && Input.GetAxis ("P2Left Stick Vertical") > -0.2f)
                 {
                     joystick2ReturnToZero = true;
                 }
@@ -156,131 +152,131 @@ public class UIManager : MonoBehaviour
             PauseMenuButtons[selectedButton].image.color = Color.blue;
 
             //Player Pressed A
-            if(Input.GetButtonDown("P1A Button") || Input.GetButtonDown("P2A Button"))
+            if (Input.GetButtonDown ("P1A Button") || Input.GetButtonDown ("P2A Button"))
             {
-                PauseMenuButtons[selectedButton].onClick.Invoke();
+                PauseMenuButtons[selectedButton].onClick.Invoke ();
             }
 
             //Keyboard
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown (KeyCode.Q))
             {
-                RestartFromUI();
+                RestartFromUI ();
             }
         }
 
-
         if (boomerangThrown)
         {
-            boomerangLifeCooldownText.text = boomerangCooldown.value.ToString();
+            boomerangLifeCooldownImage.fillAmount = boomerangCooldown.value / 15f;
         }
 
-
-        dogAbilityText.text = (dogAbilityTokens.value.ToString() + Environment.NewLine + dogSelectedAbility.value);
-        boomerangAbilityText.text = (boomAbilityTokens.value.ToString() + Environment.NewLine + boomSelectedAbility.value);
+        dogAbilityText.text = (dogAbilityTokens.value.ToString () + Environment.NewLine + dogSelectedAbility.value);
+        boomerangAbilityText.text = (boomAbilityTokens.value.ToString () + Environment.NewLine + boomSelectedAbility.value);
     }
 
-    public void PlayerSignedIn(int playerNumber)
+    public void PlayerSignedIn (int playerNumber)
     {
-        if(playerNumber == 1)
+        if (playerNumber == 1)
         {
             player1SignInText.text = "Dog, Signed In";
             player1SignInText.color = Color.green;
         }
-        
-        if(playerNumber == 2)
+
+        if (playerNumber == 2)
         {
             player2SignInText.text = "Boomerang, Signed In";
             player2SignInText.color = Color.green;
         }
     }
 
-    public void UIManagerGameStart()
+    public void UIManagerGameStart ()
     {
-        gameEndedText.gameObject.SetActive(false);
+        gameEndedText.gameObject.SetActive (false);
 
         player1SignInText.color = Color.white;
         player2SignInText.color = Color.white;
 
-        player1SignInText.gameObject.SetActive(false);
-        player2SignInText.gameObject.SetActive(false);
+        player1SignInText.gameObject.SetActive (false);
+        player2SignInText.gameObject.SetActive (false);
 
-        boomerangLifeCooldownText.gameObject.SetActive(false);
+        dogAbilityText.gameObject.SetActive (true);
+        boomerangAbilityText.gameObject.SetActive (true);
 
-        dogAbilityText.gameObject.SetActive(true);
-        boomerangAbilityText.gameObject.SetActive(true);
+        boomerangLifeCooldownImage.gameObject.SetActive (false);
 
         boomDead = false;
     }
 
     //Pause Menu
     #region
-    public void UIPause()
+    public void UIPause ()
     {
-        PauseMenu.SetActive(true);
+        PauseMenu.SetActive (true);
     }
 
     //Listening to event
-    public void UIUnpause()
+    public void UIUnpause ()
     {
         joystick1ReturnToZero = true;
         joystick2ReturnToZero = true;
-        PauseMenu.SetActive(false);
+        PauseMenu.SetActive (false);
     }
 
     //Used internally from buttons on pause menu
-    public void UnpauseFromUI()
+    public void UnpauseFromUI ()
     {
-        UIUnpause();
-        UnpauseGame.Invoke();
+        UIUnpause ();
+        UnpauseGame.Invoke ();
     }
 
-    public void RestartFromUI()
+    public void RestartFromUI ()
     {
-        UIUnpause();
-        RestartGame.Invoke();
+        UIUnpause ();
+        RestartGame.Invoke ();
         boomDead = false;
     }
 
-    public void UIEndGame()
+    public void UIEndGame ()
     {
-        gameEndedText.gameObject.SetActive(true);
-        player1SignInText.gameObject.SetActive(true);
-        player2SignInText.gameObject.SetActive(true);
+        gameEndedText.gameObject.SetActive (true);
+        player1SignInText.gameObject.SetActive (true);
+        player2SignInText.gameObject.SetActive (true);
     }
 
-    public void QuitGame()
+    public void QuitGame ()
     {
         // Tell GM to Quit Game
+        Application.Quit ();
     }
     #endregion
-
 
     //Cooldown Menu
     #region
 
     //Starts UI countdown for boomerang thrown
-    public void BoomerangThrownUIStart()
+    public void BoomerangThrownUIStart ()
     {
 
         if (!boomDead)
         {
-            boomerangLifeCooldownText.gameObject.SetActive(true);
+            boomerangLifeCooldownImage.gameObject.SetActive (true);
+
             boomerangThrown = true;
-        }   
+        }
     }
 
     //Ends UI for boomerang countdown
-    public void BoomerangThrownUIEnd()
+    public void BoomerangThrownUIEnd ()
     {
-        boomerangLifeCooldownText.gameObject.SetActive(false);
+        boomerangLifeCooldownImage.gameObject.SetActive (false);
+
         boomerangThrown = false;
     }
 
     //ends all Boomerang UI when dead
-    public void BoomerangDeadUI()
+    public void BoomerangDeadUI ()
     {
         boomDead = true;
-        BoomerangThrownUIEnd();
+        BoomerangThrownUIEnd ();
     }
 
     #endregion
