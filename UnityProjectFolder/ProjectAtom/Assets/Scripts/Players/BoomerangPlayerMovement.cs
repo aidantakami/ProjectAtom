@@ -88,12 +88,17 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
     public void BoomerangMagnetResponse ()
     {
+        StartCoroutine (BoomerangMagnetCoroutine ());
+    }
+
+    private IEnumerator BoomerangMagnetCoroutine ()
+    {
         if (_StateMachine.currentState == BoomThrownState)
         {
             _StateMachine.EnterState (BoomAwayState);
             boomerangIcon.gameObject.SetActive (false);
+            yield return new WaitForSeconds (1);
             boomerangCaught.Invoke ();
-
         }
     }
 
