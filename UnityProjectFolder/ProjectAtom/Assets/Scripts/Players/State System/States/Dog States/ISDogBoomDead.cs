@@ -11,6 +11,8 @@ public class ISDogBoomDead : IState
     private DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 18;
+    private float horizontalDampTemp;
+    private float lastFrameInput;
 
     public ISDogBoomDead (Vector3Variable dogLocation, FloatVariable playerSpeed, BoolVariable playerCanMove, DogPlayerMovement player)
     {
@@ -40,8 +42,11 @@ public class ISDogBoomDead : IState
             //Moves player forwards
             _player.transform.Translate (Vector3.forward * Time.deltaTime * _playerSpeed);
 
+            horizontalDampTemp = Mathf.Lerp (lastFrameInput, Input.GetAxis ("P1Left Stick Horizontal"), 0.25f);
+
             //Allows player to move LR
-            _player.transform.Translate (Vector3.right * Time.deltaTime * Input.GetAxis ("P1Left Stick Horizontal") * horizontalMovementMod);
+            _player.transform.Translate (Vector3.right * Time.deltaTime * horizontalDampTemp * horizontalMovementMod);
+            lastFrameInput = Input.GetAxis ("P1Left Stick Horizontal");
 
         }
 

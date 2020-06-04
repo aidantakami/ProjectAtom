@@ -34,7 +34,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     private int boomerangRangeTemp = 0;
 
     //State machine and states
-    #region
+    #region 
     public StateMachine _StateMachine;
     protected ISBoomAway BoomAwayState;
     protected ISBoomThrown BoomThrownState;
@@ -58,7 +58,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     #endregion
 
     //Game Manager Responses
-    #region
+    #region 
     //Called when game is paused
     public void BoomGamePause ()
     {
@@ -84,6 +84,22 @@ public class BoomerangPlayerMovement : MonoBehaviour
     {
         boomerangIcon.gameObject.SetActive (false);
         _StateMachine.EnterState (BoomStandbyState);
+    }
+
+    public void BoomerangMagnetResponse ()
+    {
+        StartCoroutine (BoomerangMagnetCoroutine ());
+    }
+
+    private IEnumerator BoomerangMagnetCoroutine ()
+    {
+        if (_StateMachine.currentState == BoomThrownState)
+        {
+            _StateMachine.EnterState (BoomAwayState);
+            boomerangIcon.gameObject.SetActive (false);
+            yield return new WaitForSeconds (1);
+            boomerangCaught.Invoke ();
+        }
     }
 
     #endregion

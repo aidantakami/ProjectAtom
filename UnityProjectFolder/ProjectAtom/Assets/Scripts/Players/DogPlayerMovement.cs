@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DogPlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public Transform rightLimit;
     [SerializeField] public GameObject aimArrow;
     [SerializeField] public GameObject aimPoint;
+
+    [SerializeField] public UnityEvent BoomerangMagnetEvent = new UnityEvent ();
 
     //private fields
     private Vector3 startingPosition;
@@ -78,6 +81,7 @@ public class DogPlayerMovement : MonoBehaviour
         aimPoint.SetActive (true);
         boomIsDead = false;
         _StateMachine.EnterState (DogRunningState);
+        dogIsRestarting = false;
     }
 
     public void DogGameEnd ()
@@ -155,10 +159,10 @@ public class DogPlayerMovement : MonoBehaviour
     //Uses the currently selected ability for the dog
     public void UseSelectedDogAbility ()
     {
-        if (abilityIterator == 0 && dogAbilityTokens.value >= 5)
+        if (abilityIterator == 0 && dogAbilityTokens.value >= 5 && _StateMachine.currentState == DogNoBoomState)
         {
             dogAbilityTokens.value -= 5;
-            UseBoomMagnet ();
+            StartCoroutine (UseBoomMagnet ());
 
         }
         else if (abilityIterator == 1 && dogAbilityTokens.value >= 4)
@@ -201,9 +205,14 @@ public class DogPlayerMovement : MonoBehaviour
     //Abilities
     #region
 
-    private void UseBoomMagnet ()
+    private IEnumerator UseBoomMagnet ()
     {
-        Debug.Log ("Boom Magnet");
+        BoomerangMagnetEvent.Invoke ();
+        yield return new WaitForSeconds (1);
+        _StateMachine.EnterState (DogRunningState);
+        aimArrow.SetActive (true);
+        aimPoint.SetActive (true);
+
     }
 
     private void UseSpinAttack ()

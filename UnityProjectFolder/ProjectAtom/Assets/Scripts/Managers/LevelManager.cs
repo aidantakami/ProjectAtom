@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
         if (buildMode)
         {
             SceneManager.LoadScene ("Main UI Scene", LoadSceneMode.Additive);
+            SceneManager.LoadScene ("Lighting", LoadSceneMode.Additive);
         }
     }
 }
