@@ -102,6 +102,12 @@ public class BoomerangPlayerMovement : MonoBehaviour
         }
     }
 
+    public void BoomerangReviveResponse ()
+    {
+        _StateMachine.EnterState (BoomAwayState);
+        boomerangIcon.gameObject.SetActive (false);
+    }
+
     #endregion
 
     // Update is called once per frame

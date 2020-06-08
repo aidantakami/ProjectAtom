@@ -20,6 +20,8 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public GameObject aimPoint;
 
     [SerializeField] public UnityEvent BoomerangMagnetEvent = new UnityEvent ();
+    [SerializeField] public UnityEvent BoomerangReviveEvent = new UnityEvent ();
+    [SerializeField] public UnityEvent DogSpinAttackEvent = new UnityEvent ();
 
     //private fields
     private Vector3 startingPosition;
@@ -215,14 +217,14 @@ public class DogPlayerMovement : MonoBehaviour
 
     }
 
-    private void UseSpinAttack ()
-    {
-        Debug.Log ("Spin Attack");
-    }
+    private void UseSpinAttack () => DogSpinAttackEvent.Invoke ();
 
     private void ReviveBoom ()
     {
-        Debug.Log ("BoomRevived");
+        BoomerangReviveEvent.Invoke ();
+        _StateMachine.EnterState (DogRunningState);
+        aimArrow.SetActive (true);
+        aimPoint.SetActive (true);
         boomIsDead = false;
     }
 
