@@ -259,7 +259,7 @@ public class UIManager : MonoBehaviour
         if (!boomDead)
         {
             boomerangLifeCooldownImage.gameObject.SetActive (true);
-
+            boomerangLifeCooldownImage.fillAmount = 1;
             boomerangThrown = true;
         }
     }
@@ -277,6 +277,11 @@ public class UIManager : MonoBehaviour
     {
         boomDead = true;
         BoomerangThrownUIEnd ();
+    }
+
+    public void BoomerangRevivedUI ()
+    {
+        boomDead = false;
     }
 
     #endregion

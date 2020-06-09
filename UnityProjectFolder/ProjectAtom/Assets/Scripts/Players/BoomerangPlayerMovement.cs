@@ -15,6 +15,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] public float maximumDistanceFromDog;
     [SerializeField] public UnityEvent boomerangThrown = new UnityEvent ();
     [SerializeField] public UnityEvent boomerangCaught = new UnityEvent ();
+    [SerializeField] public UnityEvent gustOfWind = new UnityEvent ();
 
     //Prefabs
     [SerializeField] public GameObject springboardPrefab;
@@ -241,15 +242,15 @@ public class BoomerangPlayerMovement : MonoBehaviour
     //This is where you will put in the calls to your abilites.
     public void UseSelectedBoomAbility ()
     {
-        if (abilityIterator == 0 && boomAbilityTokens.value >= 2)
+        if (abilityIterator == 0 && boomAbilityTokens.value >= 2 && _StateMachine.currentState == BoomThrownState)
         {
             UseSpringboard ();
             boomAbilityTokens.value -= 2;
         }
-        else if (abilityIterator == 1 && boomAbilityTokens.value >= 2)
+        else if (abilityIterator == 1 && boomAbilityTokens.value >= 5 && _StateMachine.currentState == BoomThrownState)
         {
-            //Do Something
-            //Subtract needed tokens from boomAbilityTokens.value
+            UseGust ();
+            boomAbilityTokens.value -= 5;
         }
         else if (abilityIterator == 2 && boomAbilityTokens.value >= 4)
         {
@@ -276,7 +277,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         //If after iteration is 1
         if (abilityIterator == 1)
         {
-            selectedBoomAbility.SetValue ("Ability 2");
+            selectedBoomAbility.SetValue ("Gust of Wind");
         }
         //If after iteration is 2
         else if (abilityIterator == 2)
@@ -291,6 +292,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
         springboardPrefab.gameObject.SetActive (true);
         Vector3 temp = transform.position;
         springboardPrefab.transform.position = temp -= new Vector3 (0, 0.5f, 1f);
+    }
+
+    public void UseGust ()
+    {
+        gustOfWind.Invoke ();
     }
 
     private void OnCollisionEnter (Collision collision)

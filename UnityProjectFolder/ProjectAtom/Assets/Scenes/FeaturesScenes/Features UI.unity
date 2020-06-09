@@ -2637,6 +2637,8 @@ GameObject:
   - component: {fileID: 2090267665}
   - component: {fileID: 2090267666}
   - component: {fileID: 2090267667}
+  - component: {fileID: 2090267668}
+  - component: {fileID: 2090267669}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -2936,6 +2938,62 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2090267658}
         m_MethodName: BoomerangDeadUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &2090267668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090267657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4fb679725ab00bc4b943f13fe1ec7de7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2090267658}
+        m_MethodName: BoomerangRevivedUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &2090267669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090267657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e11ce638c64cfa248ac3fbe0b1c806c7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2090267658}
+        m_MethodName: BoomerangThrownUIStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

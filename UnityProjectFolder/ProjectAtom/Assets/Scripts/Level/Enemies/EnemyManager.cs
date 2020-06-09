@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] public Vector3Variable dogPlayerPosition;
+    [SerializeField] public Vector3Variable boomPlayerPosition;
     [SerializeField] private float rangeOfDogAttack;
+
+    [SerializeField] private float rangeOfBoomGust;
 
     public List<GameObject> enemyList = new List<GameObject> ();
 
@@ -55,6 +58,48 @@ public class EnemyManager : MonoBehaviour
                     item.GetComponent<DummyEnemy> ().KillEnemy ();
                 }
             }
+        }
+    }
+
+    public void GustResponse ()
+    {
+
+        List<GameObject> enemiesInRangeOfGust = new List<GameObject> ();
+        foreach (GameObject item in enemyList)
+        {
+            if (boomPlayerPosition.value.z + rangeOfBoomGust >= item.transform.position.z && item.transform.position.z > boomPlayerPosition.value.z)
+            {
+
+                enemiesInRangeOfGust.Add (item);
+
+            }
+        }
+
+        StartCoroutine (ThreadedGustResponse (enemiesInRangeOfGust, boomPlayerPosition.value));
+    }
+
+    private IEnumerator ThreadedGustResponse (List<GameObject> inRangeEnemies, Vector3 startingPosition)
+    {
+        float incrementer = 0.1f;
+
+        while (incrementer <= 1)
+        {
+            //Foreach loop for each wave of destruction!
+            for (int rep = inRangeEnemies.Count - 1; rep >= 0; rep--)
+            {
+                GameObject item = inRangeEnemies[rep];
+                if (item.transform.position.z <= startingPosition.z + (rangeOfBoomGust * incrementer))
+                {
+                    if (item.CompareTag ("TargetDummy"))
+                    {
+                        item.GetComponent<DummyEnemy> ().KillEnemy ();
+                        inRangeEnemies.Remove (item);
+                    }
+                }
+            }
+
+            incrementer += 0.1f;
+            yield return new WaitForSeconds (0.1f);
         }
     }
 }
