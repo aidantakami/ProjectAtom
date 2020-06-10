@@ -20,11 +20,16 @@ public class BoomerangPlayerMovement : MonoBehaviour
     //Prefabs
     [SerializeField] public GameObject springboardPrefab;
 
+    [SerializeField] public GameObject abilityTokenPrefab;
+    [SerializeField] private int tokensConverted;
+
     [SerializeField] public GameObject boomerangIcon;
 
     //Referencing Components
     private Rigidbody rb;
     private MeshRenderer boomMesh;
+
+    private List<GameObject> leftBehindTokens = new List<GameObject> ();
 
     //Auxilary Fields
     //Will determine how quickly boomerang will finish lerp forwards
@@ -79,6 +84,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
         boomerangRangeTemp = 0;
         springboardPrefab.transform.position = new Vector3 (-10, -10, -10);
         isBeingThrown = false;
+
+        foreach (GameObject item in leftBehindTokens)
+        {
+            item.gameObject.SetActive (false);
+        }
     }
 
     public void BoomGameEnd ()
@@ -117,6 +127,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start ()
     {
+
         //Auto enters standby
         _StateMachine.EnterState (BoomStandbyState);
         rb = gameObject.GetComponent<Rigidbody> ();
@@ -130,6 +141,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
         //Initial set of the selected ability
         abilityIterator = 0;
         selectedBoomAbility.SetValue ("Springboard");
+
+        for (int rep = 0; rep < tokensConverted; rep++)
+        {
+            leftBehindTokens.Add (Instantiate (abilityTokenPrefab));
+        }
     }
 
     //Functions
@@ -252,11 +268,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
             UseGust ();
             boomAbilityTokens.value -= 5;
         }
-        else if (abilityIterator == 2 && boomAbilityTokens.value >= 4)
+        else if (abilityIterator == 2 && boomAbilityTokens.value >= 3)
         {
-            //Do something
-            //So Domething
-            //lol
+
+            StartCoroutine (TokenCarePackage ());
+            boomAbilityTokens.value -= 3;
         }
 
     }
@@ -282,7 +298,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         //If after iteration is 2
         else if (abilityIterator == 2)
         {
-            selectedBoomAbility.SetValue ("Ability 3");
+            selectedBoomAbility.SetValue ("Extra Tokens");
         }
     }
 
@@ -297,6 +313,22 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void UseGust ()
     {
         gustOfWind.Invoke ();
+    }
+
+    public IEnumerator TokenCarePackage ()
+    {
+
+        for (int rep = 0; rep < tokensConverted; rep++)
+        {
+            if (_StateMachine.currentState == BoomThrownState)
+            {
+                Vector3 tempPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 1);
+                leftBehindTokens[rep].gameObject.SetActive (true);
+                leftBehindTokens[rep].transform.position = tempPos;
+                yield return new WaitForSeconds (0.1f);
+            }
+
+        }
     }
 
     private void OnCollisionEnter (Collision collision)

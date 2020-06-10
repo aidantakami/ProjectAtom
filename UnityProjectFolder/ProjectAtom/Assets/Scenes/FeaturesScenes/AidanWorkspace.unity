@@ -4852,6 +4852,9 @@ MonoBehaviour:
         m_CallState: 2
   springboardPrefab: {fileID: 4474595282492156824, guid: fa767dae314b8e64ea60b93164a7833b,
     type: 3}
+  abilityTokenPrefab: {fileID: 7854704103382788158, guid: 5dd5a7d7116a80e4ab0b983c24d49d0d,
+    type: 3}
+  tokensConverted: 10
   boomerangIcon: {fileID: 48782945}
   speedThrownForward: 2
 --- !u!114 &1283583936

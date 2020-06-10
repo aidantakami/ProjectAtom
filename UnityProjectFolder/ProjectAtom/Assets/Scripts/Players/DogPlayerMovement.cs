@@ -172,7 +172,7 @@ public class DogPlayerMovement : MonoBehaviour
             dogAbilityTokens.value -= 4;
             UseSpinAttack ();
         }
-        else if (abilityIterator == 2 && dogAbilityTokens.value >= 8)
+        else if (abilityIterator == 2 && dogAbilityTokens.value >= 8 && boomIsDead)
         {
             dogAbilityTokens.value -= 8;
             ReviveBoom ();
