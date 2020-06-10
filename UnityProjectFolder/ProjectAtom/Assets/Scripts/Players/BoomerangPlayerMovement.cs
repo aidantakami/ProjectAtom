@@ -15,15 +15,21 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] public float maximumDistanceFromDog;
     [SerializeField] public UnityEvent boomerangThrown = new UnityEvent ();
     [SerializeField] public UnityEvent boomerangCaught = new UnityEvent ();
+    [SerializeField] public UnityEvent gustOfWind = new UnityEvent ();
 
     //Prefabs
     [SerializeField] public GameObject springboardPrefab;
+
+    [SerializeField] public GameObject abilityTokenPrefab;
+    [SerializeField] private int tokensConverted;
 
     [SerializeField] public GameObject boomerangIcon;
 
     //Referencing Components
     private Rigidbody rb;
     private MeshRenderer boomMesh;
+
+    private List<GameObject> leftBehindTokens = new List<GameObject> ();
 
     //Auxilary Fields
     //Will determine how quickly boomerang will finish lerp forwards
@@ -78,6 +84,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
         boomerangRangeTemp = 0;
         springboardPrefab.transform.position = new Vector3 (-10, -10, -10);
         isBeingThrown = false;
+
+        foreach (GameObject item in leftBehindTokens)
+        {
+            item.gameObject.SetActive (false);
+        }
     }
 
     public void BoomGameEnd ()
@@ -102,6 +113,12 @@ public class BoomerangPlayerMovement : MonoBehaviour
         }
     }
 
+    public void BoomerangReviveResponse ()
+    {
+        _StateMachine.EnterState (BoomAwayState);
+        boomerangIcon.gameObject.SetActive (false);
+    }
+
     #endregion
 
     // Update is called once per frame
@@ -110,6 +127,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start ()
     {
+
         //Auto enters standby
         _StateMachine.EnterState (BoomStandbyState);
         rb = gameObject.GetComponent<Rigidbody> ();
@@ -123,6 +141,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
         //Initial set of the selected ability
         abilityIterator = 0;
         selectedBoomAbility.SetValue ("Springboard");
+
+        for (int rep = 0; rep < tokensConverted; rep++)
+        {
+            leftBehindTokens.Add (Instantiate (abilityTokenPrefab));
+        }
     }
 
     //Functions
@@ -235,21 +258,21 @@ public class BoomerangPlayerMovement : MonoBehaviour
     //This is where you will put in the calls to your abilites.
     public void UseSelectedBoomAbility ()
     {
-        if (abilityIterator == 0 && boomAbilityTokens.value >= 2)
+        if (abilityIterator == 0 && boomAbilityTokens.value >= 2 && _StateMachine.currentState == BoomThrownState)
         {
             UseSpringboard ();
             boomAbilityTokens.value -= 2;
         }
-        else if (abilityIterator == 1 && boomAbilityTokens.value >= 2)
+        else if (abilityIterator == 1 && boomAbilityTokens.value >= 5 && _StateMachine.currentState == BoomThrownState)
         {
-            //Do Something
-            //Subtract needed tokens from boomAbilityTokens.value
+            UseGust ();
+            boomAbilityTokens.value -= 5;
         }
-        else if (abilityIterator == 2 && boomAbilityTokens.value >= 4)
+        else if (abilityIterator == 2 && boomAbilityTokens.value >= 3)
         {
-            //Do something
-            //So Domething
-            //lol
+
+            StartCoroutine (TokenCarePackage ());
+            boomAbilityTokens.value -= 3;
         }
 
     }
@@ -270,12 +293,12 @@ public class BoomerangPlayerMovement : MonoBehaviour
         //If after iteration is 1
         if (abilityIterator == 1)
         {
-            selectedBoomAbility.SetValue ("Ability 2");
+            selectedBoomAbility.SetValue ("Gust of Wind");
         }
         //If after iteration is 2
         else if (abilityIterator == 2)
         {
-            selectedBoomAbility.SetValue ("Ability 3");
+            selectedBoomAbility.SetValue ("Extra Tokens");
         }
     }
 
@@ -285,6 +308,27 @@ public class BoomerangPlayerMovement : MonoBehaviour
         springboardPrefab.gameObject.SetActive (true);
         Vector3 temp = transform.position;
         springboardPrefab.transform.position = temp -= new Vector3 (0, 0.5f, 1f);
+    }
+
+    public void UseGust ()
+    {
+        gustOfWind.Invoke ();
+    }
+
+    public IEnumerator TokenCarePackage ()
+    {
+
+        for (int rep = 0; rep < tokensConverted; rep++)
+        {
+            if (_StateMachine.currentState == BoomThrownState)
+            {
+                Vector3 tempPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 1);
+                leftBehindTokens[rep].gameObject.SetActive (true);
+                leftBehindTokens[rep].transform.position = tempPos;
+                yield return new WaitForSeconds (0.1f);
+            }
+
+        }
     }
 
     private void OnCollisionEnter (Collision collision)

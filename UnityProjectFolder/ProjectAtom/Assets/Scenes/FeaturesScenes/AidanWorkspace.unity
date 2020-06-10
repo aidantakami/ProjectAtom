@@ -920,6 +920,81 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 235962512}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &261373576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261373577}
+  - component: {fileID: 261373578}
+  - component: {fileID: 261373579}
+  m_Layer: 0
+  m_Name: FX Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &261373577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261373576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 822977570}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &261373578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261373576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91a1263ed632f0448a821655e098c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boomMagnetPS: {fileID: 1463518165}
+  boomPos: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
+  dogPos: {fileID: 11400000, guid: 79a79bad5a0966745b3e0dd2f142cac3, type: 2}
+--- !u!114 &261373579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261373576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b5943e7d278441845aee9ded9c1635f6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 261373578}
+        m_MethodName: BoomMagnetSpawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1001 &281901511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1213,6 +1288,7 @@ GameObject:
   - component: {fileID: 343702372}
   - component: {fileID: 343702378}
   - component: {fileID: 343702379}
+  - component: {fileID: 343702380}
   m_Layer: 0
   m_Name: Cooldown Manager
   m_TagString: Untagged
@@ -1507,6 +1583,34 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 343702370}
         m_MethodName: CooldownManagerUnpause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &343702380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343702368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4fb679725ab00bc4b943f13fe1ec7de7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 343702370}
+        m_MethodName: BoomerangCaught
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3252,6 +3356,8 @@ Transform:
   - {fileID: 534649211}
   - {fileID: 343702369}
   - {fileID: 24568371}
+  - {fileID: 261373577}
+  - {fileID: 1059011277}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3467,7 +3573,7 @@ Transform:
   m_LocalPosition: {x: -14.363594, y: -15.029282, z: 22.45459}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1059011277}
+  - {fileID: 1463518163}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3935,6 +4041,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1059011277}
   - component: {fileID: 1059011278}
+  - component: {fileID: 1059011279}
+  - component: {fileID: 1059011280}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -3949,12 +4057,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059011276}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.903595, y: -15.889282, z: 14.321247}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 924529064}
-  m_RootOrder: 0
+  m_Father: {fileID: 822977570}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1059011278
 MonoBehaviour:
@@ -3968,7 +4076,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd3edccbfc590343b4e1fc5dee04175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dogPlayerPosition: {fileID: 11400000, guid: 79a79bad5a0966745b3e0dd2f142cac3, type: 2}
+  boomPlayerPosition: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
+  rangeOfDogAttack: 15
+  rangeOfBoomGust: 25
   enemyList: []
+--- !u!114 &1059011279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059011276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 32c572c70550eb947a62634c5865ac14, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1059011278}
+        m_MethodName: DogAttackResponse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &1059011280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059011276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c5268abeaf0429249a63b6624fb5a61d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1059011278}
+        m_MethodName: GustResponse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
 --- !u!1001 &1067495372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4525,6 +4693,7 @@ GameObject:
   - component: {fileID: 1283583940}
   - component: {fileID: 1283583941}
   - component: {fileID: 1283583943}
+  - component: {fileID: 1283583944}
   m_Layer: 9
   m_Name: BoomerangPlayer
   m_TagString: BoomerangPlayer
@@ -4667,8 +4836,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  gustOfWind:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c5268abeaf0429249a63b6624fb5a61d, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   springboardPrefab: {fileID: 4474595282492156824, guid: fa767dae314b8e64ea60b93164a7833b,
     type: 3}
+  abilityTokenPrefab: {fileID: 7854704103382788158, guid: 5dd5a7d7116a80e4ab0b983c24d49d0d,
+    type: 3}
+  tokensConverted: 10
   boomerangIcon: {fileID: 48782945}
   speedThrownForward: 2
 --- !u!114 &1283583936
@@ -4780,7 +4966,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283583929}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
   m_Name: 
@@ -4866,6 +5052,34 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1283583935}
         m_MethodName: BoomerangThrowTimeOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &1283583944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283583929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b5943e7d278441845aee9ded9c1635f6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1283583935}
+        m_MethodName: BoomerangMagnetResponse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10482,6 +10696,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1462588710}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1463518163 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+    type: 3}
+  m_PrefabInstance: {fileID: 9184835272969939999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1463518165 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9184835271577989066, guid: 051e8e30c2aab754ca1937e860b5d975,
+    type: 3}
+  m_PrefabInstance: {fileID: 9184835272969939999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1471252883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13012,6 +13238,48 @@ MonoBehaviour:
   rightLimit: {fileID: 788293623}
   aimArrow: {fileID: 1728939022}
   aimPoint: {fileID: 1446758468}
+  BoomerangMagnetEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b5943e7d278441845aee9ded9c1635f6, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  BoomerangReviveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4fb679725ab00bc4b943f13fe1ec7de7, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  DogSpinAttackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 32c572c70550eb947a62634c5865ac14, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &1910948728
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14182,3 +14450,97 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a5c982c248a00024191101b0d875dcaf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0c8b2c1b2377348b7bdc4eca1abaa1, type: 3}
+--- !u!1001 &9184835272969939999
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 924529064}
+    m_Modifications:
+    - target: {fileID: 9184835271577989066, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: ExternalForcesModule.influenceList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989066, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: ExternalForcesModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989066, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: ExternalForcesModule.influenceFilter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989066, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: ExternalForcesModule.influenceList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989066, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: ExternalForcesModule.multiplierCurve.scalar
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989068, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9184835271577989069, guid: 051e8e30c2aab754ca1937e860b5d975,
+        type: 3}
+      propertyPath: m_Name
+      value: BoomMagnet PS
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 051e8e30c2aab754ca1937e860b5d975, type: 3}

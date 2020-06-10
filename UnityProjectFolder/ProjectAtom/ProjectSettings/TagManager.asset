@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BoomerangPlayer
   - DogPlayer
+  - TargetDummy
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e9a30b8dc1e266458c0aef96fe92efd, type: 3}
-  m_Name: BoomAbilityTokenTotal
+  m_Script: {fileID: 11500000, guid: 246fe92e5aafb5840b0ff80511d453d8, type: 3}
+  m_Name: BoomerangRevivedEvent
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  value: 0
