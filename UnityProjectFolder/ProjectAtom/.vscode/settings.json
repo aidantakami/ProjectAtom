@@ -1,5 +1,0 @@
-{
-    "csharpfixformat.style.braces.onSameLine": false,
-    "csharp.format.enable": false,
-    "git.ignoreLimitWarning": true
-}
