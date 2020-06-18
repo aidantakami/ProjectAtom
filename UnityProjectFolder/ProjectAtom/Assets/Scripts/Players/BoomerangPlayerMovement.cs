@@ -308,7 +308,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     {
         springboardPrefab.gameObject.SetActive (true);
         Vector3 temp = transform.position;
-        springboardPrefab.transform.position = temp -= new Vector3 (0, 0.5f, 1f);
+        springboardPrefab.transform.position = temp -= new Vector3 (0, 0.8f, 1f);
     }
 
     public void UseGust ()
