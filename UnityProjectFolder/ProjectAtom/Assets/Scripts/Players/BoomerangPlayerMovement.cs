@@ -16,6 +16,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] public UnityEvent boomerangThrown = new UnityEvent ();
     [SerializeField] public UnityEvent boomerangCaught = new UnityEvent ();
     [SerializeField] public UnityEvent gustOfWind = new UnityEvent ();
+    [SerializeField] public ParticleSystem gustOfWindPS;
 
     //Prefabs
     [SerializeField] public GameObject springboardPrefab;
@@ -312,6 +313,9 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
     public void UseGust ()
     {
+        gustOfWindPS.transform.position = transform.position;
+        gustOfWindPS.transform.position += new Vector3 (0, 0, 2);
+        gustOfWindPS.Play ();
         gustOfWind.Invoke ();
     }
 
