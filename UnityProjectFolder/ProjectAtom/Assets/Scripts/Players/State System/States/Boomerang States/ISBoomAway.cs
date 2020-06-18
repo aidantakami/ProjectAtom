@@ -17,8 +17,9 @@ public class ISBoomAway : IState
 
     public void OnStateEnter()
     {
-        _player.GetComponent<MeshRenderer>().enabled = false;
+        _player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         _player.GetComponent<BoxCollider>().enabled = false;
+        
     }
 
     public void OnStateExit()

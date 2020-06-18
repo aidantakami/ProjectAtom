@@ -1,12 +1,17 @@
 fileFormatVersion: 2
-guid: da55d7e287ab9e84589c87fae715491d
+guid: 4a060c2c90b790f4bad9eb42af860e0c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boomerang_Color
+    second: {fileID: 2100000, guid: b40690a3c3d82c4419b4ced14bba09cc, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -47,7 +52,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -70,7 +75,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - 1eb0509e257177243a213ea5d5781035
   importAnimation: 1
   humanDescription:
     serializedVersion: 3

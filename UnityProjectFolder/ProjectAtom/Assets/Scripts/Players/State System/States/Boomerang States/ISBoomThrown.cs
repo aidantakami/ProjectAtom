@@ -45,7 +45,7 @@ public class ISBoomThrown : IState
         _playerBC = _player.GetComponent<BoxCollider> ();
 
         //Enables Mesh Renderer
-        _playerMR.GetComponent<MeshRenderer> ().enabled = true;
+        _player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         //Box collider enabled in IEnumerator in BoomerangPlayerMovement
 
     }
@@ -61,6 +61,11 @@ public class ISBoomThrown : IState
         {
             //Moves player forward
             _player.transform.Translate (Vector3.forward * Time.deltaTime * _playerSpeed, Space.World);
+
+            if (Physics.Raycast(_player.transform.position, _player.transform.TransformDirection(Vector3.down), 1f))
+            {
+                _player.transform.Translate((Vector3.up) * Time.deltaTime);
+            }
 
             //Input variables
             float x = Input.GetAxis ("P2Left Stick Horizontal");
