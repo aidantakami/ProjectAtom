@@ -18,6 +18,7 @@ public class DogPlayerMovement : MonoBehaviour
     [SerializeField] public Transform rightLimit;
     [SerializeField] public GameObject aimArrow;
     [SerializeField] public GameObject aimPoint;
+    [SerializeField] public ParticleSystem DogAttackParticleSystem;
 
     [SerializeField] public UnityEvent BoomerangMagnetEvent = new UnityEvent ();
     [SerializeField] public UnityEvent BoomerangReviveEvent = new UnityEvent ();
@@ -195,7 +196,7 @@ public class DogPlayerMovement : MonoBehaviour
         //If after iteration is 1
         if (abilityIterator == 1)
         {
-            selectedDogAbility.SetValue ("Spin Attack");
+            selectedDogAbility.SetValue ("Shock Attack");
         }
         //If after iteration is 2
         else if (abilityIterator == 2)
@@ -217,7 +218,11 @@ public class DogPlayerMovement : MonoBehaviour
 
     }
 
-    private void UseSpinAttack () => DogSpinAttackEvent.Invoke ();
+    private void UseSpinAttack ()
+    {
+        DogAttackParticleSystem.Play ();
+        DogSpinAttackEvent.Invoke ();
+    }
 
     private void ReviveBoom ()
     {
