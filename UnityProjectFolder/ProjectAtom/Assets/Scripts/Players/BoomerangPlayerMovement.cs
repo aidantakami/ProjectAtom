@@ -25,6 +25,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] private int tokensConverted;
 
     [SerializeField] public GameObject boomerangIcon;
+    private Vector3 iconPositionStorage;
 
     //Referencing Components
     private Rigidbody rb;
@@ -123,7 +124,18 @@ public class BoomerangPlayerMovement : MonoBehaviour
     #endregion
 
     // Update is called once per frame
-    private void Update () => _StateMachine.Tick ();
+    private void Update ()
+    {
+        //Ticks state machine
+        _StateMachine.Tick ();
+
+        //Moves the Icon to follow Boomer
+        iconPositionStorage.Set (transform.position.x, transform.position.y + 1, transform.position.z);
+        boomerangIcon.transform.position = iconPositionStorage;
+
+        //Rotates icon over boomer
+        boomerangIcon.transform.Rotate (1f, 0.0f, 0.0f, Space.Self);
+    }
 
     // Start is called before the first frame update
     void Start ()
@@ -138,10 +150,11 @@ public class BoomerangPlayerMovement : MonoBehaviour
         springboardPrefab.transform.position = new Vector3 (-10, -10, -10);
 
         boomerangIcon.gameObject.SetActive (false);
+        iconPositionStorage = new Vector3 (0f, 0f, 0f);
 
         //Initial set of the selected ability
         abilityIterator = 0;
-        selectedBoomAbility.SetValue ("Springboard");
+        selectedBoomAbility.SetValue ("Springboard, \nCost 2");
 
         for (int rep = 0; rep < tokensConverted; rep++)
         {
@@ -264,12 +277,12 @@ public class BoomerangPlayerMovement : MonoBehaviour
             UseSpringboard ();
             boomAbilityTokens.value -= 2;
         }
-        else if (abilityIterator == 1 && boomAbilityTokens.value >= 5 && _StateMachine.currentState == BoomThrownState)
+        else if (abilityIterator == 1 && boomAbilityTokens.value >= 4 && _StateMachine.currentState == BoomThrownState)
         {
             UseGust ();
             boomAbilityTokens.value -= 5;
         }
-        else if (abilityIterator == 2 && boomAbilityTokens.value >= 3)
+        else if (abilityIterator == 2 && boomAbilityTokens.value >= 2)
         {
 
             StartCoroutine (TokenCarePackage ());
@@ -285,7 +298,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         {
             //Set to 0
             abilityIterator = 0;
-            selectedBoomAbility.SetValue ("Springboard");
+            selectedBoomAbility.SetValue ("Springboard, \nCost 2");
         }
 
         //Iterate 
@@ -294,12 +307,12 @@ public class BoomerangPlayerMovement : MonoBehaviour
         //If after iteration is 1
         if (abilityIterator == 1)
         {
-            selectedBoomAbility.SetValue ("Gust of Wind");
+            selectedBoomAbility.SetValue ("Gust of Wind, \nCost 4");
         }
         //If after iteration is 2
         else if (abilityIterator == 2)
         {
-            selectedBoomAbility.SetValue ("Extra Tokens");
+            selectedBoomAbility.SetValue ("Extra Tokens, \nCost 2");
         }
     }
 
@@ -332,25 +345,6 @@ public class BoomerangPlayerMovement : MonoBehaviour
                 yield return new WaitForSeconds (0.1f);
             }
 
-        }
-    }
-
-    private void OnCollisionEnter (Collision collision)
-    {
-        if (isBeingThrown)
-        {
-            if (collision.gameObject.CompareTag ("DogPlayer"))
-            {
-                gameObject.GetComponent<BoxCollider> ().isTrigger = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit (Collider other)
-    {
-        if (other.gameObject.CompareTag ("DogPlayer"))
-        {
-            gameObject.GetComponent<BoxCollider> ().isTrigger = false;
         }
     }
 

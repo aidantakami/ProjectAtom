@@ -108,7 +108,7 @@ public class DogPlayerMovement : MonoBehaviour
 
         //Abilities
         abilityIterator = 0;
-        selectedDogAbility.SetValue ("Boom Magnet");
+        selectedDogAbility.SetValue ("Boom Magnet, \nCost 4");
     }
 
     //Functions
@@ -187,7 +187,7 @@ public class DogPlayerMovement : MonoBehaviour
         {
             //Set to 0
             abilityIterator = 0;
-            selectedDogAbility.SetValue ("Boom Magnet");
+            selectedDogAbility.SetValue ("Boom Magnet, \nCost 5");
         }
 
         //Iterate 
@@ -196,12 +196,12 @@ public class DogPlayerMovement : MonoBehaviour
         //If after iteration is 1
         if (abilityIterator == 1)
         {
-            selectedDogAbility.SetValue ("Shock Attack");
+            selectedDogAbility.SetValue ("Shock Attack, \nCost 4");
         }
         //If after iteration is 2
         else if (abilityIterator == 2)
         {
-            selectedDogAbility.SetValue ("Boom Revive");
+            selectedDogAbility.SetValue ("Boom Revive, \nCost 8");
         }
     }
 

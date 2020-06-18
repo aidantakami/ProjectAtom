@@ -80,7 +80,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator ThreadedGustResponse (List<GameObject> inRangeEnemies, Vector3 startingPosition)
     {
-        float incrementer = 0.1f;
+        float incrementer = 0.2f;
 
         while (incrementer <= 1)
         {
@@ -98,7 +98,7 @@ public class EnemyManager : MonoBehaviour
                 }
             }
 
-            incrementer += 0.1f;
+            incrementer += 0.2f;
             yield return new WaitForSeconds (0.1f);
         }
     }
