@@ -158,7 +158,8 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
         for (int rep = 0; rep < tokensConverted; rep++)
         {
-            leftBehindTokens.Add (Instantiate (abilityTokenPrefab));
+            var tempGOVar = Instantiate (abilityTokenPrefab);
+            leftBehindTokens.Add (tempGOVar);
         }
     }
 
@@ -339,7 +340,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         {
             if (_StateMachine.currentState == BoomThrownState)
             {
-                Vector3 tempPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 1);
+                Vector3 tempPos = new Vector3 (transform.position.x, transform.position.y + 1f, transform.position.z - 4f);
                 leftBehindTokens[rep].gameObject.SetActive (true);
                 leftBehindTokens[rep].transform.position = tempPos;
                 yield return new WaitForSeconds (0.1f);

@@ -6381,7 +6381,7 @@ MonoBehaviour:
   gustOfWindPS: {fileID: 1547271706}
   springboardPrefab: {fileID: 4474595282492156824, guid: fa767dae314b8e64ea60b93164a7833b,
     type: 3}
-  abilityTokenPrefab: {fileID: 7854704103382788158, guid: 5dd5a7d7116a80e4ab0b983c24d49d0d,
+  abilityTokenPrefab: {fileID: 4751802073935049721, guid: c9148d393d1bd0d41a70b5a9546156fa,
     type: 3}
   tokensConverted: 10
   boomerangIcon: {fileID: 842161060}
@@ -7211,7 +7211,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c7345d42e816df6419546d6a8b3974d2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c7345d42e816df6419546d6a8b3974d2,
         type: 3}
@@ -7761,6 +7761,9 @@ GameObject:
   - component: {fileID: 534649215}
   - component: {fileID: 534649217}
   - component: {fileID: 534649216}
+  - component: {fileID: 534649218}
+  - component: {fileID: 534649219}
+  - component: {fileID: 534649220}
   m_Layer: 0
   m_Name: Controller Manager
   m_TagString: Untagged
@@ -7966,6 +7969,90 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &534649218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534649209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 32c572c70550eb947a62634c5865ac14, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 534649210}
+        m_MethodName: DogAttackVibration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &534649219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534649209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4fb679725ab00bc4b943f13fe1ec7de7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 534649210}
+        m_MethodName: BoomReviveVibration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  priority: 0
+--- !u!114 &534649220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534649209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6440cfdcaf11fd24d878f78547f61051, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c5268abeaf0429249a63b6624fb5a61d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 534649210}
+        m_MethodName: GustOfWindVibration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -33603,7 +33690,7 @@ PrefabInstance:
     - target: {fileID: 8247816507608391460, guid: 749d42e5fbf7e954b99522ca9802518c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8247816507608391460, guid: 749d42e5fbf7e954b99522ca9802518c,
         type: 3}

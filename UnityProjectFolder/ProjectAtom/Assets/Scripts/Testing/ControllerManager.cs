@@ -125,7 +125,7 @@ public class ControllerManager : MonoBehaviour
         StartTimedVibration (2, 0.5f);
     }
 
-    //Will prov if dog player collides with ability token
+    //Will proc if dog player collides with ability token
     public void AbilityTokenVibration (bool dogPlayer)
     {
         if (dogPlayer)
@@ -133,5 +133,21 @@ public class ControllerManager : MonoBehaviour
             StartTimedVibration (1, 0.1f);
         }
         else StartTimedVibration (2, 0.1f);
+    }
+
+    public void DogAttackVibration ()
+    {
+        StartTimedVibration (1, 1f);
+    }
+
+    public void BoomReviveVibration ()
+    {
+        StartTimedVibration (1, 0.4f);
+        StartTimedVibration (2, 0.7f);
+    }
+
+    public void GustOfWindVibration ()
+    {
+        StartTimedVibration (2, 0.3f);
     }
 }

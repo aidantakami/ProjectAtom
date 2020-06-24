@@ -350,6 +350,7 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene ("Main Game Scene", LoadSceneMode.Single);
         SceneManager.LoadScene ("Main UI Scene", LoadSceneMode.Additive);
         SceneManager.LoadScene ("Lighting", LoadSceneMode.Additive);
+        SceneManager.LoadScene ("Audio", LoadSceneMode.Additive);
     }
 
     public void OptionsSelected ()
