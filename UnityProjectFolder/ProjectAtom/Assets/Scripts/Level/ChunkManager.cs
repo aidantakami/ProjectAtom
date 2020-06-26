@@ -59,7 +59,9 @@ public class ChunkManager : MonoBehaviour
     public void InitialChunkLoad ()
     {
 
-        int rep = 0;
+        int rep = 1;
+
+        RandomizeList (Chunks);
 
         foreach (GameObject chunkGO in Chunks)
         {
@@ -92,4 +94,17 @@ public class ChunkManager : MonoBehaviour
         InitialChunkLoad ();
     }
 
+    public static void RandomizeList<T> (List<T> ts)
+    {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i)
+        {
+            var r = UnityEngine.Random.Range (i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+
+    }
 }
