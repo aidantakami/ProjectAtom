@@ -7,7 +7,7 @@ public class ChunkManager : MonoBehaviour
     //List of chunks
     private List<GameObject> Chunks;
 
-    private int playerOnChunk = 0;
+    private int playerOnChunk = 1;
     private int chunkIterator = 0;
     private Vector3 gapBetweenChunks;
 
@@ -25,7 +25,6 @@ public class ChunkManager : MonoBehaviour
     private void Start ()
     {
         startingPos = firstChunk.transform.position;
-        InitialChunkLoad ();
     }
 
     //Adds Chunk to list
@@ -83,14 +82,12 @@ public class ChunkManager : MonoBehaviour
 
         //used to count place in List
         chunkIterator = 0;
-        playerOnChunk = 0;
+        playerOnChunk = 1;
 
     }
 
     public void ChunkManagerRestart ()
     {
-        playerOnChunk = 0;
-        chunkIterator = 0;
         InitialChunkLoad ();
     }
 
