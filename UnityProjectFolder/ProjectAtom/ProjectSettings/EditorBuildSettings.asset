@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainBranchScenes/Lighting.unity
     guid: 45207132423716041a609047a3c914bd
+  - enabled: 1
+    path: Assets/Scenes/MainBranchScenes/Audio.unity
+    guid: 6e697731b45bc394fbfae24592126150
   m_configObjects: {}

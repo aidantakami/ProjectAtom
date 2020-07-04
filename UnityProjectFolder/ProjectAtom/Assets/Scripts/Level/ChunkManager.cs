@@ -68,14 +68,7 @@ public class ChunkManager : MonoBehaviour
             chunkGO.SetActive (true);
             chunkGO.GetComponent<ChunkScript> ().SetAllActive ();
 
-            if (rep > 0)
-            {
-                chunkGO.transform.position = startingPos + (gapBetweenChunks * rep);
-            }
-            else
-            {
-                chunkGO.transform.position = startingPos;
-            }
+            chunkGO.transform.position = startingPos + (gapBetweenChunks * rep);
 
             rep++;
         }
