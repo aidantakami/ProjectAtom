@@ -23,6 +23,7 @@ public class MainMenuScript : MonoBehaviour
     private int selectedButton = 0;
     [SerializeField] private List<Button> mainMenuButtons = new List<Button> ();
     [SerializeField] private List<Button> optionsMenuButtons = new List<Button> ();
+    [SerializeField] private List<Slider> optionsMenuSliders = new List<Slider> ();
     [SerializeField] private List<Button> scoresMenuButtons = new List<Button> ();
 
     // Start is called before the first frame update
@@ -149,12 +150,12 @@ public class MainMenuScript : MonoBehaviour
                 //Change Selection
                 if (selectedButton == 0)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton = optionsMenuButtons.Count - 1;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton--;
                 }
 
@@ -167,12 +168,12 @@ public class MainMenuScript : MonoBehaviour
                 //Change Selection
                 if (selectedButton == 0)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton = optionsMenuButtons.Count - 1;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton--;
                 }
 
@@ -184,12 +185,12 @@ public class MainMenuScript : MonoBehaviour
             {
                 if (selectedButton == optionsMenuButtons.Count - 1)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton = 0;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton++;
                 }
 
@@ -201,18 +202,48 @@ public class MainMenuScript : MonoBehaviour
             {
                 if (selectedButton == optionsMenuButtons.Count - 1)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton = 0;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.white;
+                    optionsMenuButtons[selectedButton].image.color = Color.black;
                     selectedButton++;
                 }
 
                 //bool to make player bring stick back to 0
                 joystick2ReturnToZero = false;
 
+            }
+
+            //Horizontal input
+            if (Input.GetAxis ("P1Left Stick Horizontal") > 0.8f && joystick1ReturnToZero)
+            {
+                if (selectedButton <= 2)
+                {
+                    optionsMenuSliders[selectedButton].value += 1;
+                }
+            }
+            else if (Input.GetAxis ("P2Left Stick Horizontal") > 0.8f && joystick2ReturnToZero)
+            {
+                if (selectedButton <= 2)
+                {
+                    optionsMenuSliders[selectedButton].value += 1;
+                }
+            }
+            else if (Input.GetAxis ("P1Left Stick Horizontal") < -0.8f && joystick1ReturnToZero)
+            {
+                if (selectedButton <= 2)
+                {
+                    optionsMenuSliders[selectedButton].value -= 1;
+                }
+            }
+            else if (Input.GetAxis ("P2Left Stick Horizontal") < -0.8f && joystick2ReturnToZero)
+            {
+                if (selectedButton <= 2)
+                {
+                    optionsMenuSliders[selectedButton].value -= 1;
+                }
             }
 
             if (!joystick1ReturnToZero)
@@ -408,7 +439,7 @@ public class MainMenuScript : MonoBehaviour
 
         foreach (Button tempButton in optionsMenuButtons)
         {
-            tempButton.image.color = Color.white;
+            tempButton.image.color = Color.black;
         }
 
         foreach (Button tempButton in scoresMenuButtons)
