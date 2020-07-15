@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 131.16855, g: 162.52502, b: 215.10977, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29103,6 +29103,7 @@ MonoBehaviour:
   boomPlayer: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
   midPoint: {fileID: 11400000, guid: a211ff6d3580b694b89c984afddda051, type: 2}
   isPaused: {fileID: 11400000, guid: fe0c9be848b85394f8abcab2777b166e, type: 2}
+  cameraUpDownMax: 1
 --- !u!4 &1008500109
 Transform:
   m_ObjectHideFlags: 0

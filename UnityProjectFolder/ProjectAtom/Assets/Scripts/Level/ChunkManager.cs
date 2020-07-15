@@ -60,8 +60,6 @@ public class ChunkManager : MonoBehaviour
 
         int rep = 1;
 
-        RandomizeList (Chunks);
-
         foreach (GameObject chunkGO in Chunks)
         {
             //Set active
