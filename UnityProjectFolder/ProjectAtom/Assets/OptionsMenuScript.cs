@@ -14,6 +14,32 @@ public class OptionsMenuScript : MonoBehaviour
     [SerializeField] public Slider soundFXVolumeSlider;
     [SerializeField] public AudioMixer sfxMixer;
 
+    public void Start ()
+    {
+
+        bool result = mainMixer.GetFloat ("Master", out var temp);
+
+        if (result)
+        {
+            mainVolumeSlider.value = temp;
+        }
+
+        bool result2 = musicMixer.GetFloat ("MusicMaster", out var temp2);
+
+        if (result2)
+        {
+            musicVolumeSlider.value = temp2;
+        }
+
+        bool result3 = sfxMixer.GetFloat ("FXMaster", out var temp3);
+
+        if (result3)
+        {
+            soundFXVolumeSlider.value = temp3;
+        }
+
+    }
+
     public void SetMainVol ()
     {
         mainMixer.SetFloat ("Master", mainVolumeSlider.value);
