@@ -24,7 +24,9 @@ public class UIManager : MonoBehaviour
 
     //Abilities
     [SerializeField] public TextMeshProUGUI dogAbilityText;
+    [SerializeField] public TextMeshProUGUI dogAbilityTokenText;
     [SerializeField] public TextMeshProUGUI boomerangAbilityText;
+    [SerializeField] public TextMeshProUGUI boomerangAbilityTokenText;
     [SerializeField] public StringVariable dogSelectedAbility;
     [SerializeField] public StringVariable boomSelectedAbility;
     [SerializeField] public IntVariable dogAbilityTokens;
@@ -55,7 +57,10 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive (false);
 
         dogAbilityText.gameObject.SetActive (false);
+        dogAbilityTokenText.gameObject.SetActive (false);
         boomerangAbilityText.gameObject.SetActive (false);
+        boomerangAbilityTokenText.gameObject.SetActive (false);
+
     }
 
     private void Update ()
@@ -170,8 +175,11 @@ public class UIManager : MonoBehaviour
             boomerangLifeCooldownImage.fillAmount = boomerangCooldown.value / 15f;
         }
 
-        dogAbilityText.text = (dogAbilityTokens.value.ToString () + Environment.NewLine + dogSelectedAbility.value);
-        boomerangAbilityText.text = (boomAbilityTokens.value.ToString () + Environment.NewLine + boomSelectedAbility.value);
+        dogAbilityText.text = (dogSelectedAbility.value);
+        dogAbilityTokenText.text = dogAbilityTokens.value.ToString ();
+        boomerangAbilityText.text = (boomSelectedAbility.value);
+        boomerangAbilityTokenText.text = boomAbilityTokens.value.ToString ();
+
     }
 
     public void PlayerSignedIn (int playerNumber)
@@ -201,6 +209,9 @@ public class UIManager : MonoBehaviour
 
         dogAbilityText.gameObject.SetActive (true);
         boomerangAbilityText.gameObject.SetActive (true);
+
+        dogAbilityTokenText.gameObject.SetActive (true);
+        boomerangAbilityTokenText.gameObject.SetActive (true);
 
         boomerangLifeCooldownImage.gameObject.SetActive (false);
 
