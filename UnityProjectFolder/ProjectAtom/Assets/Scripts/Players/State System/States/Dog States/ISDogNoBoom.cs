@@ -13,6 +13,9 @@ public class ISDogNoBoom : IState
     private readonly float horizontalMovementMod = 18;
     private float horizontalDampTemp;
     private float lastFrameInput;
+    private float tempHorizontalInput = 0;
+    private float rotationTempNew = 0;
+    private float rotationTempOld = 0;
 
     public ISDogNoBoom (Vector3Variable dogLocation, Vector3Variable boomLocation, BoolVariable playerCanMove, FloatVariable playerSpeed, DogPlayerMovement player)
     {
@@ -25,7 +28,7 @@ public class ISDogNoBoom : IState
 
     public void OnStateEnter ()
     {
-
+        _player.ResetRotationOfDog ();
     }
 
     public void OnStateExit ()
@@ -42,11 +45,31 @@ public class ISDogNoBoom : IState
 
             if (Physics.Raycast (_player.transform.position, _player.transform.TransformDirection (Vector3.down), 1f))
             {
-                horizontalDampTemp = Mathf.Lerp (lastFrameInput, Input.GetAxis ("P1Left Stick Horizontal"), 0.25f);
+                tempHorizontalInput = Input.GetAxis ("P1Left Stick Horizontal");
+                horizontalDampTemp = Mathf.Lerp (lastFrameInput, tempHorizontalInput, 0.25f);
 
                 //Allows player to move LR
                 _player.transform.Translate (Vector3.right * Time.deltaTime * horizontalDampTemp * horizontalMovementMod);
-                lastFrameInput = Input.GetAxis ("P1Left Stick Horizontal");
+                lastFrameInput = tempHorizontalInput;
+
+                horizontalDampTemp = Mathf.Lerp (lastFrameInput, tempHorizontalInput, 0.25f);
+
+                if (tempHorizontalInput > 0)
+                {
+                    rotationTempNew = Mathf.Lerp (0, 15, horizontalDampTemp);;
+                }
+                else if (tempHorizontalInput < 0)
+                {
+                    rotationTempNew = Mathf.Lerp (0, -15, -horizontalDampTemp);;
+                }
+                else
+                {
+                    rotationTempNew = 0;
+                }
+
+                _player.transform.Rotate (0, rotationTempNew - rotationTempOld, 0);
+
+                rotationTempOld = rotationTempNew;
             }
 
             //Updates player's location

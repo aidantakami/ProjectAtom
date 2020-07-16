@@ -85,6 +85,7 @@ public class DogPlayerMovement : MonoBehaviour
         boomIsDead = false;
         _StateMachine.EnterState (DogRunningState);
         dogIsRestarting = false;
+        ResetRotationOfDog ();
     }
 
     public void DogGameEnd ()
@@ -247,6 +248,10 @@ public class DogPlayerMovement : MonoBehaviour
         }
     }
 
+    public void ResetRotationOfDog ()
+    {
+        transform.rotation = Quaternion.identity;
+    }
     #endregion
 
 }
