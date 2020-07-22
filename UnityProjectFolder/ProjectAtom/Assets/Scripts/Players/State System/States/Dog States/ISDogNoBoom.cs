@@ -65,6 +65,8 @@ public class ISDogNoBoom : IState
                 else
                 {
                     rotationTempNew = 0;
+                    _player.ResetRotationOfDog ();
+
                 }
 
                 _player.transform.Rotate (0, rotationTempNew - rotationTempOld, 0);

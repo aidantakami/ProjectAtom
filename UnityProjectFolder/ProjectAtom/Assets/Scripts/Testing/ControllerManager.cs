@@ -150,4 +150,11 @@ public class ControllerManager : MonoBehaviour
     {
         StartTimedVibration (2, 0.3f);
     }
+
+    public void EndAllVibrations ()
+    {
+        GamePad.SetVibration (controllerNumber1, 0f, 0f);
+        GamePad.SetVibration (controllerNumber2, 0f, 0f);
+
+    }
 }

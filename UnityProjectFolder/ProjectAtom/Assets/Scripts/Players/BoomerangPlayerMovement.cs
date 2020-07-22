@@ -10,6 +10,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     [SerializeField] public Vector3Variable boomLocation;
     [SerializeField] public Vector3Variable dogLocation;
     [SerializeField] public BoolVariable playerCanMove;
+    [SerializeField] public IntVariable boomerangRangeWarning;
     [SerializeField] public IntVariable boomAbilityTokens;
     [SerializeField] public StringVariable selectedBoomAbility;
     [SerializeField] public float maximumDistanceFromDog;
@@ -84,6 +85,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         _StateMachine.EnterState (BoomAwayState);
         boomerangIcon.gameObject.SetActive (false);
         boomerangRangeTemp = 0;
+        boomerangRangeWarning.value = 0;
         springboardPrefab.transform.position = new Vector3 (-10, -10, -10);
         isBeingThrown = false;
 
@@ -96,6 +98,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void BoomGameEnd ()
     {
         boomerangIcon.gameObject.SetActive (false);
+        boomerangRangeWarning.value = 0;
         _StateMachine.EnterState (BoomStandbyState);
     }
 
@@ -227,12 +230,14 @@ public class BoomerangPlayerMovement : MonoBehaviour
                 if (boomerangRangeTemp == 1)
                 {
                     boomerangIcon.gameObject.SetActive (true);
+                    boomerangRangeWarning.value = 1;
                     boomerangRangeTemp = 0;
                 }
             }
             else if (boomerangRangeTemp == 0)
             {
                 boomerangIcon.gameObject.SetActive (false);
+                boomerangRangeWarning.value = 0;
                 boomerangRangeTemp = 1;
             }
             return true;
@@ -244,6 +249,8 @@ public class BoomerangPlayerMovement : MonoBehaviour
                 boomerangIcon.gameObject.SetActive (true);
                 boomerangRangeTemp = 0;
             }
+
+            boomerangRangeWarning.value = 2;
             return false;
         }
     }
@@ -266,6 +273,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void BoomerangThrowTimeOut ()
     {
         boomerangIcon.gameObject.SetActive (false);
+        boomerangRangeWarning.value = 0;
         _StateMachine.EnterState (BoomDeadState);
     }
 

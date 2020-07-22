@@ -60,7 +60,7 @@ public class MainMenuScript : MonoBehaviour
 
             }
 
-            else if ((Input.GetAxis ("P2Left Stick Vertical") < -0.8f && joystick1ReturnToZero))
+            else if ((Input.GetAxis ("P2Left Stick Vertical") < -0.8f && joystick2ReturnToZero))
             {
                 //Change Selection
                 if (selectedButton == 0)

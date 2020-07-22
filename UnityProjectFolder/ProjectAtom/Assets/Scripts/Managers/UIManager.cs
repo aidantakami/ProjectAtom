@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject PauseMenu;
     [SerializeField] public UnityEvent UnpauseGame;
     [SerializeField] public UnityEvent RestartGame;
+    [SerializeField] public UnityEvent QuitGameEvent;
     [SerializeField] public BoolVariable isPaused;
 
     //Cooldowns
@@ -256,6 +257,7 @@ public class UIManager : MonoBehaviour
 
     public void QuitGame ()
     {
+        QuitGameEvent.Invoke ();
         SceneManager.LoadScene ("MainMenuScene", LoadSceneMode.Single);
     }
     #endregion
