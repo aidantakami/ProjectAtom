@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: f59b5c69dc7909b44ac5be7bf9ae1e10
+guid: b3299e85f5fb27745a6936c2778b9419
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Top_Bevel
+    second: {fileID: 2100000, guid: c0bedfcf2574f5544b25956123fc3e6b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -44,7 +49,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -68,7 +73,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
