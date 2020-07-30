@@ -8,6 +8,7 @@ public class ISDogNoBoom : IState
     protected Vector3Variable _boomLocation;
     protected FloatVariable _playerSpeed;
     protected BoolVariable _playerCanMove;
+    protected BoolVariable _boomInRange;
     protected DogPlayerMovement _player;
 
     private readonly float horizontalMovementMod = 18;
@@ -17,13 +18,14 @@ public class ISDogNoBoom : IState
     private float rotationTempNew = 0;
     private float rotationTempOld = 0;
 
-    public ISDogNoBoom (Vector3Variable dogLocation, Vector3Variable boomLocation, BoolVariable playerCanMove, FloatVariable playerSpeed, DogPlayerMovement player)
+    public ISDogNoBoom (Vector3Variable dogLocation, Vector3Variable boomLocation, BoolVariable playerCanMove, BoolVariable boomInRange, FloatVariable playerSpeed, DogPlayerMovement player)
     {
         _dogLocation = dogLocation;
         _boomLocation = boomLocation;
         _playerCanMove = playerCanMove;
         _playerSpeed = playerSpeed;
         _player = player;
+        _boomInRange = boomInRange;
     }
 
     public void OnStateEnter ()
@@ -85,6 +87,12 @@ public class ISDogNoBoom : IState
                 }
 
             }
+
+            if (Vector3.Distance (_dogLocation.value, _boomLocation.value) < 3f)
+            {
+                _boomInRange.SetValue (true);
+            }
+            else if (_boomInRange.value) _boomInRange.SetValue (false);
 
             //Reads for player using ability
             if (Input.GetButtonDown ("P1B Button") || Input.GetKeyDown (KeyCode.R))

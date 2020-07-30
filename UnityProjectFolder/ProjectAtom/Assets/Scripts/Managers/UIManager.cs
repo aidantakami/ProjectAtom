@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI player1SignInText;
     [SerializeField] public TextMeshProUGUI player2SignInText;
     [SerializeField] public TextMeshProUGUI gameEndedText;
+    [SerializeField] public TextMeshProUGUI boomerangDeadText;
+    [SerializeField] public BoolVariable boomCanBeCaught;
+    [SerializeField] public GameObject boomerangCatchPackage;
     [SerializeField] public GameObject PauseMenu;
     [SerializeField] public UnityEvent UnpauseGame;
     [SerializeField] public UnityEvent RestartGame;
@@ -21,6 +24,7 @@ public class UIManager : MonoBehaviour
 
     //Cooldowns
     [SerializeField] public Image boomerangLifeCooldownImage;
+    [SerializeField] public GameObject buttonInstructions;
     [SerializeField] public FloatVariable boomerangCooldown;
 
     //Abilities
@@ -54,6 +58,7 @@ public class UIManager : MonoBehaviour
 
         player1SignInText.gameObject.SetActive (true);
         player2SignInText.gameObject.SetActive (true);
+        boomerangCatchPackage.SetActive (false);
 
         PauseMenu.SetActive (false);
 
@@ -61,6 +66,8 @@ public class UIManager : MonoBehaviour
         dogAbilityTokenText.gameObject.SetActive (false);
         boomerangAbilityText.gameObject.SetActive (false);
         boomerangAbilityTokenText.gameObject.SetActive (false);
+        boomerangDeadText.gameObject.SetActive (false);
+        buttonInstructions.SetActive (false);
 
     }
 
@@ -174,6 +181,12 @@ public class UIManager : MonoBehaviour
         if (boomerangThrown)
         {
             boomerangLifeCooldownImage.fillAmount = boomerangCooldown.value / 15f;
+
+            if (boomCanBeCaught.value)
+            {
+                boomerangCatchPackage.SetActive (true);
+            }
+            else boomerangCatchPackage.SetActive (false);
         }
 
         dogAbilityText.text = (dogSelectedAbility.value);
@@ -207,12 +220,15 @@ public class UIManager : MonoBehaviour
 
         player1SignInText.gameObject.SetActive (false);
         player2SignInText.gameObject.SetActive (false);
+        boomerangDeadText.gameObject.SetActive (false);
 
         dogAbilityText.gameObject.SetActive (true);
         boomerangAbilityText.gameObject.SetActive (true);
 
         dogAbilityTokenText.gameObject.SetActive (true);
         boomerangAbilityTokenText.gameObject.SetActive (true);
+
+        buttonInstructions.SetActive (true);
 
         boomerangLifeCooldownImage.gameObject.SetActive (false);
 
@@ -224,6 +240,8 @@ public class UIManager : MonoBehaviour
     public void UIPause ()
     {
         PauseMenu.SetActive (true);
+        buttonInstructions.SetActive (false);
+
     }
 
     //Listening to event
@@ -231,6 +249,8 @@ public class UIManager : MonoBehaviour
     {
         joystick1ReturnToZero = true;
         joystick2ReturnToZero = true;
+        buttonInstructions.SetActive (true);
+
         PauseMenu.SetActive (false);
     }
 
@@ -281,6 +301,7 @@ public class UIManager : MonoBehaviour
     public void BoomerangThrownUIEnd ()
     {
         boomerangLifeCooldownImage.gameObject.SetActive (false);
+        boomerangCatchPackage.SetActive (false);
 
         boomerangThrown = false;
     }
@@ -289,11 +310,14 @@ public class UIManager : MonoBehaviour
     public void BoomerangDeadUI ()
     {
         boomDead = true;
+        boomerangDeadText.gameObject.SetActive (true);
+        boomerangCatchPackage.SetActive (false);
         BoomerangThrownUIEnd ();
     }
 
     public void BoomerangRevivedUI ()
     {
+        boomerangDeadText.gameObject.SetActive (false);
         boomDead = false;
     }
 
