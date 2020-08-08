@@ -10,24 +10,24 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private float rangeOfBoomGust;
 
-    public List<GameObject> enemyList = new List<GameObject> ();
+    public List<IEnemy> enemyList = new List<IEnemy> ();
 
     //0, enemy is inactive, 1 enemy is active
     private List<int> enemyBookkeeping = new List<int> ();
 
-    public void AddToEnemyManager (GameObject newIEnemy)
+    public void AddToEnemyManager (IEnemy newIEnemy)
     {
         enemyList.Add (newIEnemy);
         enemyBookkeeping.Add (1);
     }
 
-    public void SetEnemyInactive (GameObject deadEnemy)
+    public void SetEnemyInactive (IEnemy deadEnemy)
     {
         for (int rep = 0; rep < enemyList.Count - 1; rep++)
         {
             if (enemyList[rep].Equals (deadEnemy))
             {
-                deadEnemy.SetActive (false);
+                deadEnemy.EnemySetActive (false);
                 enemyBookkeeping[rep] = 0;
             }
         }
@@ -39,8 +39,8 @@ public class EnemyManager : MonoBehaviour
         {
             if (enemyBookkeeping[rep] == 0)
             {
-                enemyList[rep].SetActive (true);
-                enemyList[rep].transform.position = position;
+                enemyList[rep].EnemySetActive (true);
+                enemyList[rep].SetPosition (position);
                 enemyBookkeeping[rep] = 1;
 
             }
@@ -49,14 +49,11 @@ public class EnemyManager : MonoBehaviour
 
     public void DogAttackResponse ()
     {
-        foreach (GameObject item in enemyList)
+        foreach (IEnemy item in enemyList)
         {
-            if (Vector3.Distance (item.transform.position, dogPlayerPosition.value) < rangeOfDogAttack)
+            if (Vector3.Distance (item.GetPosition (), dogPlayerPosition.value) < rangeOfDogAttack)
             {
-                if (item.CompareTag ("TargetDummy"))
-                {
-                    item.GetComponent<DummyEnemy> ().KillEnemy ();
-                }
+                item.KillEnemy ();
             }
         }
     }
@@ -64,10 +61,10 @@ public class EnemyManager : MonoBehaviour
     public void GustResponse ()
     {
 
-        List<GameObject> enemiesInRangeOfGust = new List<GameObject> ();
-        foreach (GameObject item in enemyList)
+        List<IEnemy> enemiesInRangeOfGust = new List<IEnemy> ();
+        foreach (IEnemy item in enemyList)
         {
-            if (boomPlayerPosition.value.z + rangeOfBoomGust >= item.transform.position.z && item.transform.position.z > boomPlayerPosition.value.z)
+            if (boomPlayerPosition.value.z + rangeOfBoomGust >= item.GetPosition ().z && item.GetPosition ().z > boomPlayerPosition.value.z)
             {
 
                 enemiesInRangeOfGust.Add (item);
@@ -78,7 +75,7 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine (ThreadedGustResponse (enemiesInRangeOfGust, boomPlayerPosition.value));
     }
 
-    private IEnumerator ThreadedGustResponse (List<GameObject> inRangeEnemies, Vector3 startingPosition)
+    private IEnumerator ThreadedGustResponse (List<IEnemy> inRangeEnemies, Vector3 startingPosition)
     {
         float incrementer = 0.2f;
 
@@ -87,14 +84,11 @@ public class EnemyManager : MonoBehaviour
             //Foreach loop for each wave of destruction!
             for (int rep = inRangeEnemies.Count - 1; rep >= 0; rep--)
             {
-                GameObject item = inRangeEnemies[rep];
-                if (item.transform.position.z <= startingPosition.z + (rangeOfBoomGust * incrementer))
+                IEnemy item = inRangeEnemies[rep];
+                if (item.GetPosition ().z <= startingPosition.z + (rangeOfBoomGust * incrementer))
                 {
-                    if (item.CompareTag ("TargetDummy"))
-                    {
-                        item.GetComponent<DummyEnemy> ().KillEnemy ();
-                        inRangeEnemies.Remove (item);
-                    }
+                    item.KillEnemy ();
+                    inRangeEnemies.Remove (item);
                 }
             }
 
