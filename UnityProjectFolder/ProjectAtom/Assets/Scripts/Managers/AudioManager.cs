@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource BoomReviveSound;
     [SerializeField] private AudioSource EndGameSound;
     [SerializeField] private AudioSource BoomMagnetSound;
+    [SerializeField] private AudioSource GameMusic;
 
     // Start is called before the first frame update
     void Start ()
@@ -24,6 +25,15 @@ public class AudioManager : MonoBehaviour
     void Update ()
     {
 
+    }
+
+    public void StartMusicTheme ()
+    {
+        if (!GameMusic.isPlaying)
+        {
+            GameMusic.Play ();
+
+        }
     }
 
     public void MenuSelectionPlay (bool isDog)

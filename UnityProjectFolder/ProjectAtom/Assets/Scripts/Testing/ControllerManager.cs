@@ -157,4 +157,10 @@ public class ControllerManager : MonoBehaviour
         GamePad.SetVibration (controllerNumber2, 0f, 0f);
 
     }
+
+    public void WaterBalloonVib ()
+    {
+        StartCoroutine (TimedControllerVibration (controllerNumber2, 0.07f));
+    }
+
 }
