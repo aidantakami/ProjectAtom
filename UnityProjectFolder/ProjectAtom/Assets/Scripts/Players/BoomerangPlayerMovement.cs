@@ -105,6 +105,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void BoomerangMagnetResponse ()
     {
         StartCoroutine (BoomerangMagnetCoroutine ());
+        boomerangRangeWarning.value = 0;
     }
 
     private IEnumerator BoomerangMagnetCoroutine ()

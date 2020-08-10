@@ -44,6 +44,8 @@ public class UIManager : MonoBehaviour
     private bool boomerangThrown = false;
     private bool boomDead = false;
 
+    private Color clearColor = new Color (0f, 0f, 0f, 0f);
+
     private int selectedButton = 0;
 
     // Start is called before the first frame update
@@ -77,17 +79,17 @@ public class UIManager : MonoBehaviour
         if (isPaused.value)
         {
             //If player one pushed stick down
-            if ((Input.GetAxis ("P1Left Stick Vertical") < -0.8f && joystick1ReturnToZero))
+            if ((Input.GetAxis ("P1Left Stick Vertical") < -0.8f && joystick1ReturnToZero) || Input.GetKeyDown (KeyCode.UpArrow))
             {
                 //Change selection
                 if (selectedButton == 0)
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = PauseMenuButtons.Count - 1;
                 }
                 else
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton--;
                 }
 
@@ -99,12 +101,12 @@ public class UIManager : MonoBehaviour
                 //Change selection
                 if (selectedButton == 0)
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = PauseMenuButtons.Count - 1;
                 }
                 else
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton--;
                 }
 
@@ -113,16 +115,16 @@ public class UIManager : MonoBehaviour
             }
 
             //If player pushes stick up
-            else if ((Input.GetAxis ("P1Left Stick Vertical") > 0.8f) && joystick1ReturnToZero)
+            else if ((Input.GetAxis ("P1Left Stick Vertical") > 0.8f) && joystick1ReturnToZero || Input.GetKeyDown (KeyCode.DownArrow))
             {
                 if (selectedButton == PauseMenuButtons.Count - 1)
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = 0;
                 }
                 else
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton++;
                 }
 
@@ -133,12 +135,12 @@ public class UIManager : MonoBehaviour
             {
                 if (selectedButton == PauseMenuButtons.Count - 1)
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = 0;
                 }
                 else
                 {
-                    PauseMenuButtons[selectedButton].image.color = Color.white;
+                    PauseMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton++;
                 }
 
@@ -166,16 +168,11 @@ public class UIManager : MonoBehaviour
             PauseMenuButtons[selectedButton].image.color = Color.blue;
 
             //Player Pressed A
-            if (Input.GetButtonDown ("P1A Button") || Input.GetButtonDown ("P2A Button"))
+            if (Input.GetButtonDown ("P1A Button") || Input.GetButtonDown ("P2A Button") || Input.GetKeyDown (KeyCode.Return))
             {
                 PauseMenuButtons[selectedButton].onClick.Invoke ();
             }
 
-            //Keyboard
-            if (Input.GetKeyDown (KeyCode.Q))
-            {
-                RestartFromUI ();
-            }
         }
 
         if (boomerangThrown)
@@ -200,14 +197,68 @@ public class UIManager : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            player1SignInText.text = "Dog, Signed In";
+            player1SignInText.text = PlayerSignInText (true);
             player1SignInText.color = Color.green;
         }
 
         if (playerNumber == 2)
         {
-            player2SignInText.text = "Boomerang, Signed In";
+            player2SignInText.text = PlayerSignInText (false);
             player2SignInText.color = Color.green;
+        }
+    }
+
+    private string PlayerSignInText (bool isZoomer)
+    {
+        int randomNumber = UnityEngine.Random.Range (0, 5);
+
+        if (isZoomer)
+        {
+            if (randomNumber == 0)
+            {
+                return "Zoomer locked and loaded.";
+            }
+            else if (randomNumber == 1)
+            {
+                return "Zoomer wants to run";
+            }
+            else if (randomNumber == 2)
+            {
+                return "Zoomer ready to zoom";
+            }
+            else if (randomNumber == 3)
+            {
+                return "Zoomer wants to go!";
+            }
+            else if (randomNumber == 4)
+            {
+                return "Zoomer ready to throw Boomer!";
+            }
+            else return "Zoomer Ready!";
+        }
+        else
+        {
+            if (randomNumber == 0)
+            {
+                return "Boomer ready to fly";
+            }
+            else if (randomNumber == 1)
+            {
+                return "Boomer cleared for liftoff";
+            }
+            else if (randomNumber == 2)
+            {
+                return "Boomer ready to be thrown";
+            }
+            else if (randomNumber == 3)
+            {
+                return "Boomer WANTS TO FLY";
+            }
+            else if (randomNumber == 4)
+            {
+                return "Boomer waiting on Zoomer";
+            }
+            else return "Boomer Ready!";
         }
     }
 
@@ -273,6 +324,10 @@ public class UIManager : MonoBehaviour
         gameEndedText.gameObject.SetActive (true);
         player1SignInText.gameObject.SetActive (true);
         player2SignInText.gameObject.SetActive (true);
+
+        player1SignInText.text = "Player 1 Press A";
+        player2SignInText.text = "Player 2 Press B";
+
     }
 
     public void QuitGame ()
