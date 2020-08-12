@@ -14,6 +14,8 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] public GameObject htpMenu;
     [SerializeField] public GameObject keyboardMenu;
     [SerializeField] public GameObject xboxMenu;
+    [SerializeField] public GameObject basicsMenu;
+    [SerializeField] public GameObject aboutMenu;
 
     [SerializeField] public AudioSource menuNextSelectionSound;
     private bool joystick1ReturnToZero = true;
@@ -23,6 +25,7 @@ public class MainMenuScript : MonoBehaviour
     private bool optionsMenuActive = false;
     private bool scoresMenuActive = false;
     private bool htpMenuActive = false;
+    private bool aboutMenuActive = false;
 
     private int selectedButton = 0;
     private Color clearColor = new Color (0, 0, 0, 0);
@@ -31,6 +34,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private List<Slider> optionsMenuSliders = new List<Slider> ();
     [SerializeField] private List<Button> scoresMenuButtons = new List<Button> ();
     [SerializeField] private List<Button> htpMenuButtons = new List<Button> ();
+    [SerializeField] private List<Button> aboutMenuButtons = new List<Button> ();
 
     // Start is called before the first frame update
     void Start ()
@@ -38,6 +42,7 @@ public class MainMenuScript : MonoBehaviour
         ScoresMenuGO.SetActive (false);
         OptionsMenuGO.SetActive (false);
         htpMenu.SetActive (false);
+        aboutMenu.SetActive (false);
         SceneManager.LoadScene ("Audio", LoadSceneMode.Additive);
 
     }
@@ -281,106 +286,14 @@ public class MainMenuScript : MonoBehaviour
 
         else if (scoresMenuActive)
         {
-            if ((Input.GetAxis ("P1Left Stick Vertical") < -0.8f && joystick1ReturnToZero) || Input.GetKeyDown (KeyCode.UpArrow))
-            {
-                //Change Selection
-                if (selectedButton == 0)
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton = scoresMenuButtons.Count - 1;
-                }
-                else
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton--;
-                }
-
-                menuNextSelectionSound.Play ();
-                joystick1ReturnToZero = false;
-
-            }
-
-            else if ((Input.GetAxis ("P2Left Stick Vertical") < -0.8f && joystick1ReturnToZero))
-            {
-                //Change Selection
-                if (selectedButton == 0)
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton = scoresMenuButtons.Count - 1;
-                }
-                else
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton--;
-                }
-
-                menuNextSelectionSound.Play ();
-                joystick1ReturnToZero = false;
-
-            }
-
-            else if (((Input.GetAxis ("P1Left Stick Vertical") > 0.8f) && joystick1ReturnToZero) || Input.GetKeyDown (KeyCode.DownArrow))
-            {
-                if (selectedButton == scoresMenuButtons.Count - 1)
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton = 0;
-                }
-                else
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton++;
-                }
-
-                menuNextSelectionSound.Play ();
-
-                //bool to make player bring stick back to 0
-                joystick1ReturnToZero = false;
-
-            }
-            else if ((Input.GetAxis ("P2Left Stick Vertical") > 0.8f && joystick2ReturnToZero))
-            {
-                if (selectedButton == scoresMenuButtons.Count - 1)
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton = 0;
-                }
-                else
-                {
-                    scoresMenuButtons[selectedButton].image.color = clearColor;
-                    selectedButton++;
-                }
-
-                menuNextSelectionSound.Play ();
-
-                //bool to make player bring stick back to 0
-                joystick2ReturnToZero = false;
-
-            }
-
-            if (!joystick1ReturnToZero)
-            {
-                if ((Input.GetAxis ("P1Left Stick Vertical") < 0.2f) && Input.GetAxis ("P1Left Stick Vertical") > -0.2f)
-                {
-                    joystick1ReturnToZero = true;
-                }
-            }
-
-            if (!joystick2ReturnToZero)
-            {
-                if ((Input.GetAxis ("P2Left Stick Vertical") < 0.2f) && Input.GetAxis ("P2Left Stick Vertical") > -0.2f)
-                {
-                    joystick2ReturnToZero = true;
-                }
-            }
 
             //Player Pressed A
             if (Input.GetButtonDown ("P1A Button") || Input.GetButtonDown ("P2A Button") || Input.GetKeyDown (KeyCode.Return))
             {
-                scoresMenuButtons[selectedButton].onClick.Invoke ();
+                scoresMenuButtons[0].onClick.Invoke ();
             }
 
-            scoresMenuButtons[selectedButton].image.color = Color.blue;
+            scoresMenuButtons[0].image.color = Color.blue;
         }
 
         else if (htpMenuActive)
@@ -486,6 +399,17 @@ public class MainMenuScript : MonoBehaviour
 
             htpMenuButtons[selectedButton].image.color = Color.blue;
         }
+        else if (aboutMenuActive)
+        {
+
+            //Player Pressed A
+            if (Input.GetButtonDown ("P1A Button") || Input.GetButtonDown ("P2A Button") || Input.GetKeyDown (KeyCode.Return))
+            {
+                aboutMenuButtons[0].onClick.Invoke ();
+            }
+
+            aboutMenuButtons[0].image.color = Color.blue;
+        }
     }
 
     public void MainMenuStartGame ()
@@ -518,18 +442,39 @@ public class MainMenuScript : MonoBehaviour
         mainMenuActive = false;
         htpMenuActive = true;
         keyboardMenu.SetActive (false);
+        basicsMenu.SetActive (false);
 
+    }
+
+    public void AboutSelected ()
+    {
+        menuNextSelectionSound.Play ();
+        MainMenuGO.SetActive (false);
+        aboutMenu.SetActive (true);
+        selectedButton = 0;
+        mainMenuActive = false;
+        aboutMenuActive = true;
     }
 
     public void KeyboardControlsSelected ()
     {
         keyboardMenu.SetActive (true);
         xboxMenu.SetActive (false);
+        basicsMenu.SetActive (false);
+
     }
     public void XboxControlsSelected ()
     {
         keyboardMenu.SetActive (false);
         xboxMenu.SetActive (true);
+        basicsMenu.SetActive (false);
+
+    }
+    public void BasicsSelected ()
+    {
+        keyboardMenu.SetActive (false);
+        xboxMenu.SetActive (false);
+        basicsMenu.SetActive (true);
     }
 
     public void ScoresSelected ()
@@ -553,6 +498,7 @@ public class MainMenuScript : MonoBehaviour
         OptionsMenuGO.SetActive (false);
         ScoresMenuGO.SetActive (false);
         htpMenu.SetActive (false);
+        aboutMenu.SetActive (false);
         MainMenuGO.SetActive (true);
 
         selectedButton = 0;
@@ -561,6 +507,7 @@ public class MainMenuScript : MonoBehaviour
         scoresMenuActive = false;
         optionsMenuActive = false;
         htpMenuActive = false;
+        aboutMenuActive = false;
     }
 
     public void QuitGame ()
