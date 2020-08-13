@@ -11,6 +11,7 @@ public class LeafEnemy : MonoBehaviour, IEnemy
     [SerializeField] public GameObject waterballoon;
     [SerializeField] public GameObject ropeGO;
     [SerializeField] public Material waterShader;
+    [SerializeField] public ParticleSystem popPS;
     Material balloonMaterial;
 
     [SerializeField] public EnemyManager enemyManager;
@@ -65,6 +66,7 @@ public class LeafEnemy : MonoBehaviour, IEnemy
 
     public void KillEnemy ()
     {
+        popPS.Play ();
         leafAnimator.SetBool ("hit", true);
         ropeAnimator.SetBool ("hit", true);
         balloonAnimator.SetBool ("hit", true);

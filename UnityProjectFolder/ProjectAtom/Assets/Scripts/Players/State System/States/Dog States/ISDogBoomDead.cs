@@ -39,8 +39,6 @@ public class ISDogBoomDead : IState
     public void OnStateTick ()
     {
 
-        Debug.Log ("you found it");
-
         if (_playerCanMove.value)
         {
             tempHorizontalInput = Input.GetAxis ("P1Left Stick Horizontal");

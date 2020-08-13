@@ -1155,6 +1155,7 @@ MonoBehaviour:
   waterballoon: {fileID: 1759573198100789090}
   ropeGO: {fileID: 6774205871183179783}
   waterShader: {fileID: 2100000, guid: e1fcf0b1a9b9a664aa4379ed855d2cfb, type: 2}
+  popPS: {fileID: 3480373920951980308, guid: 874996140d628b941818269ed7c79ebc, type: 3}
   enemyManager: {fileID: 0}
   dogCollided:
     m_PersistentCalls:
@@ -1254,25 +1255,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   priority: 0
---- !u!95 &8842705464191173376
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6774205871183179783}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df1a7fde16919a346a02b07986e6addc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6316333525883290779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1317,25 @@ Transform:
   m_Father: {fileID: 8893620683583233502}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8842705464191173376
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6774205871183179783}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df1a7fde16919a346a02b07986e6addc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6865269688659559976
 GameObject:
   m_ObjectHideFlags: 0
