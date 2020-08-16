@@ -58,7 +58,7 @@ public class ChunkManager : MonoBehaviour
     public void InitialChunkLoad ()
     {
 
-        RandomizeList (Chunks);
+        //RandomizeList (Chunks);
         int rep = 1;
 
         foreach (GameObject chunkGO in Chunks)

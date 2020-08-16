@@ -44,6 +44,7 @@ public class MainMenuScript : MonoBehaviour
         htpMenu.SetActive (false);
         aboutMenu.SetActive (false);
         SceneManager.LoadScene ("Audio", LoadSceneMode.Additive);
+        SceneManager.LoadScene ("MenuLighting", LoadSceneMode.Additive);
 
     }
 
@@ -163,12 +164,12 @@ public class MainMenuScript : MonoBehaviour
                 //Change Selection
                 if (selectedButton == 0)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = optionsMenuButtons.Count - 1;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton--;
                 }
 
@@ -181,12 +182,12 @@ public class MainMenuScript : MonoBehaviour
                 //Change Selection
                 if (selectedButton == 0)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = optionsMenuButtons.Count - 1;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton--;
                 }
 
@@ -198,12 +199,12 @@ public class MainMenuScript : MonoBehaviour
             {
                 if (selectedButton == optionsMenuButtons.Count - 1)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = 0;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton++;
                 }
 
@@ -215,12 +216,12 @@ public class MainMenuScript : MonoBehaviour
             {
                 if (selectedButton == optionsMenuButtons.Count - 1)
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton = 0;
                 }
                 else
                 {
-                    optionsMenuButtons[selectedButton].image.color = Color.black;
+                    optionsMenuButtons[selectedButton].image.color = clearColor;
                     selectedButton++;
                 }
 
@@ -417,6 +418,7 @@ public class MainMenuScript : MonoBehaviour
 
         SceneManager.LoadScene ("Main Game Scene", LoadSceneMode.Additive);
         SceneManager.LoadScene ("Main UI Scene", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync ("MenuLighting");
         SceneManager.LoadScene ("Lighting", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync ("MainMenuScene");
         //SceneManager.LoadScene ("Audio", LoadSceneMode.Additive);
@@ -526,7 +528,7 @@ public class MainMenuScript : MonoBehaviour
 
         foreach (Button tempButton in optionsMenuButtons)
         {
-            tempButton.image.color = Color.black;
+            tempButton.image.color = clearColor;
         }
 
         foreach (Button tempButton in scoresMenuButtons)
