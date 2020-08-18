@@ -15,6 +15,7 @@ public class ScoreScript : MonoBehaviour
 
     private bool gameIsPlaying = false;
     private int incrementOverTime = 10;
+    private float boomAwayTimer = 0;
 
     private int incrementPauseTemp;
 
@@ -35,19 +36,84 @@ public class ScoreScript : MonoBehaviour
         if (boomRangeWarning == 0)
         {
             warningText.gameObject.SetActive (false);
+            if (boomAwayTimer != 0) boomAwayTimer = 0;
         }
         else if (boomRangeWarning == 1)
         {
             warningText.gameObject.SetActive (true);
-            warningText.color = Color.white;
-            warningText.text = "Boomer range warning!";
+            warningText.color = Color.black;
+            warningText.text = "Range warning!";
+
+            if (boomAwayTimer != 0) boomAwayTimer = 0;
 
         }
         else if (boomRangeWarning == 2)
         {
             warningText.color = Color.red;
-            warningText.text = "Boomer too far from Zoomer!";
+            warningText.text = "Too Far From Zoomer!";
+
+            if (boomAwayTimer != 0) boomAwayTimer = 0;
         }
+        else if (boomRangeWarning == 3)
+        {
+            boomAwayTimer += Time.deltaTime;
+
+            if (boomAwayTimer > 6)
+            {
+                warningText.color = Color.black;
+                warningText.gameObject.SetActive (true);
+                warningText.text = GetBoomThrowText ();
+                boomAwayTimer = 0;
+            }
+        }
+    }
+
+    public string GetBoomThrowText ()
+    {
+        int randomSeed = (int) Random.Range (0f, 10f);
+
+        if (randomSeed == 0)
+        {
+            return "Throw Me!";
+        }
+        else if (randomSeed == 1)
+        {
+            return "Let Me At Em!";
+        }
+        else if (randomSeed == 2)
+        {
+            return "Need Help?";
+        }
+        else if (randomSeed == 3)
+        {
+            return "I Want To Fly!";
+        }
+        else if (randomSeed == 4)
+        {
+            return "I'm Ready!";
+        }
+        else if (randomSeed == 5)
+        {
+            return "Throw Me For Help!";
+        }
+        else if (randomSeed == 6)
+        {
+            return "I'd Be Faster!";
+        }
+        else if (randomSeed == 7)
+        {
+            return "Time to Toss!";
+        }
+        else if (randomSeed == 8)
+        {
+            return "Tag Me In!";
+        }
+        else if (randomSeed == 9)
+        {
+            return "My Turn!";
+        }
+        else return "Boomer Time!";
+
     }
 
     public void TokenScoreIncrement ()

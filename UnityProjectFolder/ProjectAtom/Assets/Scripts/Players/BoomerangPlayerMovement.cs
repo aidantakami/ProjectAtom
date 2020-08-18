@@ -85,7 +85,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         _StateMachine.EnterState (BoomAwayState);
         boomerangIcon.gameObject.SetActive (false);
         boomerangRangeTemp = 0;
-        boomerangRangeWarning.value = 0;
+        boomerangRangeWarning.value = 3;
         springboardPrefab.transform.position = new Vector3 (-10, -10, -10);
         isBeingThrown = false;
 
@@ -105,7 +105,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     public void BoomerangMagnetResponse ()
     {
         StartCoroutine (BoomerangMagnetCoroutine ());
-        boomerangRangeWarning.value = 0;
+        boomerangRangeWarning.value = 3;
     }
 
     private IEnumerator BoomerangMagnetCoroutine ()
@@ -123,6 +123,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     {
         _StateMachine.EnterState (BoomAwayState);
         boomerangIcon.gameObject.SetActive (false);
+        boomerangRangeWarning.value = 3;
     }
 
     #endregion
@@ -215,6 +216,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
             //Boomerang was caught
             boomerangCaught.Invoke ();
             _StateMachine.EnterState (BoomAwayState);
+            boomerangRangeWarning.value = 3;
             return true;
 
         }
