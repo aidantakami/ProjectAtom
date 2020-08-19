@@ -15,6 +15,7 @@ public class LeafEnemy : MonoBehaviour, IEnemy
     Material balloonMaterial;
 
     [SerializeField] public EnemyManager enemyManager;
+    [SerializeField] public bool isRight;
     [SerializeField] UnityEvent dogCollided = new UnityEvent ();
 
     private Vector3 balloonFallIncrement = new Vector3 (0, 0.05f, 0);
@@ -61,7 +62,10 @@ public class LeafEnemy : MonoBehaviour, IEnemy
 
     public Vector3 GetPosition ()
     {
-        return gameObject.transform.position - posAdjust;
+
+        if (!isRight) return gameObject.transform.position - posAdjust;
+        else return gameObject.transform.position + posAdjust;
+
     }
 
     public void KillEnemy ()

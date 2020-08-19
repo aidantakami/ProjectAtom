@@ -42315,6 +42315,7 @@ Transform:
   - {fileID: 724884821}
   - {fileID: 1982728541}
   - {fileID: 1078226175}
+  - {fileID: 1784006984}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53918,7 +53919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogPlayerPosition: {fileID: 11400000, guid: 79a79bad5a0966745b3e0dd2f142cac3, type: 2}
   boomPlayerPosition: {fileID: 11400000, guid: 5272e7883e51f2f448f7cbda293d47f0, type: 2}
-  rangeOfDogAttack: 15
+  rangeOfDogAttack: 20
   rangeOfBoomGust: 25
 --- !u!1001 &1279015470
 PrefabInstance:
@@ -73826,6 +73827,36 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1774872117}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1784006983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1784006984}
+  m_Layer: 0
+  m_Name: NoDogSigns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1784006984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784006983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 812706838}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1795112401
 GameObject:
   m_ObjectHideFlags: 0
@@ -82459,19 +82490,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1750768805306756412, guid: f59b5c69dc7909b44ac5be7bf9ae1e10, type: 3}
---- !u!65 &1281249959594060899
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281249959594060902}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.987528, y: 45.65506, z: 0.20948792}
-  m_Center: {x: -0.11778673, y: 22.327528, z: 1.874397}
 --- !u!1 &1281249959594060902
 GameObject:
   m_ObjectHideFlags: 0
@@ -82481,7 +82499,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2854353987656785525}
-  - component: {fileID: 1281249959594060899}
   - component: {fileID: 1281249959594060896}
   m_Layer: 0
   m_Name: Failsafe Chunk
@@ -82535,7 +82552,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7c05aaf954ca94a4c841d06872bab7d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7c05aaf954ca94a4c841d06872bab7d0,
         type: 3}
@@ -83160,7 +83177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281249959594060902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -238.7689, y: 68.05, z: 172.5}
+  m_LocalPosition: {x: -238.7689, y: 68.63, z: 172.5}
   m_LocalScale: {x: 24, y: 0.2, z: 48}
   m_Children:
   - {fileID: 740952394}
@@ -83397,7 +83414,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 7c05aaf954ca94a4c841d06872bab7d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7c05aaf954ca94a4c841d06872bab7d0,
         type: 3}

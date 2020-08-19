@@ -1158,6 +1158,7 @@ MonoBehaviour:
   waterShader: {fileID: 2100000, guid: e1fcf0b1a9b9a664aa4379ed855d2cfb, type: 2}
   popPS: {fileID: 8851696280240470261}
   enemyManager: {fileID: 0}
+  isRight: 1
   dogCollided:
     m_PersistentCalls:
       m_Calls:
