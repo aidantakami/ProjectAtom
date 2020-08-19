@@ -41,6 +41,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
     private bool isBeingThrown = false;
     private int abilityIterator;
     private int boomerangRangeTemp = 0;
+    private Vector3 carePackageYTemp = new Vector3 (-3f, 1.5f, -3f);
 
     //State machine and states
     #region 
@@ -163,7 +164,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
 
         for (int rep = 0; rep < tokensConverted; rep++)
         {
-            var tempGOVar = Instantiate (abilityTokenPrefab);
+            var tempGOVar = Instantiate (abilityTokenPrefab, carePackageYTemp, Quaternion.identity);
             leftBehindTokens.Add (tempGOVar);
         }
     }
@@ -324,7 +325,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         //If after iteration is 2
         else if (abilityIterator == 2)
         {
-            selectedBoomAbility.SetValue ("Extra Tokens, \nCost 2");
+            selectedBoomAbility.SetValue ("Extra Tokens, \nCost 3");
         }
     }
 
@@ -351,7 +352,7 @@ public class BoomerangPlayerMovement : MonoBehaviour
         {
             if (_StateMachine.currentState == BoomThrownState)
             {
-                Vector3 tempPos = new Vector3 (transform.position.x, transform.position.y + 1f, transform.position.z - 4f);
+                Vector3 tempPos = new Vector3 (transform.position.x, leftBehindTokens[rep].transform.position.y, transform.position.z - 4f);
                 leftBehindTokens[rep].gameObject.SetActive (true);
                 leftBehindTokens[rep].transform.position = tempPos;
                 yield return new WaitForSeconds (0.1f);

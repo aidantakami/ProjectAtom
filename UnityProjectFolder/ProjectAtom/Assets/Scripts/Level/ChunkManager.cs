@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChunkManager : MonoBehaviour
 {
     //List of chunks
-    private List<GameObject> Chunks;
+    [SerializeField] private List<GameObject> Chunks;
 
     private int playerOnChunk = 1;
     private int chunkIterator = 0;
@@ -14,23 +14,26 @@ public class ChunkManager : MonoBehaviour
     public GameObject firstChunk;
     private Vector3 startingPos;
 
+    private bool firstChunkLoad = true;
+
     // Start is called before the first frame update
     void Awake ()
     {
         gapBetweenChunks = new Vector3 (0, 0, 48f);
 
-        Chunks = new List<GameObject> ();
+        //Chunks = new List<GameObject> ();
     }
 
     private void Start ()
     {
         startingPos = firstChunk.transform.position;
+        InitialChunkLoad ();
     }
 
     //Adds Chunk to list
     public void Add (GameObject go)
     {
-        Chunks.Add (go);
+        //Chunks.Add (go);
     }
 
     public void ActivateNextPath ()
@@ -80,7 +83,13 @@ public class ChunkManager : MonoBehaviour
 
     public void ChunkManagerRestart ()
     {
-        InitialChunkLoad ();
+
+        if (firstChunkLoad)
+        {
+            firstChunkLoad = false;
+        }
+        else InitialChunkLoad ();
+
     }
 
     public static void RandomizeList<T> (List<T> ts)
