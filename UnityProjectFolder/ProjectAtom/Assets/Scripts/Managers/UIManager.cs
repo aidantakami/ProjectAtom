@@ -52,8 +52,8 @@ public class UIManager : MonoBehaviour
     void Start ()
     {
         //Set Text for player sign in
-        player1SignInText.text = "Player 1 Press A";
-        player2SignInText.text = "Player 2 Press B";
+        player1SignInText.text = "Player 1 Press A\n Keyboard: E";
+        player2SignInText.text = "Player 2 Press B\n Keyboard: RShift";
         gameEndedText.text = "Zoomer Down \n \nGame Over!";
 
         gameEndedText.gameObject.SetActive (false);
